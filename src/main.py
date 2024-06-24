@@ -1,5 +1,8 @@
+import json
+
 class Person:
     # class variable
+    # encapsulation
     __id = 1
 
     def __init__(self, name, last_name, address):
@@ -8,6 +11,9 @@ class Person:
         self.address = address
         self.id = Person.__id
         Person.__id += 1
+
+    def get_ID(self):
+        return self.id
 
     def print_info(self):
         info = f"""
@@ -54,7 +60,6 @@ class Student(Person):
         self.course = new_course
         print("Course Updated")
     
-
 class Teacher(Person):
     # class variable
     profile = "Teacher"
@@ -76,16 +81,57 @@ class Teacher(Person):
                     new_list.append(i)
                 self.subject_area = new_list
                 print(f"Subjects added")
-                
-    
-studente1 = Student("Danilo","Lannocca","Melbourne", "coding")
-teacher1 = Teacher("Hugfel", "Professor", "Sydney","matematica")
 
-# print(studente1.print_info())
-# print(teacher1.print_info())
+def student_new_record():
+    name = input("Enter name: ")
+    last_name = input("Enter last name: ")
+    address = input("Enter address: ")
+    course = input("Enter course name: ")
+    student = Student(name, last_name, address, course)
+    new_record = {  "#ID": student.get_ID(),
+                    "Name":student.name,
+                    "LastName":student.last_name,
+                    "Address":student.address,
+                    "Course":student.course}
+    return new_record
 
-#studente1.update_info()
-#print(studente1.print_info())
 
-teacher1.update_subjects(["filosofia","matematica","fisica"])
-print(teacher1.print_info())
+
+def main():
+
+    student_list = []
+
+    print(f"""
+        1 - Insert new teacher
+        2 - Insert new student
+        3 - Visualize students records
+        4 - Visualize teachers records
+        5 - Update students info
+        6 - Update teachers info
+        """)
+    choice = int(input("Enter your choice: "))
+
+    match choice:
+        case 1:
+           pass
+        case 2:
+            student_list.append(student_new_record())
+            new_record = "Y"
+            while new_record not in ("Nn"):
+                new_record = input("Do you want to enter another one? (Y/N) ")
+                if new_record in ("Yy"):
+                    student_list.append(student_new_record())
+            print(student_list)
+        case 3:
+            pass
+        case 4:
+            pass
+        case 5:
+            pass
+        case _:
+            print("Input not valid. Try again")
+
+main()
+        
+# studente1 = Student("Danilo","Lannocca","Melbourne", "coding")
+# teacher1 = Teacher("Hugfel", "Professor", "Sydney","matematica")
