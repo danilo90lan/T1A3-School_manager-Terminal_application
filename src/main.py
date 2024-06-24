@@ -95,11 +95,24 @@ def student_new_record():
                     "Course":student.course}
     return new_record
 
+def teacher_new_record():
+    name = input("Enter name: ")
+    last_name = input("Enter last name: ")
+    address = input("Enter address: ")
+    course = input("Enter teaching subject: ")
+    teacher = Teacher(name, last_name, address, course)
+    new_record = {  "#ID": teacher.get_ID(),
+                    "Name": teacher.name,
+                    "LastName":teacher.last_name,
+                    "Address":teacher.address,
+                    "Course":teacher.subject_area}
+    return new_record
 
 
 def main():
 
     student_list = []
+    teacher_list = []
 
     print(f"""
         1 - Insert new teacher
@@ -113,14 +126,20 @@ def main():
 
     match choice:
         case 1:
-           pass
-        case 2:
-            student_list.append(student_new_record())
+            teacher_list.append(student_new_record())
             new_record = "Y"
             while new_record not in ("Nn"):
                 new_record = input("Do you want to enter another one? (Y/N) ")
                 if new_record in ("Yy"):
-                    student_list.append(student_new_record())
+                    teacher_list.append(student_new_record())
+            print(teacher_list)
+        case 2:
+            student_list.append(teacher_new_record())
+            new_record = "Y"
+            while new_record not in ("Nn"):
+                new_record = input("Do you want to enter another one? (Y/N) ")
+                if new_record in ("Yy"):
+                    student_list.append(teacher_new_record())
             print(student_list)
         case 3:
             pass
@@ -132,6 +151,3 @@ def main():
             print("Input not valid. Try again")
 
 main()
-        
-# studente1 = Student("Danilo","Lannocca","Melbourne", "coding")
-# teacher1 = Teacher("Hugfel", "Professor", "Sydney","matematica")
