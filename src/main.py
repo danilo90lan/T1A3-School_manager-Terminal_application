@@ -1,11 +1,17 @@
 class Person:
+    # class variable
+    __id = 1
+
     def __init__(self, name, last_name, address):
         self.name = name
         self.last_name = last_name
         self.address = address
+        self.id = Person.__id
+        Person.__id += 1
 
     def print_info(self):
         info = f"""
+        #ID: {self.__id}
         Name: {self.name}
         Last name: {self.last_name}
         Address: {self.address}"""
@@ -30,24 +36,38 @@ class Person:
                 print("Invalid choice. Input must be between 1 and 3")
 
 class Student(Person):
+    # class variable
     profile = "Student"
+
     def __init__(self, name, last_name, address, course):
-        super().__init__(self, name, last_name, address)
-        self.course - course
+        super().__init__(name, last_name, address)
+        self.course = course
+
+    def print_info(self):
+        info = f"""
+        Profile: {Student.profile}
+        Course name: {self.course}
+        """
+        return super().print_info() + info
     
 
 class Teacher(Person):
+    # class variable
     profile = "Teacher"
-    def __init__(self, name, last_name, address, subject_area = None):
-        super().__init__(self, name, last_name, address)
-        if subject_area is None:
-            self.subject_area = []
-        else:
-            self.subject_area = subject_area
 
+    def __init__(self, name, last_name, address, subject_area):
+        super().__init__(name, last_name, address)
+        self.subject_area = subject_area
 
-studente1 = Student("Danilo","Lannocca","Melbourne")
-teacher1 = Teacher("Hugfel", "Professor", "Sydney")
+    def print_info(self):
+        info = f"""
+        Profile: {Teacher.profile}
+        Teaching area: {self.subject_area}
+        """
+        return super().print_info() + info
+    
+studente1 = Student("Danilo","Lannocca","Melbourne", "sfgwegf")
+teacher1 = Teacher("Hugfel", "Professor", "Sydney", "sdfwrg")
 
 print(studente1.print_info())
 print(teacher1.print_info())
