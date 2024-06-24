@@ -11,7 +11,7 @@ class Person:
 
     def print_info(self):
         info = f"""
-        #ID: {self.__id}
+        #ID: {self.id}
         Name: {self.name}
         Last name: {self.last_name}
         Address: {self.address}"""
@@ -50,6 +50,10 @@ class Student(Person):
         """
         return super().print_info() + info
     
+    def update_course(self,new_course):
+        self.course = new_course
+        print("Course Updated")
+    
 
 class Teacher(Person):
     # class variable
@@ -66,10 +70,22 @@ class Teacher(Person):
         """
         return super().print_info() + info
     
-studente1 = Student("Danilo","Lannocca","Melbourne", "sfgwegf")
-teacher1 = Teacher("Hugfel", "Professor", "Sydney", "sdfwrg")
+    def update_subjects(self, new_subjects):
+                new_list = []
+                for i in new_subjects:
+                    new_list.append(i)
+                self.subject_area = new_list
+                print(f"Subjects added")
+                
+    
+studente1 = Student("Danilo","Lannocca","Melbourne", "coding")
+teacher1 = Teacher("Hugfel", "Professor", "Sydney","matematica")
 
-print(studente1.print_info())
+# print(studente1.print_info())
+# print(teacher1.print_info())
+
+#studente1.update_info()
+#print(studente1.print_info())
+
+teacher1.update_subjects(["filosofia","matematica","fisica"])
 print(teacher1.print_info())
-
-studente1.update_info()
