@@ -92,7 +92,8 @@ def student_new_record():
                     "Name":student.name,
                     "LastName":student.last_name,
                     "Address":student.address,
-                    "Course":student.course}
+                    "Course":student.course,
+                    "Profile":student.profile}
     return new_record
 
 def teacher_new_record():
@@ -105,8 +106,28 @@ def teacher_new_record():
                     "Name": teacher.name,
                     "LastName":teacher.last_name,
                     "Address":teacher.address,
-                    "Course":teacher.subject_area}
+                    "Course":teacher.subject_area,
+                    "Profile":teacher.profile}
     return new_record
+
+# writing to a Jason file
+def write_json(record):
+    filename = "./data/uni_database.json"
+    data = []
+    try:
+        with open(filename, "r") as file:
+            data = json.load(file)
+    except FileNotFoundError:
+            print(f"File not found. Creating a a new file...")
+    except json.JSONDecodeError:
+            #if the file exists but contains invalid JSON, raise an error
+            print("Error decoding JSON from the file")
+        
+    data.append(record)
+
+    with open(filename, "w") as file:
+        json.dump(data, file, indent = 3)
+    print("Data added succesfully!")
 
 
 def main():
@@ -126,21 +147,25 @@ def main():
 
     match choice:
         case 1:
-            teacher_list.append(student_new_record())
+            teacher_list.append(teacher_new_record())
             new_record = "Y"
             while new_record not in ("Nn"):
                 new_record = input("Do you want to enter another one? (Y/N) ")
                 if new_record in ("Yy"):
-                    teacher_list.append(student_new_record())
+                    teacher_list.append(teacher_new_record())
+            write_json(teacher_list)
             print(teacher_list)
+
         case 2:
-            student_list.append(teacher_new_record())
+            student_list.append(student_new_record())
             new_record = "Y"
             while new_record not in ("Nn"):
                 new_record = input("Do you want to enter another one? (Y/N) ")
                 if new_record in ("Yy"):
-                    student_list.append(teacher_new_record())
+                    student_list.append(student_new_record())
+            write_json(student_list)
             print(student_list)
+
         case 3:
             pass
         case 4:
@@ -151,3 +176,4 @@ def main():
             print("Input not valid. Try again")
 
 main()
+
