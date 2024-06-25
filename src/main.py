@@ -178,7 +178,6 @@ def main():
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
                         new_list.append(teacher_new_record())
-                    print(new_list)
                 write_json(new_list)
 
             case "2":
@@ -188,7 +187,6 @@ def main():
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
                         new_list.append(student_new_record())
-                print(new_list)
                 write_json(new_list)
 
             case "3":
@@ -217,5 +215,10 @@ students_instances, teachers_istance = read_json()
 #     info = Teacher.print_info(i)
 #     print(info)
 
+for i in students_instances:
+    new_list.append(studentObject_to_Dict(i))
+
+for i in teachers_istance:
+    new_list.append(teacherObject_to_Dict(i))
 
 main()
