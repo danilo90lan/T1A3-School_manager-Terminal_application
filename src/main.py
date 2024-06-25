@@ -64,7 +64,7 @@ class Teacher(Person):
     # class variable
     profile = "Teacher"
 
-    def __init__(self, name, last_name, address, subject_area):
+    def __init__(self, name, last_name, address, subject_area = []):
         super().__init__(name, last_name, address)
         self.subject_area = subject_area
 
@@ -89,25 +89,25 @@ def student_new_record():
     course = input("Enter course name: ")
     student = Student(name, last_name, address, course)
     new_record = {  "#ID": student.get_ID(),
-                    "Name":student.name,
-                    "LastName":student.last_name,
-                    "Address":student.address,
-                    "Course":student.course,
-                    "Profile":student.profile}
+                    "Name": student.name,
+                    "LastName": student.last_name,
+                    "Address": student.address,
+                    "Course": student.course,
+                    "Profile": student.profile}
     return new_record
 
 def teacher_new_record():
     name = input("Enter name: ")
     last_name = input("Enter last name: ")
     address = input("Enter address: ")
-    course = input("Enter teaching subject: ")
+    course = input("Enter teaching subjects (separate each subject with a space): ").split()
     teacher = Teacher(name, last_name, address, course)
     new_record = {  "#ID": teacher.get_ID(),
                     "Name": teacher.name,
-                    "LastName":teacher.last_name,
-                    "Address":teacher.address,
-                    "Course":teacher.subject_area,
-                    "Profile":teacher.profile}
+                    "LastName": teacher.last_name,
+                    "Address": teacher.address,
+                    "Teaching Subjects": teacher.subject_area,
+                    "Profile": teacher.profile}
     return new_record
 
 # writing to a Jason file
@@ -148,16 +148,6 @@ def main():
     student_list = []
     teacher_list = []
 
-    # print(f"""
-    #     1 - Insert new teacher
-    #     2 - Insert new student
-    #     3 - Visualize students records
-    #     4 - Visualize teachers records
-    #     5 - Update students info
-    #     6 - Update teachers info
-    #     7 - Exit program
-    #     """)
-    
     while True:
         choice = input_menu()
 
@@ -166,7 +156,7 @@ def main():
                 teacher_list.append(teacher_new_record())
                 new_record = "Y"
                 while new_record not in ("Nn"):
-                    new_record = input("\n Do you want to enter another one? (Y/N) ")
+                    new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
                         teacher_list.append(teacher_new_record())
                 write_json(teacher_list)
@@ -176,7 +166,7 @@ def main():
                 student_list.append(student_new_record())
                 new_record = "Y"
                 while new_record not in ("Nn"):
-                    new_record = input("\n Do you want to enter another one? (Y/N) ")
+                    new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
                         student_list.append(student_new_record())
                 write_json(student_list)
@@ -197,4 +187,3 @@ def main():
                 print("Input not valid. Try again")
 
 main()
-

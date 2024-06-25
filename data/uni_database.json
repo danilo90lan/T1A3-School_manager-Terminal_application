@@ -2,81 +2,25 @@
    [
       {
          "#ID": 1,
-         "Name": "Antonio",
-         "LastName": "Palombo",
-         "Address": "via liquorui 15",
-         "Course": "Informatica",
+         "Name": "danilo",
+         "LastName": "lannocca",
+         "Address": "sdg",
+         "Course": [
+            "coding",
+            "python",
+            "javascript"
+         ],
          "Profile": "Teacher"
       },
       {
          "#ID": 2,
-         "Name": "Maria Rita",
-         "LastName": "ferrarese",
-         "Address": "sdgsg",
-         "Course": "storia",
+         "Name": "alberto ",
+         "LastName": "gianfreda",
+         "Address": "dgsgsw",
+         "Course": [
+            "trading"
+         ],
          "Profile": "Teacher"
-      }
-   ],
-   [
-      {
-         "#ID": 3,
-         "Name": "Alberto",
-         "LastName": "Gianfreda\\",
-         "Address": "fsdbdfb",
-         "Course": "trading",
-         "Profile": "Student"
-      },
-      {
-         "#ID": 4,
-         "Name": "Danilo",
-         "LastName": "Lannocca",
-         "Address": "danilo.lann",
-         "Course": "danilo.lanngmail.com",
-         "Profile": "Student"
-      }
-   ],
-   [
-      {
-         "#ID": 1,
-         "Name": "sdfgefr",
-         "LastName": "dfheth",
-         "Address": "ehet",
-         "Course": "etth",
-         "Profile": "Teacher"
-      },
-      {
-         "#ID": 2,
-         "Name": "dfheheth",
-         "LastName": "ehethee",
-         "Address": "eththh",
-         "Course": "erhet",
-         "Profile": "Teacher"
-      }
-   ],
-   [
-      {
-         "#ID": 3,
-         "Name": "dfheth",
-         "LastName": "swfghe",
-         "Address": "sgerh",
-         "Course": "wgheh4h",
-         "Profile": "Student"
-      },
-      {
-         "#ID": 4,
-         "Name": "dfwweg",
-         "LastName": "aegww",
-         "Address": "wg3h3hwrhwh",
-         "Course": "wrh3h35r",
-         "Profile": "Student"
-      },
-      {
-         "#ID": 5,
-         "Name": "sfeherh",
-         "LastName": "sfhehehew",
-         "Address": "rhe",
-         "Course": "",
-         "Profile": "Student"
       }
    ]
 ]
