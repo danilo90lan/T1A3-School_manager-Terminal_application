@@ -79,18 +79,33 @@ class Teacher(Person):
                 self.subject_area = new_list
                 print(f"Subjects added")
 
+# converting to dictionary
+def studentObject_to_Dict(student_instance):
+    new_dict = { "Name": student_instance.name,
+                "Last name": student_instance.last_name,
+                "Address": student_instance.address,
+                "Course": student_instance.course,
+                "Profile": student_instance.profile
+    }
+    return new_dict
+
+def teacherObject_to_Dict(teach_instance):
+    new_dict = { "Name": teach_instance.name,
+                "Last name": teach_instance.last_name,
+                "Address": teach_instance.address,
+                "Teaching subjects": teach_instance.subject_area,
+                "Profile": teach_instance.profile
+    }
+    return new_dict
+
 def student_new_record():
     name = input("Enter name: ")
     last_name = input("Enter last name: ")
     address = input("Enter address: ")
     course = input("Enter course name: ")
     student = Student(name, last_name, address, course)
-
-    new_record = {  "Name": student.name,
-                    "Last name": student.last_name,
-                    "Address": student.address,
-                    "Course": student.course,
-                    "Profile": student.profile}
+    students_instances.append(student)
+    new_record = studentObject_to_Dict(student)
     return new_record
 
 def teacher_new_record():
@@ -99,13 +114,8 @@ def teacher_new_record():
     address = input("Enter address: ")
     course = input("Enter teaching subjects (separate each subject with a space): ").split()
     teacher = Teacher(name, last_name, address, course)
-
-
-    new_record = {  "Name": teacher.name,
-                    "Last name": teacher.last_name,
-                    "Address": teacher.address,
-                    "Teaching subjects": teacher.subject_area,
-                    "Profile": teacher.profile}
+    teachers_istance.append(teacher)
+    new_record = teacherObject_to_Dict(teacher)
     return new_record
 
 # defining menu function
@@ -198,13 +208,14 @@ def main():
 new_list = []
 students_instances, teachers_istance = read_json()
 
-for i in students_instances:
-    info = Student.print_info(i)
-    print(info)
-
-for i in teachers_istance:
-    info = Teacher.print_info(i)
-    print(info)
+# for i in students_instances:
+#     print(i.name)
+#     print(i.profile)
 
 
-#main()
+# for i in teachers_istance:
+#     info = Teacher.print_info(i)
+#     print(info)
+
+
+main()
