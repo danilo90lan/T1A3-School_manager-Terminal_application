@@ -1,11 +1,21 @@
 import json
 
 class Person:
+    #class variable
+    __id = 1
 
     def __init__(self, name, last_name, address):
+        self.id = Person.__id
         self.name = name
         self.last_name = last_name
         self.address = address
+        Person.__id += 1
+
+    def getID():
+        return Person.__id
+    
+    def setID(new_id):
+        Person.__id = new_id
 
     def print_info(self):
         info = f"""
@@ -55,7 +65,7 @@ class Student(Person):
     def update_course(self,new_course):
         self.course = new_course
         print("Course Updated")
-    
+
 class Teacher(Person):
     # class const
     profile = "Teacher"
@@ -81,7 +91,8 @@ class Teacher(Person):
 
 # converting to dictionary
 def studentObject_to_Dict(student_instance):
-    new_dict = { "Name": student_instance.name,
+    new_dict = {"#ID": Person.getID(),
+                "Name": student_instance.name,
                 "Last name": student_instance.last_name,
                 "Address": student_instance.address,
                 "Course": student_instance.course,
@@ -90,7 +101,8 @@ def studentObject_to_Dict(student_instance):
     return new_dict
 
 def teacherObject_to_Dict(teach_instance):
-    new_dict = { "Name": teach_instance.name,
+    new_dict = { "#ID": Person.getID(),
+                "Name": teach_instance.name,
                 "Last name": teach_instance.last_name,
                 "Address": teach_instance.address,
                 "Teaching subjects": teach_instance.subject_area,
@@ -121,13 +133,15 @@ def teacher_new_record():
 # defining menu function
 def input_menu():
     print(f"""
-    1 - Insert new teacher
-    2 - Insert new student
+    1 - Enter new teacher
+    2 - Enter new student
     3 - Visualize students records
     4 - Visualize teachers records
-    5 - Update students info
-    6 - Update teachers info
-    7 - Exit program
+    5 - Search student
+    6 - Search teacher
+    7 - Update students info
+    8 - Update teachers info
+    9 - Exit program
     """)
     return input("Enter your choice: ")
 
@@ -137,11 +151,13 @@ def read_json():
     json_data = []
     students = []
     teachers = []
+    id_list = []
 
     try:
         with open(filepath, "r") as file:
             json_data = json.load(file)
             for i in json_data:
+                id_list.append(i["#ID"])
                 if i["Profile"] == "Student":
                     student = Student(i["Name"], i["Last name"], i["Address"], i["Course"])
                     students.append(student)
@@ -152,7 +168,7 @@ def read_json():
     except FileNotFoundError:
         with open(filepath, "w") as file:
             json.dump([], file, indent = 4)
-    return students, teachers
+    return students, teachers, id_list
 
 # function to write on a json file
 def write_json(json_data):
@@ -197,14 +213,11 @@ def main():
                 pass
             case "6":
                 pass
-            case "7":
+            case "9":
                 print("Program ended.")
                 break
             case _:
                 print("Input not valid. Try again")
-
-new_list = []
-students_instances, teachers_istance = read_json()
 
 # for i in students_instances:
 #     print(i.name)
@@ -215,10 +228,17 @@ students_instances, teachers_istance = read_json()
 #     info = Teacher.print_info(i)
 #     print(info)
 
+
+    
+new_list = []
+students_instances, teachers_istance, json_id = read_json()
 for i in students_instances:
-    new_list.append(studentObject_to_Dict(i))
+        new_list.append(studentObject_to_Dict(i))
 
 for i in teachers_istance:
-    new_list.append(teacherObject_to_Dict(i))
+        new_list.append(teacherObject_to_Dict(i))
+
+# seeting a new __id value
+Person.setID(max(json_id))
 
 main()
