@@ -1,1 +1,27 @@
-[]
+[
+    {
+        "Name": "Hugel",
+        "Last name": "Akmar",
+        "Address": "sunshine",
+        "Teaching subjects": [
+            "Fisica"
+        ],
+        "Profile": "Teacher"
+    },
+    {
+        "Name": "Danilo",
+        "Last name": "Lannocca",
+        "Address": "Maidstone",
+        "Course": "coding",
+        "Profile": "Student"
+    },
+    {
+        "Name": "Tony",
+        "Last name": "Stark",
+        "Address": "Torre stark",
+        "Teaching subjects": [
+            "fisica"
+        ],
+        "Profile": "Teacher"
+    }
+]

@@ -86,14 +86,12 @@ def student_new_record():
     course = input("Enter course name: ")
     student = Student(name, last_name, address, course)
 
-    # new_record = {  "Name": student.name,
-    #                 "Last name": student.last_name,
-    #                 "Address": student.address,
-    #                 "Course": student.course,
-    #                 "Profile": student.profile}
-    # return new_record
-
-    return student
+    new_record = {  "Name": student.name,
+                    "Last name": student.last_name,
+                    "Address": student.address,
+                    "Course": student.course,
+                    "Profile": student.profile}
+    return new_record
 
 def teacher_new_record():
     name = input("Enter name: ")
@@ -103,14 +101,12 @@ def teacher_new_record():
     teacher = Teacher(name, last_name, address, course)
 
 
-    # new_record = {  "Name": teacher.name,
-    #                 "Last name": teacher.last_name,
-    #                 "Address": teacher.address,
-    #                 "Teaching subjects": teacher.subject_area,
-    #                 "Profile": teacher.profile}
-    # return new_record
-
-    return teacher
+    new_record = {  "Name": teacher.name,
+                    "Last name": teacher.last_name,
+                    "Address": teacher.address,
+                    "Teaching subjects": teacher.subject_area,
+                    "Profile": teacher.profile}
+    return new_record
 
 # defining menu function
 def input_menu():
@@ -166,24 +162,24 @@ def main():
 
         match choice:
             case "1":
-                json_instances.append(teacher_new_record())
+                records_list.append(teacher_new_record())
                 new_record = "Y"
                 while new_record not in ("Nn"):
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
-                        json_instances.append(teacher_new_record())
-                    print(json_instances)
-                #write_json(records_list)
+                        records_list.append(teacher_new_record())
+                    print(records_list)
+                write_json(records_list)
 
             case "2":
-                json_instances.append(student_new_record())
+                records_list.append(student_new_record())
                 new_record = "Y"
                 while new_record not in ("Nn"):
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
-                        json_instances.append(student_new_record())
-                print(json_instances)
-                #write_json(records_list)
+                        records_list.append(student_new_record())
+                print(records_list)
+                write_json(records_list)
 
             case "3":
                 pass
