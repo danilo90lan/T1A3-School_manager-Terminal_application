@@ -1,1 +1,40 @@
-[]
+[
+    {
+        "Name": "wgrwg",
+        "LastName": "egwrg",
+        "Address": "egwgwg",
+        "Teaching Subjects": [
+            "wegwe"
+        ],
+        "Profile": "Teacher"
+    },
+    {
+        "Name": "Tony",
+        "LastName": "Stark",
+        "Address": "torre stark",
+        "Teaching Subjects": [
+            "fisica",
+            "matematica",
+            "meccanica"
+        ],
+        "Profile": "Teacher"
+    },
+    {
+        "Name": "Peter",
+        "LastName": "Parker",
+        "Address": "new york",
+        "Teaching Subjects": [
+            "biologia"
+        ],
+        "Profile": "Teacher"
+    },
+    {
+        "Name": "ANtonio",
+        "LastName": "Palombo",
+        "Address": "casarano",
+        "Teaching Subjects": [
+            "informatica"
+        ],
+        "Profile": "Teacher"
+    }
+]
