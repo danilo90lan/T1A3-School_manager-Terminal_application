@@ -111,23 +111,22 @@ def teacher_new_record():
     return new_record
 
 # writing to a Jason file
-def write_json(record):
-    filename = "./data/uni_database.json"
-    data = []
-    try:
-        with open(filename, "r") as file:
-            data = json.load(file)
-    except FileNotFoundError:
-            print(f"File not found. Creating a a new file...")
-    except json.JSONDecodeError:
-            #if the file exists but contains invalid JSON, raise an error
-            print("Error decoding JSON from the file")
-        
-    data.append(record)
+# def write_json(record):
+#     filename = "./data/uni_database.json"
+#     data = []
+#     try:
+#         with open(filename, "r") as file:
+#             data = json.load(file)
+#     except FileNotFoundError:
+#             print(f"File not found. Creating a a new file...")
+#     except json.JSONDecodeError:
+#             #if the file exists but contains invalid JSON, raise an error
+#             print("Error decoding JSON from the file")
+#     data.append(record)
 
-    with open(filename, "w") as file:
-        json.dump(data, file, indent = 3)
-    print("Data added succesfully!")
+#     with open(filename, "w") as file:
+#         json.dump(data, file, indent = 3)
+#     print("Data added succesfully!")
 
 # defining menu function
 def input_menu():
@@ -142,6 +141,17 @@ def input_menu():
     """)
     return input("Enter your choice: ")
 
+# function to read from Jason file
+def read_json():
+    filepath = "./data/uni_database.json"
+    file_data = []
+    try:
+        with open(filepath, "r") as file:
+            file_data = json.load(file)
+            return file_data
+    except FileNotFoundError:
+        with open(filepath, "w") as file:
+            json.dump([], file, indent = 4)
 
 def main():
 
@@ -159,7 +169,7 @@ def main():
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
                         teacher_list.append(teacher_new_record())
-                write_json(teacher_list)
+                # write_json(teacher_list)
                 print(teacher_list)
 
             case "2":
@@ -169,7 +179,7 @@ def main():
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
                         student_list.append(student_new_record())
-                write_json(student_list)
+                # write_json(student_list)
                 print(student_list)
 
             case "3":
