@@ -129,51 +129,72 @@ def write_json(record):
         json.dump(data, file, indent = 3)
     print("Data added succesfully!")
 
+# defining menu function
+def input_menu():
+    print(f"""
+    1 - Insert new teacher
+    2 - Insert new student
+    3 - Visualize students records
+    4 - Visualize teachers records
+    5 - Update students info
+    6 - Update teachers info
+    7 - Exit program
+    """)
+    return input("Enter your choice: ")
+
 
 def main():
 
     student_list = []
     teacher_list = []
 
-    print(f"""
-        1 - Insert new teacher
-        2 - Insert new student
-        3 - Visualize students records
-        4 - Visualize teachers records
-        5 - Update students info
-        6 - Update teachers info
-        """)
-    choice = int(input("Enter your choice: "))
+    # print(f"""
+    #     1 - Insert new teacher
+    #     2 - Insert new student
+    #     3 - Visualize students records
+    #     4 - Visualize teachers records
+    #     5 - Update students info
+    #     6 - Update teachers info
+    #     7 - Exit program
+    #     """)
+    
+    while True:
+        choice = input_menu()
 
-    match choice:
-        case 1:
-            teacher_list.append(teacher_new_record())
-            new_record = "Y"
-            while new_record not in ("Nn"):
-                new_record = input("Do you want to enter another one? (Y/N) ")
-                if new_record in ("Yy"):
-                    teacher_list.append(teacher_new_record())
-            write_json(teacher_list)
-            print(teacher_list)
+        match choice:
+            case "1":
+                teacher_list.append(teacher_new_record())
+                new_record = "Y"
+                while new_record not in ("Nn"):
+                    new_record = input("\n Do you want to enter another one? (Y/N) ")
+                    if new_record in ("Yy"):
+                        teacher_list.append(teacher_new_record())
+                write_json(teacher_list)
+                print(teacher_list)
 
-        case 2:
-            student_list.append(student_new_record())
-            new_record = "Y"
-            while new_record not in ("Nn"):
-                new_record = input("Do you want to enter another one? (Y/N) ")
-                if new_record in ("Yy"):
-                    student_list.append(student_new_record())
-            write_json(student_list)
-            print(student_list)
+            case "2":
+                student_list.append(student_new_record())
+                new_record = "Y"
+                while new_record not in ("Nn"):
+                    new_record = input("\n Do you want to enter another one? (Y/N) ")
+                    if new_record in ("Yy"):
+                        student_list.append(student_new_record())
+                write_json(student_list)
+                print(student_list)
 
-        case 3:
-            pass
-        case 4:
-            pass
-        case 5:
-            pass
-        case _:
-            print("Input not valid. Try again")
+            case "3":
+                pass
+            case "4":
+                pass
+            case "5":
+                pass
+            case "6":
+                pass
+            case "7":
+                print("Program ended.")
+                break
+            case _:
+                print("Input not valid. Try again")
 
 main()
 
