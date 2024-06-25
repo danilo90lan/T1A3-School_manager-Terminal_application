@@ -125,8 +125,8 @@ def input_menu():
 def read_json():
     filepath = "./data/uni_database.json"
     json_data = []
-    instances= []
-
+    students = []
+    teachers = []
 
     try:
         with open(filepath, "r") as file:
@@ -134,15 +134,15 @@ def read_json():
             for i in json_data:
                 if i["Profile"] == "Student":
                     student = Student(i["Name"], i["Last name"], i["Address"], i["Course"])
-                    instances.append(student)
+                    students.append(student)
                 elif i["Profile"] == "Teacher":
                     teacher = Teacher(i["Name"], i["Last name"], i["Address"], i["Teaching subjects"])
-                    instances.append(teacher)
+                    teachers.append(teacher)
             
     except FileNotFoundError:
         with open(filepath, "w") as file:
             json.dump([], file, indent = 4)
-    return instances
+    return students, teachers
 
 # function to write on a json file
 def write_json(json_data):
@@ -162,24 +162,24 @@ def main():
 
         match choice:
             case "1":
-                records_list.append(teacher_new_record())
+                new_list.append(teacher_new_record())
                 new_record = "Y"
                 while new_record not in ("Nn"):
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
-                        records_list.append(teacher_new_record())
-                    print(records_list)
-                write_json(records_list)
+                        new_list.append(teacher_new_record())
+                    print(new_list)
+                write_json(new_list)
 
             case "2":
-                records_list.append(student_new_record())
+                new_list.append(student_new_record())
                 new_record = "Y"
                 while new_record not in ("Nn"):
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
-                        records_list.append(student_new_record())
-                print(records_list)
-                write_json(records_list)
+                        new_list.append(student_new_record())
+                print(new_list)
+                write_json(new_list)
 
             case "3":
                 pass
@@ -195,7 +195,16 @@ def main():
             case _:
                 print("Input not valid. Try again")
 
-records_list = []
-json_instances = read_json()
+new_list = []
+students_instances, teachers_istance = read_json()
 
-main()
+for i in students_instances:
+    info = Student.print_info(i)
+    print(info)
+
+for i in teachers_istance:
+    info = Teacher.print_info(i)
+    print(info)
+
+
+#main()
