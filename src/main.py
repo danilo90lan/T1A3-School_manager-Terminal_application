@@ -19,18 +19,22 @@ class Person:
               1 - Name
               2 - Last Name
               3 - Address
+              4 - Cancel operation
               """)
-        choice = int(input("What would you like to update? "))
+        while True:
+            choice = input("What would you like to update? ")
 
-        match choice:
-            case 1:
-                self.name = input("New name --> ")
-            case 2:
-                self.last_name = input("New last name --> ")
-            case 3:
-                self.address = input("New address --> ")
-            case _:
-                print("Invalid choice. Input must be between 1 and 3")
+            match choice:
+                case "1":
+                    self.name = input("New name --> ")
+                case "2":
+                    self.last_name = input("New last name --> ")
+                case "3":
+                    self.address = input("New address --> ")
+                case "4":
+                    print("Update operation cancelled")
+                case _:
+                    print("Invalid choice. Try again")
 
 class Student(Person):
     # class variable
@@ -122,12 +126,6 @@ def read_json():
     try:
         with open(filepath, "r") as file:
             json_data = json.load(file)
-
-            for i in json_data:
-                if i["Profile"] == "Teacher":
-                    teachers_instances.append(Teacher(i["Name"]), i["Last Name"], i["Address"], i.get["Teaching Subjects"])
-                elif i["Profile"] == "Student":
-                    students_instances.append(Student(i["Name"]), i["Last Name"], i["Address"], i["Course"])
                 
     except FileNotFoundError:
         with open(filepath, "w") as file:
@@ -152,22 +150,22 @@ def main():
 
         match choice:
             case "1":
-                teachers_list.append(teacher_new_record())
+                records_list.append(teacher_new_record())
                 new_record = "Y"
                 while new_record not in ("Nn"):
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
-                        teachers_list.append(teacher_new_record())
-                write_json(teachers_list)
+                        records_list.append(teacher_new_record())
+                write_json(records_list)
 
             case "2":
-                students_list.append(student_new_record())
+                records_list.append(student_new_record())
                 new_record = "Y"
                 while new_record not in ("Nn"):
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
-                        students_list.append(student_new_record())
-                write_json(students_list)
+                        records_list.append(student_new_record())
+                write_json(records_list)
 
             case "3":
                 pass
@@ -183,11 +181,8 @@ def main():
             case _:
                 print("Input not valid. Try again")
 
-teachers_list = []
-students_list = []
+records_list = []
 
-teachers_list, students_list = read_json()
-
-print(teachers_list, students_list)
+json_data = read_json()
 
 main()
