@@ -179,11 +179,15 @@ def read_json():
                 list_id.append(i["#ID"])
             
                 if i["Profile"] == "Student":
-                    Person.set_id(i["#ID"])
+                    #get the id for each dictionary in the json file and set it in the variable class -1
+                    # because when the class instance is created automatically increase the __id variable by 1
+                    # so in this way each dictionary keeps the original id
+                    Person.set_id(i["#ID"] - 1)
                     student = Student(i["Name"], i["Last name"], i["Address"], i["Course"])
                     students.append(student)
+                    
                 elif i["Profile"] == "Teacher":
-                    Person.set_id(i["#ID"])
+                    Person.set_id(i["#ID"] - 1)
                     teacher = Teacher(i["Name"], i["Last name"], i["Address"], i["Teaching subjects"])
                     teachers.append(teacher)
             
@@ -216,9 +220,6 @@ def main():
 
     for i in teachers_instances:
             json_file_list.append(teacherObject_to_Dict(i))
-    
-    for i in json_file_list:
-        print(i["#ID"])
     
     while True:
         choice = input_menu()
