@@ -196,16 +196,13 @@ def main():
     json_file_list = []
 
     students_instances, teachers_instances = read_json()
-    school = School(students_instances, teachers_instances)
+    # school = School(students_instances, teachers_instances)
 
     for i in students_instances:
             json_file_list.append(studentObject_to_Dict(i))
 
     for i in teachers_instances:
             json_file_list.append(teacherObject_to_Dict(i))
-
-    # school.print_all_students()
-    # school.print_all_teachers()
    
     while True:
         choice = input_menu()
@@ -217,11 +214,13 @@ def main():
 
                     #instance a new Teacher object
                     new_teacher = teacher_new_record()
+                    # update teachers list
+                    teachers_instances.append(new_teacher)
                     # append the new object converted into a dictionary to the list
                     json_file_list.append(teacherObject_to_Dict(new_teacher))
-                    # write to json file
-                    write_json(json_file_list)
                     new_record = input("Do you want to enter another one? (Y/N) ")
+                # write to json file
+                write_json(json_file_list)
 
             case "2":
                 new_record = "Y"
@@ -229,11 +228,13 @@ def main():
 
                     #instance a new Student object
                     new_student = student_new_record()
+                    # update student_list
+                    students_instances.append(new_student)
                     # append the new object converted into a dictionary to a list
                     json_file_list.append(studentObject_to_Dict(new_student))
-                    # write to json file
-                    write_json(json_file_list)
                     new_record = input("Do you want to enter another one? (Y/N) ")
+                # write to json file
+                write_json(json_file_list)
 
             case "3":
                 pass
