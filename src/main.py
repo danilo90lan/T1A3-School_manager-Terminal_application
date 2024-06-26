@@ -2,19 +2,20 @@ import json
 
 class Person:
     #class variable
-    __id = 1
+    __id = 0
 
     def __init__(self, name, last_name, address):
-        self.id = Person.__id
+        Person.__id += 1
         self.name = name
         self.last_name = last_name
         self.address = address
-        Person.__id += 1
-
-    def getID():
+        
+    @classmethod
+    def get_id(cls):
         return Person.__id
     
-    def setID(new_id):
+    @classmethod
+    def set_id(cls, new_id):
         Person.__id = new_id
 
     def print_info(self):
@@ -54,6 +55,10 @@ class Student(Person):
         super().__init__(name, last_name, address)
         self.course = course
         self.profile = Student.profile
+        self.__id = Person.get_id()
+
+    def get_id(self):
+        return self.__id
 
     def print_info(self):
         info = f"""
@@ -74,6 +79,10 @@ class Teacher(Person):
         super().__init__(name, last_name, address)
         self.subject_area = subject_area
         self.profile = Teacher.profile
+        self.__id = Person.get_id()
+
+    def get_id(self):
+        return self.__id
 
     def print_info(self):
         info = f"""
@@ -105,7 +114,7 @@ class School:
 
 # converting to dictionary
 def studentObject_to_Dict(student_instance):
-    new_dict = {"#ID": Person.getID(),
+    new_dict = {"#ID": student_instance.get_id(),
                 "Name": student_instance.name,
                 "Last name": student_instance.last_name,
                 "Address": student_instance.address,
@@ -115,7 +124,7 @@ def studentObject_to_Dict(student_instance):
     return new_dict
 
 def teacherObject_to_Dict(teach_instance):
-    new_dict = { "#ID": Person.getID(),
+    new_dict = { "#ID": teach_instance.get_id(),
                 "Name": teach_instance.name,
                 "Last name": teach_instance.last_name,
                 "Address": teach_instance.address,
@@ -161,15 +170,20 @@ def read_json():
     json_data = []
     students = []
     teachers = []
-
+    list_id = []
+# read the json file and create new instances of Student and Teacher and put them in two different lists
     try:
         with open(filepath, "r") as file:
             json_data = json.load(file)
             for i in json_data:
+                list_id.append(i["#ID"])
+            
                 if i["Profile"] == "Student":
+                    Person.set_id(i["#ID"])
                     student = Student(i["Name"], i["Last name"], i["Address"], i["Course"])
                     students.append(student)
                 elif i["Profile"] == "Teacher":
+                    Person.set_id(i["#ID"])
                     teacher = Teacher(i["Name"], i["Last name"], i["Address"], i["Teaching subjects"])
                     teachers.append(teacher)
             
@@ -177,7 +191,7 @@ def read_json():
         with open(filepath, "w") as file:
             json.dump([], file, indent = 4)
 
-    return students, teachers
+    return students, teachers, list_id
 
 # function to write on a json file
 def write_json(json_data):
@@ -195,15 +209,17 @@ def main():
     # contains a list of students and teachers converted into dictionaries, ready to be written in the json file 
     json_file_list = []
 
-    students_instances, teachers_instances = read_json()
-    # school = School(students_instances, teachers_instances)
+    students_instances, teachers_instances, list_id = read_json()
 
     for i in students_instances:
             json_file_list.append(studentObject_to_Dict(i))
 
     for i in teachers_instances:
             json_file_list.append(teacherObject_to_Dict(i))
-   
+    
+    for i in json_file_list:
+        print(i["#ID"])
+    
     while True:
         choice = input_menu()
 
@@ -211,30 +227,35 @@ def main():
             case "1":
                 new_record = "Y"
                 while new_record in ("Yy"):
-
                     #instance a new Teacher object
                     new_teacher = teacher_new_record()
                     # update teachers list
                     teachers_instances.append(new_teacher)
-                    # append the new object converted into a dictionary to the list
+                    # append the new object converted into a dictionary to the json list
                     json_file_list.append(teacherObject_to_Dict(new_teacher))
                     new_record = input("Do you want to enter another one? (Y/N) ")
                 # write to json file
+                for i in json_file_list:
+                    print(i["#ID"])
                 write_json(json_file_list)
+                school = School(students_instances, teachers_instances)
 
             case "2":
                 new_record = "Y"
                 while new_record in ("Yy"):
-
                     #instance a new Student object
                     new_student = student_new_record()
-                    # update student_list
+                    # update students_list
                     students_instances.append(new_student)
-                    # append the new object converted into a dictionary to a list
+                    # append the new object converted into a dictionary to the json list
                     json_file_list.append(studentObject_to_Dict(new_student))
                     new_record = input("Do you want to enter another one? (Y/N) ")
                 # write to json file
+                for i in json_file_list:
+                    print(i["#ID"])
+                
                 write_json(json_file_list)
+                school = School(students_instances, teachers_instances)
 
             case "3":
                 pass
