@@ -193,16 +193,16 @@ def main():
 
     #Initializzation
     # contains a list of students and teachers converted into dictionaries, ready to be written in the json file 
-    new_list = []
+    json_file_list = []
 
     students_instances, teachers_instances = read_json()
     school = School(students_instances, teachers_instances)
 
     for i in students_instances:
-            new_list.append(studentObject_to_Dict(i))
+            json_file_list.append(studentObject_to_Dict(i))
 
     for i in teachers_instances:
-            new_list.append(teacherObject_to_Dict(i))
+            json_file_list.append(teacherObject_to_Dict(i))
 
     # school.print_all_students()
     # school.print_all_teachers()
@@ -212,32 +212,28 @@ def main():
 
         match choice:
             case "1":
-                #instance a new Teacher object
-                new_teacher = teacher_new_record()
-                # append the new object converted into a dictionary to a list
-                new_list.append(teacherObject_to_Dict(new_teacher))
-                
                 new_record = "Y"
-                while new_record not in ("Nn"):
+                while new_record in ("Yy"):
+
+                    #instance a new Teacher object
+                    new_teacher = teacher_new_record()
+                    # append the new object converted into a dictionary to the list
+                    json_file_list.append(teacherObject_to_Dict(new_teacher))
+                    # write to json file
+                    write_json(json_file_list)
                     new_record = input("Do you want to enter another one? (Y/N) ")
-                    if new_record in ("Yy"):
-                        new_list.append(teacher_new_record())
-                # write to json file
-                write_json(new_list)
 
             case "2":
-                #instance a new Student object
-                new_student = student_new_record()
-                # append the new object converted into a dictionary to a list
-                new_list.append(studentObject_to_Dict(new_student))
-                
                 new_record = "Y"
-                while new_record not in ("Nn"):
+                while new_record in ("Yy"):
+
+                    #instance a new Student object
+                    new_student = student_new_record()
+                    # append the new object converted into a dictionary to a list
+                    json_file_list.append(studentObject_to_Dict(new_student))
+                    # write to json file
+                    write_json(json_file_list)
                     new_record = input("Do you want to enter another one? (Y/N) ")
-                    if new_record in ("Yy"):
-                        new_list.append(student_new_record())
-                # write to json file
-                write_json(new_list)
 
             case "3":
                 pass
