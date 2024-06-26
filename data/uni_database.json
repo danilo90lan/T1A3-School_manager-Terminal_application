@@ -41,5 +41,24 @@
             "italiano"
         ],
         "Profile": "Teacher"
+    },
+    {
+        "#ID": 6,
+        "Name": "Hugel",
+        "Last name": "Akmar",
+        "Address": "Sunshine",
+        "Teaching subjects": [
+            "cnc",
+            "cabmaster"
+        ],
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 7,
+        "Name": "Kadir",
+        "Last name": "celik",
+        "Address": "sunshine",
+        "Course": "Cabinet maker",
+        "Profile": "Student"
     }
 ]
