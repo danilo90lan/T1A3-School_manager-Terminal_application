@@ -89,6 +89,20 @@ class Teacher(Person):
                 self.subject_area = new_list
                 print(f"Subjects added")
 
+class School:
+    def __init__(self, students, teachers):
+        self.students = students
+        self.teachers = teachers
+    
+    def print_all_students(self):     
+        for i in self.students:
+            print(Student.print_info(i))
+
+    def print_all_teachers(self):     
+        for i in self.teachers:
+            print(Teacher.print_info(i))
+
+
 # converting to dictionary
 def studentObject_to_Dict(student_instance):
     new_dict = {"#ID": Person.getID(),
@@ -116,9 +130,7 @@ def student_new_record():
     address = input("Enter address: ")
     course = input("Enter course name: ")
     student = Student(name, last_name, address, course)
-    students_instances.append(student)
-    new_record = studentObject_to_Dict(student)
-    return new_record
+    return student
 
 def teacher_new_record():
     name = input("Enter name: ")
@@ -126,9 +138,7 @@ def teacher_new_record():
     address = input("Enter address: ")
     course = input("Enter teaching subjects (separate each subject with a space): ").split()
     teacher = Teacher(name, last_name, address, course)
-    teachers_istance.append(teacher)
-    new_record = teacherObject_to_Dict(teacher)
-    return new_record
+    return teacher
 
 # defining menu function
 def input_menu():
@@ -151,13 +161,11 @@ def read_json():
     json_data = []
     students = []
     teachers = []
-    id_list = []
 
     try:
         with open(filepath, "r") as file:
             json_data = json.load(file)
             for i in json_data:
-                id_list.append(i["#ID"])
                 if i["Profile"] == "Student":
                     student = Student(i["Name"], i["Last name"], i["Address"], i["Course"])
                     students.append(student)
@@ -168,7 +176,8 @@ def read_json():
     except FileNotFoundError:
         with open(filepath, "w") as file:
             json.dump([], file, indent = 4)
-    return students, teachers, id_list
+
+    return students, teachers
 
 # function to write on a json file
 def write_json(json_data):
@@ -181,28 +190,53 @@ def write_json(json_data):
 
 
 def main(): 
-    
 
+    #Initializzation
+    # contains a list of students and teachers converted into dictionaries, ready to be written in the json file 
+    new_list = []
+
+    students_instances, teachers_instances = read_json()
+    school = School(students_instances, teachers_instances)
+
+    for i in students_instances:
+            new_list.append(studentObject_to_Dict(i))
+
+    for i in teachers_instances:
+            new_list.append(teacherObject_to_Dict(i))
+
+    # school.print_all_students()
+    # school.print_all_teachers()
+   
     while True:
         choice = input_menu()
 
         match choice:
             case "1":
-                new_list.append(teacher_new_record())
+                #instance a new Teacher object
+                new_teacher = teacher_new_record()
+                # append the new object converted into a dictionary to a list
+                new_list.append(teacherObject_to_Dict(new_teacher))
+                
                 new_record = "Y"
                 while new_record not in ("Nn"):
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
                         new_list.append(teacher_new_record())
+                # write to json file
                 write_json(new_list)
 
             case "2":
-                new_list.append(student_new_record())
+                #instance a new Student object
+                new_student = student_new_record()
+                # append the new object converted into a dictionary to a list
+                new_list.append(studentObject_to_Dict(new_student))
+                
                 new_record = "Y"
                 while new_record not in ("Nn"):
                     new_record = input("Do you want to enter another one? (Y/N) ")
                     if new_record in ("Yy"):
                         new_list.append(student_new_record())
+                # write to json file
                 write_json(new_list)
 
             case "3":
@@ -218,27 +252,5 @@ def main():
                 break
             case _:
                 print("Input not valid. Try again")
-
-# for i in students_instances:
-#     print(i.name)
-#     print(i.profile)
-
-
-# for i in teachers_istance:
-#     info = Teacher.print_info(i)
-#     print(info)
-
-
-    
-new_list = []
-students_instances, teachers_istance, json_id = read_json()
-for i in students_instances:
-        new_list.append(studentObject_to_Dict(i))
-
-for i in teachers_istance:
-        new_list.append(teacherObject_to_Dict(i))
-
-# seeting a new __id value
-Person.setID(max(json_id))
 
 main()
