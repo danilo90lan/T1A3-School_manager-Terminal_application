@@ -3,62 +3,40 @@
         "#ID": 1,
         "Name": "Danilo",
         "Last name": "Lannocca",
-        "Address": "Maidstone",
-        "Course": "coding",
-        "Profile": "Student"
+        "Address": "maidstone",
+        "Teaching subjects": "coding",
+        "Profile": "Teacher"
     },
     {
         "#ID": 2,
-        "Name": "Tekkin",
-        "Last name": "celik",
-        "Address": "sunshine",
-        "Course": "cabinet maker",
-        "Profile": "Student"
+        "Name": "sdgwr",
+        "Last name": "swgrwr",
+        "Address": "swry",
+        "Teaching subjects": "wrh",
+        "Profile": "Teacher"
     },
     {
         "#ID": 3,
-        "Name": "mattia ",
-        "Last name": "de marco",
-        "Address": "taviano",
-        "Course": "bar",
-        "Profile": "Student"
+        "Name": "adf",
+        "Last name": "adg",
+        "Address": "adsg",
+        "Teaching subjects": "adsg",
+        "Profile": "Teacher"
     },
     {
         "#ID": 4,
-        "Name": "stefano",
-        "Last name": "palma",
-        "Address": "svizzera",
-        "Course": "spazzino",
-        "Profile": "Student"
-    },
-    {
-        "#ID": 7,
-        "Name": "Kadir",
-        "Last name": "celik",
-        "Address": "sunshine",
-        "Course": "Cabinet maker",
-        "Profile": "Student"
+        "Name": "sdg",
+        "Last name": "ad",
+        "Address": "asdf",
+        "Teaching subjects": "adgt",
+        "Profile": "Teacher"
     },
     {
         "#ID": 5,
-        "Name": "Scarpa",
-        "Last name": "scrapa",
-        "Address": "casarano",
-        "Teaching subjects": [
-            "storia",
-            "italiano"
-        ],
-        "Profile": "Teacher"
-    },
-    {
-        "#ID": 6,
-        "Name": "Hugel",
-        "Last name": "Akmar",
-        "Address": "Sunshine",
-        "Teaching subjects": [
-            "cnc",
-            "cabmaster"
-        ],
-        "Profile": "Teacher"
+        "Name": "def",
+        "Last name": "adg",
+        "Address": "sdg",
+        "Course": "sfhr",
+        "Profile": "Student"
     }
 ]

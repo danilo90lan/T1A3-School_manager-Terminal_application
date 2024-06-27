@@ -20,6 +20,7 @@ class Person:
 
     def print_info(self):
         info = f"""
+        ID: {self.get_id()}
         Name: {self.name}
         Last name: {self.last_name}
         Address: {self.address}"""
@@ -75,7 +76,7 @@ class Teacher(Person):
     # class const
     profile = "Teacher"
 
-    def __init__(self, name, last_name, address, subject_area = [],):
+    def __init__(self, name, last_name, address, subject_area):
         super().__init__(name, last_name, address)
         self.subject_area = subject_area
         self.profile = Teacher.profile
@@ -87,27 +88,32 @@ class Teacher(Person):
     def print_info(self):
         info = f"""
         Profile: {self.profile}
-        Teaching subjects: {self.subject_area}
+        Teaching subject: {self.subject_area}
         """
         return super().print_info() + info
     
-    def update_subjects(self, new_subjects):
-                new_list = []
-                for i in new_subjects:
-                    new_list.append(i)
-                self.subject_area = new_list
-                print(f"Subjects added")
+    def update_subjects(self, new_subject):
+            self.subject_area = new_subject
+            print(f"Subject updated")
 
 class School:
     def __init__(self, students, teachers):
         self.students = students
         self.teachers = teachers
 
-    def add_student(self, student):
-        self.students.append(student)
+    def display_all_students(self, students):
+            if students != []: 
+                for i in self.students:
+                    Student.print_info(i)
+            else:
+               print("\nThere is no students records")
 
-    def add_teacher(self, teacher):
-        self.teachers.append(teacher)
+    def display_all_teachers(self, teachers):
+        if teachers != []: 
+            for i in self.teachers:
+                Teacher.print_info(i)
+        else:
+            print("\nThere is no teachers records")
 
     def find_student_by_id(self, student_id):
         record = None
@@ -120,13 +126,21 @@ class School:
         else:
             return "\nStudent record not found in the system"
         
-    def find_student_by_name(student_name):
+    def find_student_by_name(self, student_name):
         pass
 
-    def find_teacher_by_id(teacher_id):
-        pass
-
-    def find_teacher_by_name(teacher_name):
+    def find_teacher_by_id(self, teacher_id):
+        record = None
+        for i in self.teachers:
+            if Teacher.get_id(i) == teacher_id:
+                record = i
+                break
+        if record:
+            return Teacher.print_info(record)
+        else:
+            return "\nTeacher record not found in the system"
+    
+    def find_teacher_by_name(self, teacher_name):
         pass   
 
 # converting to dictionary
@@ -162,7 +176,7 @@ def teacher_new_record():
     name = input("Enter name: ")
     last_name = input("Enter last name: ")
     address = input("Enter address: ")
-    course = input("Enter teaching subjects (separate each subject with a space): ").split()
+    course = input("Enter teaching subject: ")
     teacher = Teacher(name, last_name, address, course)
     return teacher
 
@@ -252,8 +266,7 @@ def main():
                     new_teacher = teacher_new_record()
                     # update teachers list
                     teachers_instances.append(new_teacher)
-                    # update school object
-                    school.add_teacher(new_teacher)
+
                     # append the new object converted into a dictionary to the json list
                     json_file_list.append(teacherObject_to_Dict(new_teacher))
                     new_record = input("Do you want to enter another one? (Y/N) ")
@@ -268,34 +281,38 @@ def main():
                     new_student = student_new_record()
                     # update students_list
                     students_instances.append(new_student)
-                    # update school object
-                    school.add_student(new_student)
                     # append the new object converted into a dictionary to the json list
                     json_file_list.append(studentObject_to_Dict(new_student))
                     new_record = input("Do you want to enter another one? (Y/N) ")
-
                 # write to json file
                 write_json(json_file_list)
+                school = School(students_instances, teachers_instances)
                 
 
             case "3":
                 for i in students_instances:
                     print(Student.print_info(i))
+                #school.display_all_students(students_instances)
             case "4":
                 for i in teachers_instances:
                     print(Teacher.print_info(i))
+                #school.display_all_students(teachers_instances)
             case "5":
-                print(f"""
+                while True:
+                        print(f"""
                         1 - Search student by ID
                         2 - Search student by last name
                         3 - Cancel operation
-                    """)
-                while True:
+                        """)
                         option = input("Enter your type of search: ")
                         if option == "1":
-                            id_number = int(input("Enter ID number to find: "))
-                            print(school.find_student_by_id(id_number))
-                            break
+                            while True:   
+                                try:
+                                    id_number = int(input("Enter ID number to find: "))
+                                    print(school.find_student_by_id(id_number))
+                                    break
+                                except ValueError:
+                                    print("\nInput must be a number")
                         elif option == "2":
                             pass
                         elif option == "3":
@@ -303,7 +320,27 @@ def main():
                         else:
                             print("Invalid input. Try again")
             case "6":
-                pass
+                 while True:
+                        print(f"""
+                        1 - Search teacher by ID
+                        2 - Search teacher by last name
+                        3 - Cancel operation
+                        """)
+                        option = input("Enter your type of search: ")
+                        if option == "1":
+                            while True:   
+                                try:
+                                    id_number = int(input("Enter ID number to find: "))
+                                    print(school.find_teacher_by_id(id_number))
+                                    break
+                                except ValueError:
+                                    print("\nInput must be a number")
+                        elif option == "2":
+                            pass
+                        elif option == "3":
+                            break
+                        else:
+                            print("Invalid input. Try again")
             case "7":
                 print("Program ended.")
                 break
