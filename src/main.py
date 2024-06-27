@@ -51,7 +51,6 @@ class Person:
 class Student(Person):
     # class const
     profile = "Student"
-
     def __init__(self, name, last_name, address, course):
         super().__init__(name, last_name, address)
         self.course = course
@@ -124,10 +123,16 @@ class School:
         if record:
             return Student.print_info(record)
         else:
-            return "\nStudent record not found in the system"
+            return "\nStudent record NOT in the system"
         
     def find_student_by_name(self, student_name):
-        pass
+        record = False
+        for i in self.students:
+            if i.last_name.lower() == student_name.lower():
+                print(Student.print_info(i))
+                record = True
+        if record == False:
+            print("\nStudent recond NOT in the system")
 
     def find_teacher_by_id(self, teacher_id):
         record = None
@@ -138,10 +143,17 @@ class School:
         if record:
             return Teacher.print_info(record)
         else:
-            return "\nTeacher record not found in the system"
+            return "\nTeacher record NOT in the system"
     
     def find_teacher_by_name(self, teacher_name):
-        pass   
+        record = False
+        for i in self.teachers:
+            if i.last_name.lower() == teacher_name.lower():
+                print(Teacher.print_info(i))
+                record = True
+        if record == False:
+            print("\nTeacher recond NOT in the system")
+   
 
 # converting to dictionary
 def studentObject_to_Dict(student_instance):
@@ -314,7 +326,8 @@ def main():
                                 except ValueError:
                                     print("\nInput must be a number")
                         elif option == "2":
-                            pass
+                            student_name = input("Enter student's LAST name: ")
+                            school.find_student_by_name(student_name)
                         elif option == "3":
                             break
                         else:
@@ -323,7 +336,7 @@ def main():
                  while True:
                         print(f"""
                         1 - Search teacher by ID
-                        2 - Search teacher by last name
+                        2 - Search teacher by Last name
                         3 - Cancel operation
                         """)
                         option = input("Enter your type of search: ")
@@ -336,7 +349,8 @@ def main():
                                 except ValueError:
                                     print("\nInput must be a number")
                         elif option == "2":
-                            pass
+                            teacher_name = input("Enter teacher's LAST name: ")
+                            school.find_teacher_by_name(teacher_name)
                         elif option == "3":
                             break
                         else:

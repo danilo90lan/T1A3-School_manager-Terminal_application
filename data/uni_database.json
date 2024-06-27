@@ -2,7 +2,7 @@
     {
         "#ID": 1,
         "Name": "Danilo",
-        "Last name": "Lannocca",
+        "Last name": "lannocca",
         "Address": "maidstone",
         "Teaching subjects": "coding",
         "Profile": "Teacher"
@@ -10,7 +10,7 @@
     {
         "#ID": 2,
         "Name": "sdgwr",
-        "Last name": "swgrwr",
+        "Last name": "scarpa",
         "Address": "swry",
         "Teaching subjects": "wrh",
         "Profile": "Teacher"
@@ -26,15 +26,15 @@
     {
         "#ID": 4,
         "Name": "sdg",
-        "Last name": "ad",
+        "Last name": "Lannocca",
         "Address": "asdf",
-        "Teaching subjects": "adgt",
-        "Profile": "Teacher"
+        "Course": "adgt",
+        "Profile": "Student"
     },
     {
         "#ID": 5,
         "Name": "def",
-        "Last name": "adg",
+        "Last name": "lannocca",
         "Address": "sdg",
         "Course": "sfhr",
         "Profile": "Student"
