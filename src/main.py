@@ -45,6 +45,7 @@ class Person:
                     self.address = input("New address --> ")
                 case "4":
                     print("Update operation cancelled")
+                    break
                 case _:
                     print("Invalid choice. Try again")
 
@@ -116,17 +117,20 @@ class School:
 
     def find_student_by_id(self, student_id):
         record = None
-        for i in self.students:
+        for index, i in enumerate(self.students):
             if Student.get_id(i) == student_id:
                 record = i
+                index_st = index
                 break
         if record:
-            return Student.print_info(record)
+            print(Student.print_info(record))
         else:
-            return "\nStudent record NOT in the system"
+            print("\nStudent record NOT in the system")
+        return index_st
         
     def find_student_by_name(self, student_name):
         record = False
+
         for i in self.students:
             if i.last_name.lower() == student_name.lower():
                 print(Student.print_info(i))
@@ -136,14 +140,16 @@ class School:
 
     def find_teacher_by_id(self, teacher_id):
         record = None
-        for i in self.teachers:
+        for index, i in enumerate(self.teachers):
             if Teacher.get_id(i) == teacher_id:
                 record = i
+                index_teac = index
                 break
         if record:
-            return Teacher.print_info(record)
+            print(Teacher.print_info(record))
         else:
-            return "\nTeacher record NOT in the system"
+            print("\nTeacher record NOT in the system")
+        return index_teac
     
     def find_teacher_by_name(self, teacher_name):
         record = False
@@ -153,6 +159,12 @@ class School:
                 record = True
         if record == False:
             print("\nTeacher recond NOT in the system")
+
+    def student_update(self, index):
+        Student.update_info(self.students[index])
+
+    def teacher_update(self, index):
+        Teacher.update_info(self.students[index])
    
 
 # converting to dictionary
@@ -321,7 +333,7 @@ def main():
                             while True:   
                                 try:
                                     id_number = int(input("Enter ID number to find: "))
-                                    print(school.find_student_by_id(id_number))
+                                    found_student_id = school.find_student_by_id(id_number)
                                     break
                                 except ValueError:
                                     print("\nInput must be a number")
@@ -344,10 +356,29 @@ def main():
                             while True:   
                                 try:
                                     id_number = int(input("Enter ID number to find: "))
-                                    print(school.find_teacher_by_id(id_number))
+                                    found_teacher_id = school.find_teacher_by_id(id_number)
                                     break
                                 except ValueError:
                                     print("\nInput must be a number")
+
+                            print("What would you like to do?")
+                            while True:
+                                print(f"""
+                                1 - Update student info
+                                2 - Delete student record
+                                3 - Back 
+                                """)
+                                scelta = input("Enter your operation: ")
+                                if scelta == "1":
+                                    school.teacher_update(found_teacher_id)
+                                    
+                                elif scelta == "2":
+                                    pass
+                                elif scelta == "3":
+                                    break
+                                else:
+                                    print("Invalid input. Try again")
+
                         elif option == "2":
                             teacher_name = input("Enter teacher's LAST name: ")
                             school.find_teacher_by_name(teacher_name)
