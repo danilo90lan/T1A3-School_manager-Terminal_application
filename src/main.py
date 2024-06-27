@@ -103,6 +103,12 @@ class School:
         self.students = students
         self.teachers = teachers
 
+    def add_student(self, student):
+        self.students.append(student)
+
+    def add_teacher(self, teacher):
+        self.teachers.append(teacher)
+
     def find_student_by_id(self, student_id):
         record = None
         for i in self.students:
@@ -230,6 +236,7 @@ def main():
     for i in teachers_instances:
             json_file_list.append(teacherObject_to_Dict(i))
 
+    #create school instance with 2 arguments student_list and teacheers_list
     school = School(students_instances, teachers_instances)
 
     #school.find_student_by_id()
@@ -245,6 +252,8 @@ def main():
                     new_teacher = teacher_new_record()
                     # update teachers list
                     teachers_instances.append(new_teacher)
+                    # update school object
+                    school.add_teacher(new_teacher)
                     # append the new object converted into a dictionary to the json list
                     json_file_list.append(teacherObject_to_Dict(new_teacher))
                     new_record = input("Do you want to enter another one? (Y/N) ")
@@ -259,13 +268,15 @@ def main():
                     new_student = student_new_record()
                     # update students_list
                     students_instances.append(new_student)
+                    # update school object
+                    school.add_student(new_student)
                     # append the new object converted into a dictionary to the json list
                     json_file_list.append(studentObject_to_Dict(new_student))
                     new_record = input("Do you want to enter another one? (Y/N) ")
+
                 # write to json file
                 write_json(json_file_list)
-                #create school instance with 2 arguments student_list and teacheers_list
-                school = School(students_instances, teachers_instances)
+                
 
             case "3":
                 for i in students_instances:
@@ -280,21 +291,17 @@ def main():
                         3 - Cancel operation
                     """)
                 while True:
-                    try:
-                        option = int(input("Enter your type of search: "))
-                        if option == 1:
+                        option = input("Enter your type of search: ")
+                        if option == "1":
                             id_number = int(input("Enter ID number to find: "))
                             print(school.find_student_by_id(id_number))
                             break
-                        elif option == 2:
+                        elif option == "2":
                             pass
-                        elif option == 3:
+                        elif option == "3":
                             break
                         else:
-                            print("Input must be in the range (1 - 3)")
-                    except ValueError as error:
-                        print("Invalid input. Must be a number")
-                
+                            print("Invalid input. Try again")
             case "6":
                 pass
             case "7":
