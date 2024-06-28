@@ -107,15 +107,15 @@ class School:
     def add_teacher(self, new_teacher):
         self.teachers.append(new_teacher)
 
-    def display_all_students(self, students):
-            if students != []: 
+    def display_all_students(self):
+            if self.students != []: 
                 for i in self.students:
                     print(Student.print_info(i))
             else:
                print("\nThere is no students records")
 
-    def display_all_teachers(self, teachers):
-        if teachers != []: 
+    def display_all_teachers(self):
+        if self.teachers != []: 
             for i in self.teachers:
                 print(Teacher.print_info(i))
         else:
@@ -215,8 +215,8 @@ def input_menu():
     print(f"""
     1 - Enter new teacher
     2 - Enter new student
-    3 - Visualize students records
-    4 - Visualize teachers records
+    3 - Display teachers records
+    4 - Display students records
     5 - Search student
     6 - Search teacher
     7 - Exit program
@@ -299,7 +299,8 @@ def main():
 
                     # append the new object converted into a dictionary to the json list
                     json_file_list.append(teacherObject_to_Dict(new_teacher))
-                    new_record = input("Do you want to enter another one? (Y/N) ")
+                    new_record = input("\nDo you want to enter another one? (Y/N) ")
+                    print("\n")
                 # write to json file
                 write_json(json_file_list)
 
@@ -313,19 +314,16 @@ def main():
 
                     # append the new object converted into a dictionary to the json list
                     json_file_list.append(studentObject_to_Dict(new_student))
-                    new_record = input("Do you want to enter another one? (Y/N) ")
+                    new_record = input("\nDo you want to enter another one? (Y/N) ")
+                    print("\n")
                 # write to json file
                 write_json(json_file_list)
                 
 
             case "3":
-                for i in students_instances:
-                    print(Student.print_info(i))
-                #school.display_all_students(students_instances)
+                    school.display_all_teachers()
             case "4":
-                for i in teachers_instances:
-                    print(Teacher.print_info(i))
-                #school.display_all_students(teachers_instances)
+                    school.display_all_students()
             case "5":
                 while True:
                         print(f"""
