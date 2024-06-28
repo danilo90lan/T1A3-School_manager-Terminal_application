@@ -101,17 +101,23 @@ class School:
         self.students = students
         self.teachers = teachers
 
+    def add_student(self, new_student):
+        self.students.append(new_student)
+
+    def add_teacher(self, new_teacher):
+        self.teachers.append(new_teacher)
+
     def display_all_students(self, students):
             if students != []: 
                 for i in self.students:
-                    Student.print_info(i)
+                    print(Student.print_info(i))
             else:
                print("\nThere is no students records")
 
     def display_all_teachers(self, teachers):
         if teachers != []: 
             for i in self.teachers:
-                Teacher.print_info(i)
+                print(Teacher.print_info(i))
         else:
             print("\nThere is no teachers records")
 
@@ -289,14 +295,13 @@ def main():
                     #instance a new Teacher object
                     new_teacher = teacher_new_record()
                     # update teachers list
-                    teachers_instances.append(new_teacher)
+                    school.add_teacher(new_teacher)
 
                     # append the new object converted into a dictionary to the json list
                     json_file_list.append(teacherObject_to_Dict(new_teacher))
                     new_record = input("Do you want to enter another one? (Y/N) ")
                 # write to json file
                 write_json(json_file_list)
-                school = School(students_instances, teachers_instances)
 
             case "2":
                 new_record = "Y"
@@ -304,13 +309,13 @@ def main():
                     #instance a new Student object
                     new_student = student_new_record()
                     # update students_list
-                    students_instances.append(new_student)
+                    school.add_student(new_student)
+
                     # append the new object converted into a dictionary to the json list
                     json_file_list.append(studentObject_to_Dict(new_student))
                     new_record = input("Do you want to enter another one? (Y/N) ")
                 # write to json file
                 write_json(json_file_list)
-                school = School(students_instances, teachers_instances)
                 
 
             case "3":
