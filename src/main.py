@@ -28,9 +28,9 @@ class Person:
         return info
 
     def update_info(self):
-        self.name = input("New name --> ")
-        self.last_name = input("New last name --> ")
-        self.address = input("New address --> ")
+        self.name = input("New name --> ").capitalize()
+        self.last_name = input("New last name --> ").capitalize()
+        self.address = input("New address --> ").capitalize()
 
 class Student(Person):
     # class const
@@ -53,7 +53,7 @@ class Student(Person):
     
     def update_student(self):
         super().update_info()
-        self.course = input("New course --> ")
+        self.course = input("New course --> ").capitalize()
         print("\nStudent info updated succesfully!")
 
 class Teacher(Person):
@@ -78,7 +78,7 @@ class Teacher(Person):
     
     def update_teacher(self):
             super().update_info()
-            self.subject_area = input("New teaching subject --> ")
+            self.subject_area = input("New teaching subject --> ").capitalize()
             print("\/Teacher info updated succesfully!")
 
 class School:
@@ -105,15 +105,19 @@ class School:
             print("\nThere is no teachers records")
 
     def find_student_by_id(self, student_id):
+        found =False
+
         for i in self.students:
             if Student.get_id(i) == student_id:
                 record = i
+                found = True
                 break
         try:
             print(Student.print_info(record))
         except UnboundLocalError:
             print("\nStudent record NOT in the system")
-        
+        return found
+    
     def find_student_by_name(self, student_name):
         record = False
 
@@ -126,17 +130,22 @@ class School:
         return record
 
     def find_teacher_by_id(self, teacher_id):
+        found = False
+
         for i in self.teachers:
             if Teacher.get_id(i) == teacher_id:
                 record = i
+                found = True
                 break
         try:
             print(Teacher.print_info(record))
         except UnboundLocalError:
             print("\nTeacher record NOT in the system")
+        return found
     
     def find_teacher_by_name(self, teacher_name):
         record = False
+
         for i in self.teachers:
             if i.name.lower() == teacher_name.lower():
                 print(Teacher.print_info(i))
@@ -269,23 +278,23 @@ def menu2(record, id = None):
         3 - Back 
         """)
         scelta = input("Enter your operation: ")
-        if scelta == "1":
-            if id == None:
-                id = int(input("Enter ID to confirm the correct record to update in case there are homonyms: "))
-            if record == "student":
-                school.student_update(id)
+        match scelta:
+            case "1":
+                if id == None:
+                    id = int(input("Enter ID to confirm the correct record to update in case there are homonyms: "))
+                if record == "student":
+                    school.student_update(id)
+                    break
+                elif record == "teacher":
+                    school.teacher_update(id)
+            case "2":
+                if id == None:
+                    id = int(input("Enter ID to delete: "))
+                pass
+            case "3":
                 break
-            elif record == "teacher":
-                school.teacher_update(id)
-                break
-        elif scelta == "2":
-            if id == None:
-                id = int(input("Enter ID to delete: "))
-            pass
-        elif scelta == "3":
-            break
-        else:
-            print("Invalid input. Try again")
+            case _:
+                print("Invalid input. Try again")
 
 # Initializzation
 students_instances, teachers_instances, list_id = read_json()
@@ -341,8 +350,8 @@ def main():
                         while True:   
                             try:
                                 id_number = int(input("\nEnter student ID: "))
-                                school.find_student_by_id(id_number)
-                                menu2("student", id_number)
+                                if school.find_student_by_id(id_number):
+                                    menu2("student", id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")
@@ -367,8 +376,8 @@ def main():
                         while True:   
                             try:
                                 id_number = int(input("\nEnter teacher ID: "))
-                                found_teacher_id = school.find_teacher_by_id(id_number)
-                                menu2("teacher", id_number)
+                                if school.find_teacher_by_id(id_number):
+                                    menu2("teacher", id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")                     

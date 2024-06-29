@@ -73,18 +73,10 @@
     },
     {
         "#ID": 5,
-        "Name": "Marco",
+        "Name": "Mario",
         "Last name": "",
         "Address": "",
         "Course": "",
-        "Profile": "Student"
-    },
-    {
-        "#ID": 7,
-        "Name": "Marco",
-        "Last name": "magalli",
-        "Address": "roma",
-        "Course": "cnc",
         "Profile": "Student"
     },
     {
