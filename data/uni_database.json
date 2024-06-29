@@ -60,7 +60,7 @@
         "Name": "Giordano",
         "Last name": "",
         "Address": "",
-        "Subject": "",
+        "Subject": "coding",
         "Profile": "Teacher"
     },
     {
@@ -68,7 +68,7 @@
         "Name": "Giordano",
         "Last name": "terranova",
         "Address": "",
-        "Subject": "",
+        "Subject": "coding",
         "Profile": "Teacher"
     },
     {
@@ -76,7 +76,7 @@
         "Name": "Mario",
         "Last name": "",
         "Address": "",
-        "Course": "",
+        "Course": "cnc",
         "Profile": "Student"
     },
     {
@@ -84,7 +84,7 @@
         "Name": "Romeo",
         "Last name": "",
         "Address": "",
-        "Course": "",
+        "Course": "cnc",
         "Profile": "Student"
     },
     {

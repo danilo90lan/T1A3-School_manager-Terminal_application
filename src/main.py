@@ -166,6 +166,16 @@ class School:
                 Teacher.update_teacher(i)   
         write_json(self.students, self.teachers)
 
+    def filter_students_by_course(self, course):
+        for i in self.students:
+            if i.course.lower() == course.lower():
+                print(Student.print_info(i))
+    
+    def filter_teachers_by_subject(self, subject):
+        for i in self.teachers:
+            if i.subject_area.lower() == subject.lower():
+                print(Teacher.print_info(i))
+
 def student_new_record():
     name = input("Enter name: ").capitalize()
     last_name = input("Enter last name: ").capitalize()
@@ -191,7 +201,9 @@ def input_menu():
     4 - Display students records (A - Z)
     5 - Search student
     6 - Search teacher
-    7 - Exit program
+    7 - Filter teachers by teaching subject
+    8 - Filter students by course
+    9 - Exit program
     """)
     return input("Enter your choice: ")
 
@@ -390,7 +402,12 @@ def main():
                         break
                     else:
                         print("Invalid input. Try again")
+            
             case "7":
+                school.filter_teachers_by_subject(input("\nTeaching subject: "))
+            case "8":
+                school.filter_students_by_course(input("\nCourse name: "))
+            case "9":
                 print("Program ended.")
                 break
             case _:
