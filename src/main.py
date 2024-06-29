@@ -158,35 +158,43 @@ class School:
         for i in self.students:
             if Student.get_id(i) == id:
                 Student.update_student(i)
-        write_json(self.students, self.teachers, "Student record updated succesfully!")
+        write_json(self.students, self.teachers)
 
     def teacher_update(self, id):
         for i in self.teachers:
             if Teacher.get_id(i) == id:
                 Teacher.update_teacher(i)   
-        write_json(self.students, self.teachers, "Teacher record updated succesfully!")
+        write_json(self.students, self.teachers)
 
     def delete_teacher(self, id):
         for i in self.teachers:
             if Teacher.get_id(i) == id:
                 self.teachers.remove(i)
-        write_json(self.students, self.teachers, "Teacher record deleted succesfully!")
+        write_json(self.students, self.teachers, "\nTeacher record deleted succesfully!")
 
     def delete_student(self, id):
         for i in self.students:
             if Student.get_id(i) == id:
                 self.students.remove(i)
-        write_json(self.students, self.teachers, "Student record deleted succesfully!")
+        write_json(self.students, self.teachers, "\nStudent record deleted succesfully!")
 
     def filter_students_by_course(self, course):
+        record = False
         for i in self.students:
             if i.course.lower() == course.lower():
                 print(Student.print_info(i))
+                record = True
+        if not record:
+            print(f"The course {course} has NOT been found in the system")
     
     def filter_teachers_by_subject(self, subject):
+        record = False
         for i in self.teachers:
             if i.subject_area.lower() == subject.lower():
                 print(Teacher.print_info(i))
+                record = True
+        if not record:
+            print(f"The subject {subject} has NOT been found in the system")
 
 def student_new_record():
     name = input("Enter name: ").capitalize()
@@ -306,17 +314,18 @@ def menu2(record, id = None):
             case "1":
                 if id == None:
                     id = int(input("Enter ID to confirm the correct record to update in case there are homonyms: "))
-                if record == "student":
+                if record == Student.profile:
                     school.student_update(id)
                     break
-                elif record == "teacher":
+                elif record == Teacher.profile:
                     school.teacher_update(id)
+                    break
             case "2":
                 if id == None:
                     id = int(input("Enter ID to delete: "))
-                if record == "student":
+                if record == Student.profile:
                     school.delete_student(id)
-                elif record == "teacher":
+                elif record == Teacher.profile:
                     school.delete_teacher(id)
                 pass
             case "3":
@@ -379,7 +388,7 @@ def main():
                             try:
                                 id_number = int(input("\nEnter student ID: "))
                                 if school.find_student_by_id(id_number):
-                                    menu2("student", id_number)
+                                    menu2(Student.profile, id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")
@@ -387,7 +396,7 @@ def main():
                     elif option == "2":
                         student_name = input("Enter student's name: ")
                         if school.find_student_by_name(student_name):
-                            menu2("student")
+                            menu2(Student.profile)
                     elif option == "3":
                         break
                     else:
@@ -405,7 +414,7 @@ def main():
                             try:
                                 id_number = int(input("\nEnter teacher ID: "))
                                 if school.find_teacher_by_id(id_number):
-                                    menu2("teacher", id_number)
+                                    menu2(Teacher.profile, id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")                     
@@ -413,7 +422,7 @@ def main():
                     elif option == "2":
                         teacher_name = input("Enter teacher's name: ")
                         if school.find_teacher_by_name(teacher_name):
-                            menu2("teacher")
+                            menu2(Teacher.profile)
                     elif option == "3":
                         break
                     else:
