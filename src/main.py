@@ -79,7 +79,7 @@ class Teacher(Person):
     def update_teacher(self):
             super().update_info()
             self.subject_area = input("New teaching subject --> ").capitalize()
-            print("\/Teacher info updated succesfully!")
+            print("\nTeacher info updated succesfully!")
 
 class School:
     def __init__(self, students, teachers):
@@ -158,13 +158,25 @@ class School:
         for i in self.students:
             if Student.get_id(i) == id:
                 Student.update_student(i)
-        write_json(self.students, self.teachers)
+        write_json(self.students, self.teachers, "Student record updated succesfully!")
 
     def teacher_update(self, id):
         for i in self.teachers:
             if Teacher.get_id(i) == id:
                 Teacher.update_teacher(i)   
-        write_json(self.students, self.teachers)
+        write_json(self.students, self.teachers, "Teacher record updated succesfully!")
+
+    def delete_teacher(self, id):
+        for i in self.teachers:
+            if Teacher.get_id(i) == id:
+                self.teachers.remove(i)
+        write_json(self.students, self.teachers, "Teacher record deleted succesfully!")
+
+    def delete_student(self, id):
+        for i in self.students:
+            if Student.get_id(i) == id:
+                self.students.remove(i)
+        write_json(self.students, self.teachers, "Student record deleted succesfully!")
 
     def filter_students_by_course(self, course):
         for i in self.students:
@@ -271,7 +283,7 @@ def teacherObject_to_Dict(teachers):
     return list_teachers
 
 # function to write on a json file
-def write_json(students_objects, teachers_objects):
+def write_json(students_objects, teachers_objects, message=""):
     json_data = studentObject_to_Dict(students_objects) + teacherObject_to_Dict(teachers_objects)
     # sort the list in alphabetic order
     sorted_json_data = sorted(json_data, key=itemgetter("Name", "Last name"))
@@ -279,7 +291,7 @@ def write_json(students_objects, teachers_objects):
     
     with open(filepath, "w") as file:
         json.dump(sorted_json_data, file, indent = 4)
-    print("Data added successfully")
+    print(message)
 
 def menu2(record, id = None):
     print("What would you like to do?")                       
@@ -302,6 +314,10 @@ def menu2(record, id = None):
             case "2":
                 if id == None:
                     id = int(input("Enter ID to delete: "))
+                if record == "student":
+                    school.delete_student(id)
+                elif record == "teacher":
+                    school.delete_teacher(id)
                 pass
             case "3":
                 break
@@ -332,7 +348,7 @@ def main():
                     new_record = input("\nDo you want to enter another one? (Y/N) ")
                     print("\n")
                 # write to json file after adding all new records
-                write_json(students_instances, teachers_instances)
+                write_json(students_instances, teachers_instances, "New data added succesfully!")
 
             case "2":
                 new_record = "Y"
@@ -344,7 +360,7 @@ def main():
                     new_record = input("\nDo you want to enter another one? (Y/N) ")
                     print("\n")
                 # write to json file after adding all new records
-                write_json(students_instances, teachers_instances)
+                write_json(students_instances, teachers_instances, "New data added succesfully!")
 
             case "3":
                 school.display_all_teachers()

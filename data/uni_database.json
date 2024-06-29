@@ -16,14 +16,6 @@
         "Profile": "Teacher"
     },
     {
-        "#ID": 3,
-        "Name": "Arnaldo",
-        "Last name": "",
-        "Address": "'",
-        "Subject": "",
-        "Profile": "Teacher"
-    },
-    {
         "#ID": 6,
         "Name": "Babbeo",
         "Last name": "",
@@ -38,14 +30,6 @@
         "Address": "",
         "Subject": "",
         "Profile": "Teacher"
-    },
-    {
-        "#ID": 14,
-        "Name": "Emiliano",
-        "Last name": "",
-        "Address": "",
-        "Course": "",
-        "Profile": "Student"
     },
     {
         "#ID": 13,
@@ -70,22 +54,6 @@
         "Address": "",
         "Subject": "coding",
         "Profile": "Teacher"
-    },
-    {
-        "#ID": 5,
-        "Name": "Mario",
-        "Last name": "",
-        "Address": "",
-        "Course": "cnc",
-        "Profile": "Student"
-    },
-    {
-        "#ID": 16,
-        "Name": "Romeo",
-        "Last name": "",
-        "Address": "",
-        "Course": "cnc",
-        "Profile": "Student"
     },
     {
         "#ID": 10,
