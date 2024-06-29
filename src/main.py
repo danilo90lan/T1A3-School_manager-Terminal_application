@@ -570,6 +570,9 @@ def main():
     students_instances, teachers_instances, list_id = read_json()
     #create school instance with 2 arguments student_list and teachers_list
     school = School(students_instances, teachers_instances)
+    # set the ID to the highest number in order for each element of the list to have a unique ID
+    Person.set_id(max(list_id))
+
     while True:
         choice = input_menu()
 

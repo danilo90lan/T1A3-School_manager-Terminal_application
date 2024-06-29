@@ -24,6 +24,14 @@
         "Profile": "Teacher"
     },
     {
+        "#ID": 9,
+        "Name": "Giordano",
+        "Last name": "",
+        "Address": "",
+        "Teaching subjects": "",
+        "Profile": "Teacher"
+    },
+    {
         "#ID": 7,
         "Name": "Marco",
         "Last name": "",
@@ -42,6 +50,14 @@
     {
         "#ID": 5,
         "Name": "Pippo",
+        "Last name": "",
+        "Address": "",
+        "Course": "",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 10,
+        "Name": "Salvini",
         "Last name": "",
         "Address": "",
         "Course": "",
