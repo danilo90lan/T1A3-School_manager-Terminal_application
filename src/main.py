@@ -143,7 +143,7 @@ class School:
         record = False
 
         for i in self.students:
-            if i.last_name.lower() == student_name.lower():
+            if i.name.lower() == student_name.lower():
                 print(Student.print_info(i))
                 record = True
         if record == False:
@@ -165,7 +165,7 @@ class School:
     def find_teacher_by_name(self, teacher_name):
         record = False
         for i in self.teachers:
-            if i.last_name.lower() == teacher_name.lower():
+            if i.name.lower() == teacher_name.lower():
                 print(Teacher.print_info(i))
                 record = True
         if record == False:
@@ -233,7 +233,7 @@ def read_json():
                 elif i["Profile"] == "Teacher":
                     Person.set_id(i["#ID"] - 1)
                     # create an instance of Teacher and append it to teacher list
-                    teacher = Teacher(i["Name"], i["Last name"], i["Address"], i["Teaching subjects"])
+                    teacher = Teacher(i["Name"], i["Last name"], i["Address"], i["Subject"])
                     teachers.append(teacher)
             
     except FileNotFoundError:
@@ -409,45 +409,43 @@ class School:
             print("\nThere is no teachers records")
 
     def find_student_by_id(self, student_id):
-        record = None
         for index, i in enumerate(self.students):
             if Student.get_id(i) == student_id:
                 record = i
                 index_st = index
                 break
-        if record:
+        try:
             print(Student.print_info(record))
-        else:
+            return index_st
+        except UnboundLocalError:
             print("\nStudent record NOT in the system")
-        return index_st
         
     def find_student_by_name(self, student_name):
         record = False
 
         for i in self.students:
-            if i.last_name.lower() == student_name.lower():
+            if i.name.lower() == student_name.lower():
                 print(Student.print_info(i))
                 record = True
         if record == False:
             print("\nStudent recond NOT in the system")
 
     def find_teacher_by_id(self, teacher_id):
-        record = None
         for index, i in enumerate(self.teachers):
             if Teacher.get_id(i) == teacher_id:
                 record = i
-                index_teac = index
+                index_teach = index
                 break
-        if record:
+        try:
             print(Teacher.print_info(record))
-        else:
+            return index_teach
+        except UnboundLocalError:
             print("\nTeacher record NOT in the system")
-        return index_teac
     
     def find_teacher_by_name(self, teacher_name):
         record = False
         for i in self.teachers:
-            if i.last_name.lower() == teacher_name.lower():
+            if i.name.lower() == teacher_name.lower():
                 print(Teacher.print_info(i))
                 record = True
         if record == False:
@@ -515,7 +513,7 @@ def read_json():
                 elif i["Profile"] == "Teacher":
                     Person.set_id(i["#ID"] - 1)
                     # create an instance of Teacher and append it to teacher list
-                    teacher = Teacher(i["Name"], i["Last name"], i["Address"], i["Teaching subjects"])
+                    teacher = Teacher(i["Name"], i["Last name"], i["Address"], i["Subject"])
                     teachers.append(teacher)
             
     except FileNotFoundError:
@@ -546,7 +544,7 @@ def teacherObject_to_Dict(teachers):
                     "Name": i.name,
                     "Last name": i.last_name,
                     "Address": i.address,
-                    "Teaching subjects": i.subject_area,
+                    "Subject": i.subject_area,
                     "Profile": i.profile
         }
         list_teachers.append(teacher_dict)
@@ -563,9 +561,7 @@ def write_json(students_objects, teachers_objects):
         json.dump(sorted_json_data, file, indent = 4)
     print("Data added successfully")
 
-
-
-
+#main function
 def main(): 
     students_instances, teachers_instances, list_id = read_json()
     #create school instance with 2 arguments student_list and teachers_list
@@ -609,20 +605,41 @@ def main():
                 while True:
                     print(f"""
                     1 - Search student by ID
-                    2 - Search student by last name
+                    2 - Search student by name
                     3 - Cancel operation
                     """)
                     option = input("Enter your type of search: ")
                     if option == "1":
                         while True:   
                             try:
-                                id_number = int(input("Enter ID number to find: "))
+                                id_number = int(input("\nEnter student ID: "))
                                 found_student_id = school.find_student_by_id(id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")
+
+                        if found_student_id != None:
+                            print("What would you like to do?")
+                            
+                            while True:
+                                print(f"""
+                                1 - Update student info
+                                2 - Delete student record
+                                3 - Back 
+                                """)
+                                scelta = input("Enter your operation: ")
+                                if scelta == "1":
+                                    school.student_update(found_student_id)
+                                    break
+                                elif scelta == "2":
+                                    pass
+                                elif scelta == "3":
+                                    break
+                                else:
+                                    print("Invalid input. Try again")
+
                     elif option == "2":
-                        student_name = input("Enter student's LAST name: ")
+                        student_name = input("Enter student's name: ")
                         school.find_student_by_name(student_name)
                     elif option == "3":
                         break
@@ -632,38 +649,41 @@ def main():
                 while True:
                     print(f"""
                     1 - Search teacher by ID
-                    2 - Search teacher by Last name
+                    2 - Search teacher by name
                     3 - Cancel operation
                     """)
                     option = input("Enter your type of search: ")
                     if option == "1":
                         while True:   
                             try:
-                                id_number = int(input("Enter ID number to find: "))
+                                id_number = int(input("\nEnter teacher ID: "))
                                 found_teacher_id = school.find_teacher_by_id(id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")
-
-                        print("What would you like to do?")
-                        while True:
-                            print(f"""
-                            1 - Update teacher info
-                            2 - Delete teacher record
-                            3 - Back 
-                            """)
-                            scelta = input("Enter your operation: ")
-                            if scelta == "1":
-                                school.teacher_update(found_teacher_id)
-                            elif scelta == "2":
-                                pass
-                            elif scelta == "3":
-                                break
-                            else:
-                                print("Invalid input. Try again")
+                       
+                        if found_teacher_id != None:
+                            print("What would you like to do?")
+                            
+                            while True:
+                                print(f"""
+                                1 - Update teacher info
+                                2 - Delete teacher record
+                                3 - Back 
+                                """)
+                                scelta = input("Enter your operation: ")
+                                if scelta == "1":
+                                    school.teacher_update(found_teacher_id)
+                                    break
+                                elif scelta == "2":
+                                    pass
+                                elif scelta == "3":
+                                    break
+                                else:
+                                    print("Invalid input. Try again")
 
                     elif option == "2":
-                        teacher_name = input("Enter teacher's LAST name: ")
+                        teacher_name = input("Enter teacher's name: ")
                         school.find_teacher_by_name(teacher_name)
                     elif option == "3":
                         break
