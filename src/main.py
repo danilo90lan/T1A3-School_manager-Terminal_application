@@ -54,7 +54,7 @@ class Student(Person):
     def update_student(self):
         super().update_info()
         self.course = input("New course --> ")
-        print("Student info updated succesfully!")
+        print("\nStudent info updated succesfully!")
 
 class Teacher(Person):
     # class const
@@ -79,7 +79,7 @@ class Teacher(Person):
     def update_teacher(self):
             super().update_info()
             self.subject_area = input("New teaching subject --> ")
-            print("Teacher info updated succesfully")
+            print("\/Teacher info updated succesfully!")
 
 class School:
     def __init__(self, students, teachers):
@@ -105,14 +105,12 @@ class School:
             print("\nThere is no teachers records")
 
     def find_student_by_id(self, student_id):
-        for index, i in enumerate(self.students):
+        for i in self.students:
             if Student.get_id(i) == student_id:
                 record = i
-                index_st = index
                 break
         try:
             print(Student.print_info(record))
-            return index_st
         except UnboundLocalError:
             print("\nStudent record NOT in the system")
         
@@ -128,14 +126,12 @@ class School:
         return record
 
     def find_teacher_by_id(self, teacher_id):
-        for index, i in enumerate(self.teachers):
+        for i in self.teachers:
             if Teacher.get_id(i) == teacher_id:
                 record = i
-                index_teach = index
                 break
         try:
             print(Teacher.print_info(record))
-            return index_teach
         except UnboundLocalError:
             print("\nTeacher record NOT in the system")
     
@@ -153,11 +149,13 @@ class School:
         for i in self.students:
             if Student.get_id(i) == id:
                 Student.update_student(i)
+        write_json(self.students, self.teachers)
 
     def teacher_update(self, id):
         for i in self.teachers:
             if Teacher.get_id(i) == id:
                 Teacher.update_teacher(i)   
+        write_json(self.students, self.teachers)
 
 def student_new_record():
     name = input("Enter name: ").capitalize()
@@ -180,8 +178,8 @@ def input_menu():
     print(f"""
     1 - Enter new teacher
     2 - Enter new student
-    3 - Display teachers records
-    4 - Display students records
+    3 - Display teachers records (A - Z)
+    4 - Display students records (A - Z)
     5 - Search student
     6 - Search teacher
     7 - Exit program
@@ -343,13 +341,11 @@ def main():
                         while True:   
                             try:
                                 id_number = int(input("\nEnter student ID: "))
-                                found_student_id = school.find_student_by_id(id_number)
+                                school.find_student_by_id(id_number)
+                                menu2("student", id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")
-
-                        if found_student_id != None:
-                            menu2("student", id_number)
 
                     elif option == "2":
                         student_name = input("Enter student's name: ")
@@ -372,12 +368,10 @@ def main():
                             try:
                                 id_number = int(input("\nEnter teacher ID: "))
                                 found_teacher_id = school.find_teacher_by_id(id_number)
+                                menu2("teacher", id_number)
                                 break
                             except ValueError:
-                                print("\nInput must be a number")
-                       
-                        if found_teacher_id != None:
-                           menu2("teacher", found_teacher_id)
+                                print("\nInput must be a number")                     
 
                     elif option == "2":
                         teacher_name = input("Enter teacher's name: ")
