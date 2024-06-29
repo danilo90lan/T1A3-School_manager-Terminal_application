@@ -390,12 +390,6 @@ class School:
         self.students = students
         self.teachers = teachers
 
-    def add_student(self, new_student):
-        self.students.append(new_student)
-
-    def add_teacher(self, new_teacher):
-        self.teachers.append(new_teacher)
-
     def display_all_students(self):
         if self.students != []: 
             # sort alphabetically
@@ -586,12 +580,9 @@ def main():
                     #instance a new Teacher object
                     new_teacher = teacher_new_record()
                     # update teachers list
-                    school.add_teacher(new_teacher)
                     teachers_instances.append(new_teacher)
                     new_record = input("\nDo you want to enter another one? (Y/N) ")
                     print("\n")
-                    for i in teachers_instances:
-                        print(i.__dict__)
                 # write to json file after adding all new records
                 write_json(students_instances, teachers_instances)
 
@@ -601,12 +592,11 @@ def main():
                     #instance a new Student object
                     new_student = student_new_record()
                     # update students list
-                    school.add_student(new_student)
                     students_instances.append(new_student)
                     new_record = input("\nDo you want to enter another one? (Y/N) ")
                     print("\n")
                 # write to json file after adding all new records
-                # write_json(students_instances, teachers_instances)
+                write_json(students_instances, teachers_instances)
 
             case "3":
                 school.display_all_teachers()
