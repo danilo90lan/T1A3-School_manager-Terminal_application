@@ -189,7 +189,7 @@ class School:
                 print(Student.print_info(i))
                 record = True
         if not record:
-            print(f"The course {course} has NOT been found in the system")
+            print(f"\nThe course {course} has NOT been found in the system")
         return list
     
     def filter_teachers_by_subject(self, subject):
@@ -201,7 +201,7 @@ class School:
                 print(Teacher.print_info(i))
                 record = True
         if not record:
-            print(f"The subject {subject} has NOT been found in the system")
+            print(f"\nThe subject {subject} has NOT been found in the system")
         return list
     
     def print_list_all_courses(self):
@@ -281,7 +281,7 @@ def input_menu():
 
 # function to read from Jason file
 def read_json():
-    filepath = "./data/school.json"
+    filepath = "../data/school.json"
     json_data = []
     students = []
     teachers = []
@@ -343,7 +343,7 @@ def teacherObject_to_Dict(teachers):
     return list_teachers
 
 # function to write on a json file
-def write_json(json_data, message="", file_path = "./data/school.json"):
+def write_json(json_data, message="", file_path = "../data/school.json"):
     # sort the list in alphabetic order
     sorted_json_data = sorted(json_data, key=itemgetter("Name", "Last name"))
 
@@ -493,7 +493,7 @@ def main():
                             choice = input("Would you like to export the list into a JSON file? (Y/N) ")
                             if choice in "Yy":
                                 message = f"\nTeachers list under {subject.upper()} created"
-                                file_path = f"./data/list_teachers_{subject}.json"
+                                file_path = f"../data/list_teachers_{subject}.json"
                                 write_json(teacherObject_to_Dict(teachers_by_subject), message, file_path)
                                 break
                             elif choice in "Nn":
@@ -507,7 +507,7 @@ def main():
                             choice = input("Would you like to export the list into a JSON file? (Y/N) ")
                             if choice in "Yy":
                                 message = f"\nStudents list under {course.upper()} created"
-                                file_path = f"./data/list_students_{course}.json"
+                                file_path = f"../data/list_students_{course}.json"
                                 write_json(studentObject_to_Dict(students_by_course), message, file_path)
                                 break
                             elif choice in "Nn":
