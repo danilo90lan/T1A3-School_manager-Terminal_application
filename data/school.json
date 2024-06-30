@@ -28,7 +28,7 @@
         "Name": "Babbeo",
         "Last name": "",
         "Address": "",
-        "Course": "",
+        "Course": "trading",
         "Profile": "Student"
     },
     {
@@ -40,11 +40,43 @@
         "Profile": "Teacher"
     },
     {
+        "#ID": 19,
+        "Name": "Ermanno",
+        "Last name": "Rizzo",
+        "Address": "Taviano",
+        "Course": "trading",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 20,
+        "Name": "Fabio",
+        "Last name": "Longo",
+        "Address": "Taviano",
+        "Course": "",
+        "Profile": "Student"
+    },
+    {
         "#ID": 13,
         "Name": "Francesco",
         "Last name": "Totti",
         "Address": "",
         "Subject": "",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 21,
+        "Name": "Gabriella",
+        "Last name": "Reho",
+        "Address": "",
+        "Subject": "Sistemi",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 18,
+        "Name": "Giacomo",
+        "Last name": "Green",
+        "Address": "Roma",
+        "Subject": "It",
         "Profile": "Teacher"
     },
     {
@@ -60,7 +92,7 @@
         "Name": "Salvini",
         "Last name": "",
         "Address": "",
-        "Course": "",
+        "Course": "trading",
         "Profile": "Student"
     },
     {
@@ -69,6 +101,30 @@
         "Last name": "Adg",
         "Address": "Adg",
         "Course": "Adeg",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 24,
+        "Name": "Sdg",
+        "Last name": "Eg",
+        "Address": "Vaeg",
+        "Course": "Eqg",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 23,
+        "Name": "Swg",
+        "Last name": "Et",
+        "Address": "Eat",
+        "Subject": "Ewg",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 22,
+        "Name": "Trading",
+        "Last name": "",
+        "Address": "",
+        "Course": "",
         "Profile": "Student"
     },
     {

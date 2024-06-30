@@ -54,7 +54,6 @@ class Student(Person):
     def update_student(self):
         super().update_info()
         self.course = input("New course --> ").capitalize()
-        print("\nStudent info updated succesfully!")
 
 class Teacher(Person):
     # class const
@@ -79,7 +78,6 @@ class Teacher(Person):
     def update_teacher(self):
             super().update_info()
             self.subject_area = input("New teaching subject --> ").capitalize()
-            print("\nTeacher info updated succesfully!")
 
 class School:
     def __init__(self, students, teachers):
@@ -158,43 +156,53 @@ class School:
         for i in self.students:
             if Student.get_id(i) == id:
                 Student.update_student(i)
-        write_json(self.students, self.teachers)
+        json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
+        write_json(json_data, "\nStudent info updated succesfully!")
 
     def teacher_update(self, id):
         for i in self.teachers:
             if Teacher.get_id(i) == id:
-                Teacher.update_teacher(i)   
-        write_json(self.students, self.teachers)
+                Teacher.update_teacher(i)  
+        json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers) 
+        write_json(json_data,"\nTeacher info updated succesfully!")
 
     def delete_teacher(self, id):
         for i in self.teachers:
             if Teacher.get_id(i) == id:
                 self.teachers.remove(i)
-        write_json(self.students, self.teachers, "\nTeacher record deleted succesfully!")
+        json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
+        write_json(json_data, "\nTeacher record deleted succesfully!")
 
     def delete_student(self, id):
         for i in self.students:
             if Student.get_id(i) == id:
                 self.students.remove(i)
-        write_json(self.students, self.teachers, "\nStudent record deleted succesfully!")
+        json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
+        write_json(json_data, "\nStudent record deleted succesfully!")
 
     def filter_students_by_course(self, course):
         record = False
+        list = []
         for i in self.students:
             if i.course.lower() == course.lower():
+                list.append(i)
                 print(Student.print_info(i))
                 record = True
         if not record:
             print(f"The course {course} has NOT been found in the system")
+        return list
     
     def filter_teachers_by_subject(self, subject):
         record = False
+        list = []
         for i in self.teachers:
             if i.subject_area.lower() == subject.lower():
+                list.append(i)
                 print(Teacher.print_info(i))
                 record = True
         if not record:
             print(f"The subject {subject} has NOT been found in the system")
+        return list
 
 def student_new_record():
     name = input("Enter name: ").capitalize()
@@ -229,7 +237,7 @@ def input_menu():
 
 # function to read from Jason file
 def read_json():
-    filepath = "./data/uni_database.json"
+    filepath = "./data/school.json"
     json_data = []
     students = []
     teachers = []
@@ -291,13 +299,11 @@ def teacherObject_to_Dict(teachers):
     return list_teachers
 
 # function to write on a json file
-def write_json(students_objects, teachers_objects, message=""):
-    json_data = studentObject_to_Dict(students_objects) + teacherObject_to_Dict(teachers_objects)
+def write_json(json_data, message="", file_path = "./data/school.json"):
     # sort the list in alphabetic order
     sorted_json_data = sorted(json_data, key=itemgetter("Name", "Last name"))
-    filepath = "./data/uni_database.json"
-    
-    with open(filepath, "w") as file:
+
+    with open(file_path, "w") as file:
         json.dump(sorted_json_data, file, indent = 4)
     print(message)
 
@@ -309,8 +315,8 @@ def menu2(record, id = None):
         2 - Delete record
         3 - Back 
         """)
-        scelta = input("Enter your operation: ")
-        match scelta:
+        choice = input("Enter your operation: ")
+        match choice:
             case "1":
                 if id == None:
                     id = int(input("Enter ID to confirm the correct record to update in case there are homonyms: "))
@@ -357,7 +363,8 @@ def main():
                     new_record = input("\nDo you want to enter another one? (Y/N) ")
                     print("\n")
                 # write to json file after adding all new records
-                write_json(students_instances, teachers_instances, "New data added succesfully!")
+                json_data = studentObject_to_Dict(students_instances) + teacherObject_to_Dict(teachers_instances)
+                write_json(json_data, "New data added succesfully!")
 
             case "2":
                 new_record = "Y"
@@ -369,7 +376,8 @@ def main():
                     new_record = input("\nDo you want to enter another one? (Y/N) ")
                     print("\n")
                 # write to json file after adding all new records
-                write_json(students_instances, teachers_instances, "New data added succesfully!")
+                json_data = studentObject_to_Dict(students_instances) + teacherObject_to_Dict(teachers_instances)
+                write_json(json_data, "New data added succesfully!")
 
             case "3":
                 school.display_all_teachers()
@@ -429,11 +437,33 @@ def main():
                         print("Invalid input. Try again")
             
             case "7":
-                school.filter_teachers_by_subject(input("\nTeaching subject: "))
+                subject = input("\nTeaching subject: ")
+                teachers_by_subject = school.filter_teachers_by_subject(subject)
+                if teachers_by_subject != []: 
+                    while True:
+                        choice = input("Would you like to export the list into a JSON file? (Y/N) ")
+                        if choice in "Yy":
+                            message = f"\nTeachers list under {subject.upper()} created"
+                            file_path = f"./data/list_teachers_{subject}.json"
+                            write_json(teacherObject_to_Dict(teachers_by_subject), message, file_path)
+                            break
+                        elif choice in "Nn":
+                            break
             case "8":
-                school.filter_students_by_course(input("\nCourse name: "))
+                course = input("\nCourse name: ")
+                students_by_course = school.filter_students_by_course(course)
+                if students_by_course != []:         
+                    while True:
+                        choice = input("Would you like to export the list into a JSON file? (Y/N) ")
+                        if choice in "Yy":
+                            message = f"\nStudents list under {course.upper()} created"
+                            file_path = f"./data/list_students_{course}.json"
+                            write_json(studentObject_to_Dict(students_by_course), message, file_path)
+                            break
+                        elif choice in "Nn":
+                            break
             case "9":
-                print("Program ended.")
+                print("Program ended")
                 break
             case _:
                 print("Input not valid. Try again")
