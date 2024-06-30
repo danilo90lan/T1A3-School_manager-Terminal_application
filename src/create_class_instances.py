@@ -1,5 +1,5 @@
-from student import Student
-from teacher import Teacher
+from models import Student
+from models import Teacher
 
 def student_new_record():
     name = input("Enter name: ").capitalize()

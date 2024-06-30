@@ -4,9 +4,9 @@ from converting_type import studentObject_to_Dict, teacherObject_to_Dict
 
 # function to read from Jason file
 def read_json():
-    from person import Person
-    from teacher import Teacher
-    from student import Student
+    from models import Person
+    from models import Teacher
+    from models import Student
 
     filepath = "../data/school.json"
     json_data = []

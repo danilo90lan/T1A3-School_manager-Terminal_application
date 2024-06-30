@@ -1,5 +1,5 @@
-from student import Student
-from teacher import Teacher
+from models import Student
+from models import Teacher
 from file_operation import write_json
 from converting_type import studentObject_to_Dict, teacherObject_to_Dict
 

@@ -24,6 +24,14 @@
         "Profile": "Teacher"
     },
     {
+        "#ID": 7,
+        "Name": "Gianluca",
+        "Last name": "Rizzo",
+        "Address": "Taviano",
+        "Subject": "Drug",
+        "Profile": "Teacher"
+    },
+    {
         "#ID": 1,
         "Name": "Ludovio",
         "Last name": "Einaudi",

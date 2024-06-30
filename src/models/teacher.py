@@ -1,4 +1,4 @@
-from person import Person
+from models import Person
 
 class Teacher(Person):
     # class const
