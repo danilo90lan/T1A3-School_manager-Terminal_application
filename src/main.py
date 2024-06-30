@@ -207,31 +207,41 @@ class School:
     def print_list_all_courses(self):
         # defining a set variable to store the list of courses with no duplicate
         list_courses = set()
+        # defining a boolean variable that returns False if the list is empty
+        course = True
+
         for i in self.students:
             if i.course == "":
                 continue
             list_courses.add(i.course)
-        if list_courses != {}:
+        if list_courses:
             print("\n***** List of all courses in the school *****\n")
             for i in list_courses:
                 print(i)
         else:
             print("There is no courses to show in the system")
+            course = False
+        return course
 
     def print_list_all_subjects(self):
         # defining a set variable to store the list of all subjects with no duplicate
         list_subjects = set()
+        # defining a boolean variable that returns False if the list is empty
+        subject = True
+        
         for i in self.teachers:
             if i.subject_area == "":
                 continue
             list_subjects.add(i.subject_area)
-        if list_subjects != {}:
+        if list_subjects:
             print("\n***** List of all the subjects taught in the school *****\n")
             for i in list_subjects:
                 print(i)
         else:
             print("There is no teaching subjects to show in the system")
-
+            subject = False
+        return subject
+    
 def student_new_record():
     name = input("Enter name: ").capitalize()
     last_name = input("Enter last name: ").capitalize()
@@ -372,7 +382,11 @@ students_instances, teachers_instances, list_id = read_json()
 #create school instance with 2 arguments student_list and teachers_list
 school = School(students_instances, teachers_instances)
 # set the ID to the highest number in order for each element of the list to have a unique ID
-Person.set_id(max(list_id))
+# if the list_id is empty, the initial id it will be initialized at value 0
+if list_id != []:
+    Person.set_id(max(list_id))
+else:
+    Person.set_id(0)
 
 # main function
 def main(): 
@@ -465,33 +479,33 @@ def main():
                         print("Invalid input. Try again")
             
             case "7":
-                school.print_list_all_subjects()
-                subject = input("\nEnter the subject for which you want to list the teachers: ")
-                teachers_by_subject = school.filter_teachers_by_subject(subject)
-                if teachers_by_subject != []: 
-                    while True:
-                        choice = input("Would you like to export the list into a JSON file? (Y/N) ")
-                        if choice in "Yy":
-                            message = f"\nTeachers list under {subject.upper()} created"
-                            file_path = f"./data/list_teachers_{subject}.json"
-                            write_json(teacherObject_to_Dict(teachers_by_subject), message, file_path)
-                            break
-                        elif choice in "Nn":
-                            break
+                if(school.print_list_all_subjects()):
+                    subject = input("\nEnter the subject for which you want to list the teachers: ")
+                    teachers_by_subject = school.filter_teachers_by_subject(subject)
+                    if teachers_by_subject != []: 
+                        while True:
+                            choice = input("Would you like to export the list into a JSON file? (Y/N) ")
+                            if choice in "Yy":
+                                message = f"\nTeachers list under {subject.upper()} created"
+                                file_path = f"./data/list_teachers_{subject}.json"
+                                write_json(teacherObject_to_Dict(teachers_by_subject), message, file_path)
+                                break
+                            elif choice in "Nn":
+                                break
             case "8":
-                school.print_list_all_courses()
-                course = input("\nEnter the course for which you want to list the students: ")
-                students_by_course = school.filter_students_by_course(course)
-                if students_by_course != []:         
-                    while True:
-                        choice = input("Would you like to export the list into a JSON file? (Y/N) ")
-                        if choice in "Yy":
-                            message = f"\nStudents list under {course.upper()} created"
-                            file_path = f"./data/list_students_{course}.json"
-                            write_json(studentObject_to_Dict(students_by_course), message, file_path)
-                            break
-                        elif choice in "Nn":
-                            break
+                if(school.print_list_all_courses()):
+                    course = input("\nEnter the course for which you want to list the students: ")
+                    students_by_course = school.filter_students_by_course(course)
+                    if students_by_course != []:         
+                        while True:
+                            choice = input("Would you like to export the list into a JSON file? (Y/N) ")
+                            if choice in "Yy":
+                                message = f"\nStudents list under {course.upper()} created"
+                                file_path = f"./data/list_students_{course}.json"
+                                write_json(studentObject_to_Dict(students_by_course), message, file_path)
+                                break
+                            elif choice in "Nn":
+                                break
             case "9":
                 print("Program ended")
                 break
