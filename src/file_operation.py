@@ -8,7 +8,7 @@ def read_json():
     from models import Teacher
     from models import Student
 
-    filepath = "../data/school.json"
+    filepath = "./data/school.json"
     json_data = []
     students = []
     teachers = []
@@ -42,7 +42,7 @@ def read_json():
     return students, teachers, list_id
 
 # function to write on a json file
-def write_json(json_data, message="", file_path = "../data/school.json"):
+def write_json(json_data, message="", file_path = "./data/school.json"):
     # sort the list in alphabetic order
     sorted_json_data = sorted(json_data, key=itemgetter("Name", "Last name"))
 
