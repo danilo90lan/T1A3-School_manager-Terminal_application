@@ -1,6 +1,7 @@
 from student import Student
 from teacher import Teacher
-from file_operation import studentObject_to_Dict, teacherObject_to_Dict, write_json
+from file_operation import write_json
+from converting_type import studentObject_to_Dict, teacherObject_to_Dict
 
 class School:
     def __init__(self, students, teachers):

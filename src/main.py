@@ -2,23 +2,9 @@ from person import Person
 from school import School
 from teacher import Teacher
 from student import Student
-from file_operation import read_json, studentObject_to_Dict, teacherObject_to_Dict, write_json
-    
-def student_new_record():
-    name = input("Enter name: ").capitalize()
-    last_name = input("Enter last name: ").capitalize()
-    address = input("Enter address: ").capitalize()
-    course = input("Enter course name: ").capitalize()
-    student = Student(name, last_name, address, course)
-    return student
-
-def teacher_new_record():
-    name = input("Enter name: ").capitalize()
-    last_name = input("Enter last name: ").capitalize()
-    address = input("Enter address: ").capitalize()
-    course = input("Enter teaching subject: ").capitalize()
-    teacher = Teacher(name, last_name, address, course)
-    return teacher
+from file_operation import read_json, write_json
+from converting_type import studentObject_to_Dict, teacherObject_to_Dict
+from create_class_instances import student_new_record, teacher_new_record
 
 # defining menu function
 def input_menu():
@@ -41,7 +27,7 @@ def input_menu():
     """)
     return input("Enter your choice: ")
 
-def menu2(record, id = None):
+def menu2(school, record, id = None):
     print("What would you like to do?")                       
     while True:
         print(f"""
@@ -53,7 +39,7 @@ def menu2(record, id = None):
         match choice:
             case "1":
                 if id == None:
-                    id = int(input("Enter ID to confirm the correct record to update in case there are homonyms: "))
+                    id = int(input("Enter ID to confirm the correct record to UPDATE in case there are homonyms: "))
                 if record == Student.profile:
                     school.student_update(id)
                     break
@@ -62,7 +48,7 @@ def menu2(record, id = None):
                     break
             case "2":
                 if id == None:
-                    id = int(input("Enter ID to delete: "))
+                    id = int(input("Enter ID to confirm the correct record to DELETE in case there are homonyms: "))
                 if record == Student.profile:
                     school.delete_student(id)
                     break
@@ -74,19 +60,19 @@ def menu2(record, id = None):
             case _:
                 print("Invalid input. Try again")
 
-# Initializzation
-students_instances, teachers_instances, list_id = read_json()
-#create school instance with 2 arguments student_list and teachers_list
-school = School(students_instances, teachers_instances)
-# set the ID to the highest number in order for each element of the list to have a unique ID
-# if the list_id is empty, the initial id it will be initialized at value 0
-if list_id != []:
-    Person.set_id(max(list_id))
-else:
-    Person.set_id(0)
-
 # main function
 def main(): 
+    # Initializzation
+    students_instances, teachers_instances, list_id = read_json()
+    #create school instance with 2 arguments student_list and teachers_list
+    school = School(students_instances, teachers_instances)
+
+    # set the ID to the highest number in order for each element of the list to have a unique ID
+    # if the list_id is empty, the initial id it will be initialized at value 0
+    if list_id != []:
+        Person.set_id(max(list_id))
+    else:
+        Person.set_id(0)
 
     while True:
         choice = input_menu()
@@ -135,7 +121,7 @@ def main():
                             try:
                                 id_number = int(input("\nEnter student ID: "))
                                 if school.find_student_by_id(id_number):
-                                    menu2(Student.profile, id_number)
+                                    menu2(school, Student.profile, id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")
@@ -143,7 +129,7 @@ def main():
                     elif option == "2":
                         student_name = input("Enter student's name: ")
                         if school.find_student_by_name(student_name):
-                            menu2(Student.profile)
+                            menu2(school, Student.profile)
                     elif option == "3":
                         break
                     else:
@@ -161,7 +147,7 @@ def main():
                             try:
                                 id_number = int(input("\nEnter teacher ID: "))
                                 if school.find_teacher_by_id(id_number):
-                                    menu2(Teacher.profile, id_number)
+                                    menu2(school, Teacher.profile, id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")                     
@@ -169,7 +155,7 @@ def main():
                     elif option == "2":
                         teacher_name = input("Enter teacher's name: ")
                         if school.find_teacher_by_name(teacher_name):
-                            menu2(Teacher.profile)
+                            menu2(school, Teacher.profile)
                     elif option == "3":
                         break
                     else:

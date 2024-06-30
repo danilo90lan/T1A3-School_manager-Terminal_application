@@ -1,5 +1,6 @@
 import json
 from operator import itemgetter
+from converting_type import studentObject_to_Dict, teacherObject_to_Dict
 
 # function to read from Jason file
 def read_json():
@@ -48,31 +49,3 @@ def write_json(json_data, message="", file_path = "../data/school.json"):
     with open(file_path, "w") as file:
         json.dump(sorted_json_data, file, indent = 4)
     print(message)
-
-# converting students instances to dictionary
-def studentObject_to_Dict(students):
-    list_students = []
-    for i in students:
-        student_dict = {"#ID": i.get_id(),
-                    "Name": i.name,
-                    "Last name": i.last_name,
-                    "Address": i.address,
-                    "Course": i.course,
-                    "Profile": i.profile
-                    }
-        list_students.append(student_dict)
-    return list_students
-
-# converting teachers instances to dictionary
-def teacherObject_to_Dict(teachers):
-    list_teachers = []
-    for i in teachers:
-        teacher_dict = { "#ID": i.get_id(),
-                    "Name": i.name,
-                    "Last name": i.last_name,
-                    "Address": i.address,
-                    "Subject": i.subject_area,
-                    "Profile": i.profile
-        }
-        list_teachers.append(teacher_dict)
-    return list_teachers
