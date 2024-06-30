@@ -3,7 +3,10 @@ from operator import itemgetter
 
 # function to read from Jason file
 def read_json():
-    from models import Person, Student, Teacher
+    from person import Person
+    from teacher import Teacher
+    from student import Student
+
     filepath = "../data/school.json"
     json_data = []
     students = []
@@ -46,7 +49,7 @@ def write_json(json_data, message="", file_path = "../data/school.json"):
         json.dump(sorted_json_data, file, indent = 4)
     print(message)
 
-# converting students to dictionary
+# converting students instances to dictionary
 def studentObject_to_Dict(students):
     list_students = []
     for i in students:
@@ -73,4 +76,3 @@ def teacherObject_to_Dict(teachers):
         }
         list_teachers.append(teacher_dict)
     return list_teachers
-

@@ -1,4 +1,7 @@
-from models import Person, School, Teacher, Student
+from person import Person
+from school import School
+from teacher import Teacher
+from student import Student
 from file_operation import read_json, studentObject_to_Dict, teacherObject_to_Dict, write_json
     
 def student_new_record():
@@ -37,10 +40,6 @@ def input_menu():
     9 - Exit program
     """)
     return input("Enter your choice: ")
-
-
-
-
 
 def menu2(record, id = None):
     print("What would you like to do?")                       
