@@ -203,6 +203,34 @@ class School:
         if not record:
             print(f"The subject {subject} has NOT been found in the system")
         return list
+    
+    def print_list_all_courses(self):
+        # defining a set variable to store the list of courses with no duplicate
+        list_courses = set()
+        for i in self.students:
+            if i.course == "":
+                continue
+            list_courses.add(i.course)
+        if list_courses != {}:
+            print("\n***** List of all courses in the school *****\n")
+            for i in list_courses:
+                print(i)
+        else:
+            print("There is no courses to show in the system")
+
+    def print_list_all_subjects(self):
+        # defining a set variable to store the list of all subjects with no duplicate
+        list_subjects = set()
+        for i in self.teachers:
+            if i.subject_area == "":
+                continue
+            list_subjects.add(i.subject_area)
+        if list_subjects != {}:
+            print("\n***** List of all the subjects taught in the school *****\n")
+            for i in list_subjects:
+                print(i)
+        else:
+            print("There is no teaching subjects to show in the system")
 
 def student_new_record():
     name = input("Enter name: ").capitalize()
@@ -437,7 +465,8 @@ def main():
                         print("Invalid input. Try again")
             
             case "7":
-                subject = input("\nTeaching subject: ")
+                school.print_list_all_subjects()
+                subject = input("\nEnter the subject for which you want to list the teachers: ")
                 teachers_by_subject = school.filter_teachers_by_subject(subject)
                 if teachers_by_subject != []: 
                     while True:
@@ -450,7 +479,8 @@ def main():
                         elif choice in "Nn":
                             break
             case "8":
-                course = input("\nCourse name: ")
+                school.print_list_all_courses()
+                course = input("\nEnter the course for which you want to list the students: ")
                 students_by_course = school.filter_students_by_course(course)
                 if students_by_course != []:         
                     while True:
