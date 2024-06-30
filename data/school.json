@@ -9,11 +9,11 @@
     },
     {
         "#ID": 11,
-        "Name": "America",
+        "Name": "Alberto",
         "Last name": "",
         "Address": "",
         "Subject": "",
-        "Profile": "Teacher"
+        "Profile": "Student"
     },
     {
         "#ID": 1,
@@ -29,6 +29,14 @@
         "Last name": "",
         "Address": "",
         "Course": "trading",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 29,
+        "Name": "Christian",
+        "Last name": "Dior",
+        "Address": "Paris",
+        "Course": "Fashion",
         "Profile": "Student"
     },
     {
@@ -72,11 +80,27 @@
         "Profile": "Teacher"
     },
     {
+        "#ID": 28,
+        "Name": "Gaspare",
+        "Last name": "Timpa",
+        "Address": "Sicily",
+        "Course": "Dancing",
+        "Profile": "Student"
+    },
+    {
         "#ID": 18,
         "Name": "Giacomo",
         "Last name": "Green",
         "Address": "Roma",
         "Subject": "It",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 27,
+        "Name": "Giovanni",
+        "Last name": "",
+        "Address": "",
+        "Subject": "",
         "Profile": "Teacher"
     },
     {
@@ -86,6 +110,22 @@
         "Address": "Southbank",
         "Course": "Welding",
         "Profile": "Student"
+    },
+    {
+        "#ID": 25,
+        "Name": "Maria",
+        "Last name": "Greta",
+        "Address": "",
+        "Subject": "",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 26,
+        "Name": "Rwg",
+        "Last name": "Sfg",
+        "Address": "Sffg",
+        "Subject": "",
+        "Profile": "Teacher"
     },
     {
         "#ID": 10,
@@ -110,14 +150,6 @@
         "Address": "Vaeg",
         "Course": "Eqg",
         "Profile": "Student"
-    },
-    {
-        "#ID": 23,
-        "Name": "Swg",
-        "Last name": "Et",
-        "Address": "Eat",
-        "Subject": "Ewg",
-        "Profile": "Teacher"
     },
     {
         "#ID": 22,

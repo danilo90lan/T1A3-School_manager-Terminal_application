@@ -260,6 +260,12 @@ def teacher_new_record():
 
 # defining menu function
 def input_menu():
+    print("""
+        *************************************
+            WELCOME TO THE SCHOOL MANAGER
+        *************************************\
+        """)
+
     print(f"""
     1 - Enter new teacher
     2 - Enter new student
