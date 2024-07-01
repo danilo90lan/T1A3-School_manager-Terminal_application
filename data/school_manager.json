@@ -24,6 +24,14 @@
         "Profile": "Teacher"
     },
     {
+        "#ID": 8,
+        "Name": "Alessandra",
+        "Last name": "Cavuoto",
+        "Address": "Dandenong",
+        "Course": "Medicine",
+        "Profile": "Student"
+    },
+    {
         "#ID": 6,
         "Name": "America",
         "Last name": "",
@@ -45,6 +53,14 @@
         "Last name": "Sfg",
         "Address": "Sfg",
         "Course": "Sfg",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 9,
+        "Name": "Viviana",
+        "Last name": "Cavuoto",
+        "Address": "Carrum",
+        "Course": "Nurse",
         "Profile": "Student"
     }
 ]
