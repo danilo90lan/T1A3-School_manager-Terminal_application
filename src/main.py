@@ -47,17 +47,14 @@ def menu2(school, entity_profile, id ):
                             id_input = int(input("\nEnter ID to confirm the correct record(s) to UPDATE in case there are homonyms: "))
                             if id_input in id:
                                 if entity_profile == Student.profile:
-                                    for i in id:
-                                        school.student_update(i)
+                                        school.student_update(id_input)
                                         operation = False
-                                    break
                                 elif entity_profile == Teacher.profile:
-                                    for i in id:
-                                        school.teacher_update(i)
+                                        school.teacher_update(id_input)
                                         operation = False
-                                    break
+                                break
                             else:
-                                print("\nEntered ID doesn't match any record from the search")
+                                print("\nID doesn't match any record from the search")
                                 operation = False
                                 break
                         except ValueError:
@@ -85,7 +82,7 @@ def menu2(school, entity_profile, id ):
                                         operation = False
                                 break
                             else:
-                                print("\nEntered ID doesn't match any record from the search")
+                                print("\nID doesn't match any record from the search")
                                 operation = False
                                 break
                         except ValueError:
