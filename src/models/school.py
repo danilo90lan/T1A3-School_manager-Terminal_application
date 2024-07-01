@@ -41,15 +41,17 @@ class School:
         return found
     
     def find_student_by_name(self, student_name):
-        record = False
+        student_record = False
+        student_found = []
 
         for i in self.students:
             if i.name.lower() == student_name.lower():
                 print(Student.print_info(i))
-                record = True
-        if record == False:
+                student_found.append(Student.get_id(i))
+                student_record = True
+        if not student_record:
             print("\nStudent recond NOT in the system")
-        return record
+        return student_record, student_found
 
     def find_teacher_by_id(self, teacher_id):
         found = False
@@ -66,15 +68,20 @@ class School:
         return found
     
     def find_teacher_by_name(self, teacher_name):
-        record = False
+        # return a boolean True if the Teacher record has benn found
+        # and also the ID or list of IDs of the found instances 
+
+        teacher_record = False
+        teacher_found_id = []
 
         for i in self.teachers:
             if i.name.lower() == teacher_name.lower():
                 print(Teacher.print_info(i))
-                record = True
-        if record == False:
+                teacher_found_id.append(Teacher.get_id(i))
+                teacher_record = True
+        if not teacher_record:
             print("\nTeacher recond NOT in the system")
-        return record
+        return teacher_record, teacher_found_id
 
     def student_update(self, id):
         for i in self.students:

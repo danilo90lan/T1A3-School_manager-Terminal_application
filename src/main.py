@@ -27,32 +27,56 @@ def input_menu():
     """)
     return input("Enter your choice: ")
 
-def menu2(school, record, id = None):
-    print("What would you like to do?")                       
-    while True:
+def menu2(school, entity_profile, id ):
+    print("What would you like to do?")   
+    operation = True                    
+    while operation:
         print(f"""
         1 - Update info
         2 - Delete record
         3 - Back 
         """)
         choice = input("Enter your operation: ")
+
         match choice:
             case "1":
-                if id == None:
-                    id = int(input("Enter ID to confirm the correct record to UPDATE in case there are homonyms: "))
-                if record == Student.profile:
-                    school.student_update(id)
-                    break
-                elif record == Teacher.profile:
-                    school.teacher_update(id)
-                    break
+                
+                if type(id) == list:
+                    while True:
+                        try:
+                            id_input = int(input("\nEnter ID to confirm the correct record(s) to UPDATE in case there are homonyms: "))
+                            if id_input in id:
+                                if entity_profile == Student.profile:
+                                    for i in id:
+                                        school.student_update(i)
+                                        operation = False
+                                    break
+                                elif entity_profile == Teacher.profile:
+                                    for i in id:
+                                        school.teacher_update(i)
+                                        operation = False
+                                    break
+                            else:
+                                print("\nEntered ID doesn't match any record from the search")
+                                operation = False
+                                break
+                        except ValueError:
+                            print("\nInvalid input. Must be a number, try again")
+                if type(id) == int:
+                    if entity_profile == Student.profile:
+                        school.student_update(id)
+                        operation = False
+                    elif entity_profile == Teacher.profile:
+                        school.teacher_update(id)
+                        operation = False
+
             case "2":
                 if id == None:
                     id = int(input("Enter ID to confirm the correct record to DELETE in case there are homonyms: "))
-                if record == Student.profile:
+                if entity_profile == Student.profile:
                     school.delete_student(id)
                     break
-                elif record == Teacher.profile:
+                elif entity_profile == Teacher.profile:
                     school.delete_teacher(id)
                     break
             case "3":
@@ -128,8 +152,9 @@ def main():
 
                     elif option == "2":
                         student_name = input("Enter student's name: ")
-                        if school.find_student_by_name(student_name):
-                            menu2(school, Student.profile)
+                        student_found, students_found_id =school.find_student_by_name(student_name)
+                        if student_found:
+                            menu2(school, Student.profile, students_found_id)
                     elif option == "3":
                         break
                     else:
@@ -154,8 +179,9 @@ def main():
 
                     elif option == "2":
                         teacher_name = input("Enter teacher's name: ")
-                        if school.find_teacher_by_name(teacher_name):
-                            menu2(school, Teacher.profile)
+                        teacher_found, teachers_found_id = school.find_teacher_by_name(teacher_name)
+                        if teacher_found:
+                            menu2(school, Teacher.profile, teachers_found_id)
                     elif option == "3":
                         break
                     else:
