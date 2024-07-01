@@ -8,33 +8,17 @@
         "Profile": "Teacher"
     },
     {
-        "#ID": 1,
-        "Name": "Danilo",
-        "Last name": "Lannocca",
+        "#ID": 7,
+        "Name": "Alessio",
+        "Last name": "",
         "Address": "",
         "Subject": "",
         "Profile": "Teacher"
     },
     {
-        "#ID": 3,
-        "Name": "Giovanni",
+        "#ID": 10,
+        "Name": "Mario",
         "Last name": "",
-        "Address": "",
-        "Course": "",
-        "Profile": "Student"
-    },
-    {
-        "#ID": 4,
-        "Name": "Matteo",
-        "Last name": "Coglione",
-        "Address": "",
-        "Course": "",
-        "Profile": "Student"
-    },
-    {
-        "#ID": 5,
-        "Name": "Matteo",
-        "Last name": "Scemo",
         "Address": "",
         "Course": "",
         "Profile": "Student"

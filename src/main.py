@@ -71,14 +71,35 @@ def menu2(school, entity_profile, id ):
                         operation = False
 
             case "2":
-                if id == None:
-                    id = int(input("Enter ID to confirm the correct record to DELETE in case there are homonyms: "))
-                if entity_profile == Student.profile:
-                    school.delete_student(id)
-                    break
-                elif entity_profile == Teacher.profile:
-                    school.delete_teacher(id)
-                    break
+                if type(id) == list:
+                    while True:
+                        try:
+                            id_input = int(input("Enter ID to confirm the correct record to DELETE in case there are homonyms: "))
+                            if id_input in id:
+                                if entity_profile == Student.profile:
+                                        school.delete_student(id_input)
+                                        operation = False
+
+                                elif entity_profile == Teacher.profile:
+                                        school.delete_teacher(id_input)
+                                        operation = False
+                                break
+                            else:
+                                print("\nEntered ID doesn't match any record from the search")
+                                operation = False
+                                break
+                        except ValueError:
+                            print("\nInvalid input. Must be a number, try again")
+
+                
+                elif type(id) == int: 
+                    if entity_profile == Student.profile:
+                        school.delete_student(id)
+                        operation = False
+                    elif entity_profile == Teacher.profile:
+                        school.delete_teacher(id)
+                        operation = False
+
             case "3":
                 break
             case _:
