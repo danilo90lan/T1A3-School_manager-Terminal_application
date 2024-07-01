@@ -40,27 +40,19 @@
         "Profile": "Student"
     },
     {
+        "#ID": 10,
+        "Name": "Baldassarre",
+        "Last name": "Giacomino",
+        "Address": "Torino",
+        "Subject": "Hak tua",
+        "Profile": "Teacher"
+    },
+    {
         "#ID": 2,
         "Name": "Captan",
         "Last name": "America",
         "Address": "",
         "Subject": "",
         "Profile": "Teacher"
-    },
-    {
-        "#ID": 5,
-        "Name": "Sgfs",
-        "Last name": "Sfg",
-        "Address": "Sfg",
-        "Course": "Sfg",
-        "Profile": "Student"
-    },
-    {
-        "#ID": 9,
-        "Name": "Viviana",
-        "Last name": "Cavuoto",
-        "Address": "Carrum",
-        "Course": "Nurse",
-        "Profile": "Student"
     }
 ]

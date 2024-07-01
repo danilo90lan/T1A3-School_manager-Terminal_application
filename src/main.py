@@ -1,7 +1,8 @@
-from models import Person, School, Teacher, Student
-from file_operation import read_json, write_json
-from menu import menu2, input_menu
-from record_operation import student_new_record, studentObject_to_Dict, teacher_new_record, teacherObject_to_Dict
+from models import Person, Teacher, Student
+from tools_management import School
+from tools_management import read_json, write_json
+from tools_management import menu2, input_menu
+from tools_management import student_new_record, studentObject_to_Dict, teacher_new_record, teacherObject_to_Dict
 
 # main function
 def main(): 

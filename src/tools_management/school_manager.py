@@ -1,6 +1,6 @@
 from models import Student, Teacher
-from file_operation import write_json
-from record_operation import studentObject_to_Dict, teacherObject_to_Dict
+from tools_management import write_json
+from tools_management import studentObject_to_Dict, teacherObject_to_Dict
 
 class School:
     def __init__(self, students, teachers):
