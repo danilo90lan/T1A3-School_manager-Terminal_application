@@ -1,7 +1,4 @@
-from models import Person
-from models import School
-from models import Teacher
-from models import Student
+from models import Person, School, Teacher, Student
 from file_operation import read_json, write_json
 from converting_type import studentObject_to_Dict, teacherObject_to_Dict
 from create_class_instances import student_new_record, teacher_new_record

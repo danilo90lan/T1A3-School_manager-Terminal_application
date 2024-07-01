@@ -1,5 +1,4 @@
-from models import Student
-from models import Teacher
+from models import Student, Teacher
 
 # converting students instances to dictionary
 def studentObject_to_Dict(students):   

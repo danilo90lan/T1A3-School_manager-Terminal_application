@@ -6,13 +6,5 @@
         "Address": "Richmond",
         "Subject": "Plumbing",
         "Profile": "Teacher"
-    },
-    {
-        "#ID": 2,
-        "Name": "Captan",
-        "Last name": "America",
-        "Address": "",
-        "Subject": "",
-        "Profile": "Teacher"
     }
 ]

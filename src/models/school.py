@@ -1,5 +1,4 @@
-from models import Student
-from models import Teacher
+from models import Student, Teacher
 from file_operation import write_json
 from converting_type import studentObject_to_Dict, teacherObject_to_Dict
 
@@ -146,7 +145,8 @@ class School:
                 continue
             list_courses.add(i.course)
         if list_courses:
-            print("\n***** List of all courses in the school *****\n")
+            print(f"""
+                    ***** List of all courses in the school *****\n""")
             for i in list_courses:
                 print(i)
         else:
@@ -165,7 +165,8 @@ class School:
                 continue
             list_subjects.add(i.subject_area)
         if list_subjects:
-            print("\n***** List of all the subjects taught in the school *****\n")
+            print(f"""
+                    ***** List of all the subjects taught in the school *****\n""")
             for i in list_subjects:
                 print(i)
         else:
