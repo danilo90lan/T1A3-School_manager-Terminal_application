@@ -9,21 +9,23 @@ from create_class_instances import student_new_record, teacher_new_record
 # defining menu function
 def input_menu():
     print("""
-        *************************************
-            WELCOME TO THE SCHOOL MANAGER
-        *************************************\
-        """)
+                        *************************************
+                            WELCOME TO THE SCHOOL MANAGER
+                        *************************************\
+                        """)
 
     print(f"""
-    1 - Enter new teacher
-    2 - Enter new student
-    3 - Display teachers records (A - Z)
-    4 - Display students records (A - Z)
-    5 - Search student
-    6 - Search teacher
-    7 - Filter teachers by teaching subject
-    8 - Filter students by course
-    9 - Exit program
+                        1 - Enter new teacher
+                        2 - Enter new student
+                        3 - Display teachers records (A - Z)
+                        4 - Display students records (A - Z)
+                        5 - Search student
+                        6 - Search teacher
+                        7 - Filter teachers by teaching subject
+                        8 - Filter students by course
+                        9 - List all subjects
+                       10 - List all courses
+                       11 - Exit program
     """)
     return input("Enter your choice: ")
 
@@ -234,6 +236,10 @@ def main():
                             elif choice in "Nn":
                                 break
             case "9":
+                school.print_list_all_subjects()
+            case "10":
+                school.print_list_all_courses()
+            case "11":
                 print("Program ended")
                 break
             case _:

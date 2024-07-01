@@ -150,7 +150,7 @@ class School:
             for i in list_courses:
                 print(i)
         else:
-            print("There is no courses to show in the system")
+            print("There is NO courses to show in the system")
             course = False
         return course
 
@@ -169,6 +169,6 @@ class School:
             for i in list_subjects:
                 print(i)
         else:
-            print("There is no teaching subjects to show in the system")
+            print("There is NO teaching subjects to show in the system")
             subject = False
         return subject
