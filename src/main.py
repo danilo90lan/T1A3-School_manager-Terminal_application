@@ -1,6 +1,6 @@
 from models import Person, Teacher, Student, School
-from tools_management import read_json, write_json, menu_update_delete, input_menu
-from tools_management import student_new_record, studentObject_to_Dict, teacher_new_record, teacherObject_to_Dict
+from tools_management import read_json, write_json, input_menu
+from tools_management import student_new_record, studentObject_to_Dict, teacher_new_record, teacherObject_to_Dict, menu_search_student_teacher
 
 # main function
 def main(): 
@@ -47,60 +47,9 @@ def main():
             case "4":
                 school.display_all_students()
             case "5":
-                while True:
-                    print(f"""
-                    1 - Search student by ID
-                    2 - Search student by name
-                    3 - Cancel operation
-                    """)
-                    option = input("Enter your type of search: ")
-                    if option == "1":
-                        while True:   
-                            try:
-                                id_number = int(input("\nEnter student ID: "))
-                                if school.find_student_by_id(id_number):
-                                    menu_update_delete(school, Student.profile, id_number)
-                                break
-                            except ValueError:
-                                print("\nInput must be a number")
-
-                    elif option == "2":
-                        student_name = input("Enter student's name: ")
-                        student_found, students_found_id =school.find_student_by_name(student_name)
-                        if student_found:
-                            menu_update_delete(school, Student.profile, students_found_id)
-                    elif option == "3":
-                        break
-                    else:
-                        print("Invalid input. Try again")
+                menu_search_student_teacher(school, Student.profile)
             case "6":
-                while True:
-                    print(f"""
-                    1 - Search teacher by ID
-                    2 - Search teacher by name
-                    3 - Cancel operation
-                    """)
-                    option = input("Enter your type of search: ")
-                    if option == "1":
-                        while True:   
-                            try:
-                                id_number = int(input("\nEnter teacher ID: "))
-                                if school.find_teacher_by_id(id_number):
-                                    menu_update_delete(school, Teacher.profile, id_number)
-                                break
-                            except ValueError:
-                                print("\nInput must be a number")                     
-
-                    elif option == "2":
-                        teacher_name = input("Enter teacher's name: ")
-                        teacher_found, teachers_found_id = school.find_teacher_by_name(teacher_name)
-                        if teacher_found:
-                            menu_update_delete(school, Teacher.profile, teachers_found_id)
-                    elif option == "3":
-                        break
-                    else:
-                        print("Invalid input. Try again")
-            
+                menu_search_student_teacher(school, Teacher.profile)
             case "7":
                 if(school.print_list_all_subjects()):
                     subject = input("\nEnter the subject for which you want to list the teachers: ")

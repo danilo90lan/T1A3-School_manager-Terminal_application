@@ -44,6 +44,46 @@ def teacherObject_to_Dict(teachers):
         list_teachers.append(teacher_dict)
     return list_teachers
 
+def menu_search_student_teacher(school, entity_profile):
+    while True:
+                    print(f"""
+                    1 - Search {entity_profile} by ID
+                    2 - Search {entity_profile} by name
+                    3 - Cancel operation
+                    """)
+                    choice = input("Enter your type of search: ")
+                    if choice == "1":
+                        while True:   
+                            try:
+                                id_number = int(input(f"\nEnter {entity_profile} ID: "))
+                                if entity_profile == Student.profile:
+                                    if school.find_student_by_id(id_number):
+                                        menu_update_delete(school, Student.profile, id_number)
+                                    break
+                                elif entity_profile == Teacher.profile:
+                                    if school.find_teacher_by_id(id_number):
+                                        menu_update_delete(school, Teacher.profile, id_number)
+                                    break
+                            except ValueError:
+                                print("\nInput must be a number")
+
+                    elif choice == "2":
+                        if entity_profile == Student.profile:
+                            student_name = input(f"Enter {entity_profile}'s name: ")
+                            student_found, students_found_id = school.find_student_by_name(student_name)
+                            if student_found:
+                                menu_update_delete(school, Student.profile, students_found_id)
+                        elif entity_profile == Teacher.profile:
+                            teacher_name = input("Enter teacher's name: ")
+                            teacher_found, teachers_found_id = school.find_teacher_by_name(teacher_name)
+                            if teacher_found:
+                                menu_update_delete(school, Teacher.profile, teachers_found_id)
+                            
+                    elif choice == "3":
+                        break
+                    else:
+                        print("Invalid input. Try again")
+
 def menu_update_delete(school, entity_profile, id):
     from tools_management import update_delete_records
     print("What would you like to do?")                     
