@@ -1,5 +1,4 @@
-from models import Person, Teacher, Student
-from tools_management import School
+from models import Person, Teacher, Student, School
 from tools_management import read_json, write_json
 from tools_management import menu2, input_menu
 from tools_management import student_new_record, studentObject_to_Dict, teacher_new_record, teacherObject_to_Dict
@@ -11,12 +10,8 @@ def main():
     #create school instance with 2 arguments student_list and teachers_list
     school = School(students_instances, teachers_instances)
 
-    # set the ID to the highest number in order for each element of the list to have a unique ID
-    # if the list_id is empty, the initial id it will be initialized at value 0
-    if list_id != []:
-        Person.set_id(max(list_id))
-    else:
-        Person.set_id(0)
+    # Initialize the ID
+    Person.initialize_id(list_id)
 
     while True:
         choice = input_menu()
