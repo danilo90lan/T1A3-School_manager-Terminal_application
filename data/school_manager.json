@@ -1,34 +1,10 @@
 [
     {
-        "#ID": 1,
-        "Name": "Alberto",
-        "Last name": "Gianfreda",
-        "Address": "Richmond",
-        "Course": "Plumbing",
-        "Profile": "Student"
-    },
-    {
-        "#ID": 2,
-        "Name": "Danilo",
-        "Last name": "Lannocca",
-        "Address": "Maidstone",
-        "Course": "Coding",
-        "Profile": "Student"
-    },
-    {
         "#ID": 4,
         "Name": "Giacomo",
         "Last name": "Ferrari",
         "Address": "Italy",
         "Subject": "Mechanic",
-        "Profile": "Teacher"
-    },
-    {
-        "#ID": 3,
-        "Name": "Tony stark",
-        "Last name": "Stark",
-        "Address": "Stark tower",
-        "Subject": "Phisic",
         "Profile": "Teacher"
     }
 ]

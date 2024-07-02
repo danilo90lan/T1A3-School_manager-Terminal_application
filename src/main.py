@@ -1,6 +1,5 @@
 from models import Person, Teacher, Student, School
-from tools_management import read_json, write_json
-from tools_management import menu2, input_menu
+from tools_management import read_json, write_json, menu_update_delete, input_menu
 from tools_management import student_new_record, studentObject_to_Dict, teacher_new_record, teacherObject_to_Dict
 
 # main function
@@ -60,7 +59,7 @@ def main():
                             try:
                                 id_number = int(input("\nEnter student ID: "))
                                 if school.find_student_by_id(id_number):
-                                    menu2(school, Student.profile, id_number)
+                                    menu_update_delete(school, Student.profile, id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")
@@ -69,7 +68,7 @@ def main():
                         student_name = input("Enter student's name: ")
                         student_found, students_found_id =school.find_student_by_name(student_name)
                         if student_found:
-                            menu2(school, Student.profile, students_found_id)
+                            menu_update_delete(school, Student.profile, students_found_id)
                     elif option == "3":
                         break
                     else:
@@ -87,7 +86,7 @@ def main():
                             try:
                                 id_number = int(input("\nEnter teacher ID: "))
                                 if school.find_teacher_by_id(id_number):
-                                    menu2(school, Teacher.profile, id_number)
+                                    menu_update_delete(school, Teacher.profile, id_number)
                                 break
                             except ValueError:
                                 print("\nInput must be a number")                     
@@ -96,7 +95,7 @@ def main():
                         teacher_name = input("Enter teacher's name: ")
                         teacher_found, teachers_found_id = school.find_teacher_by_name(teacher_name)
                         if teacher_found:
-                            menu2(school, Teacher.profile, teachers_found_id)
+                            menu_update_delete(school, Teacher.profile, teachers_found_id)
                     elif option == "3":
                         break
                     else:
