@@ -8,9 +8,9 @@ class School:
         self.teachers = teachers
 
     def display_all_students(self):
-        print(f"""
-                            ***** List of all students *****\n""")
         if self.students != []: 
+            print(f"""
+                            ***** List of all students *****\n""")
             # sort alphabetically
             sorted_students = sorted(self.students, key=lambda student: (student.name, student.last_name))
             for i in sorted_students:
@@ -19,9 +19,9 @@ class School:
             print("\nThere is no students records")
 
     def display_all_teachers(self):
-        print(f"""
-                            ***** List of all teachers *****\n""")
         if self.teachers != []: 
+            print(f"""
+                            ***** List of all teachers *****\n""")
             # sort alphabetically
             sorted_teachers = sorted(self.teachers, key=lambda teacher: (teacher.name, teacher.last_name))
             for i in sorted_teachers:

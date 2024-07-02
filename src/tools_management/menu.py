@@ -1,6 +1,6 @@
 from models import Student, Teacher
 
-def menu2(school, entity_profile, id ):
+def menu2(school, entity_profile, id):
     print("What would you like to do?")   
     operation = True                    
     while operation:
@@ -13,7 +13,6 @@ def menu2(school, entity_profile, id ):
 
         match choice:
             case "1":
-                
                 if type(id) == list:
                     while True:
                         try:

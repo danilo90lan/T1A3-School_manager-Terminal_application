@@ -19,9 +19,9 @@ def read_json():
                 list_id.append(i["#ID"])
             
                 if i["Profile"] == Student.profile:
-                    #get the id for each dictionary in the json file and set it in the variable class -1
-                    # because when the class instance is created automatically increase the __id variable by 1
-                    # so in this way each dictionary keeps the original id
+                    # Retrieve the ID for each dictionary in the JSON file and set it to the class variable.
+                    # Subtract 1 because creating an instance of the class automatically increments the __id variable by 1,
+                    # ensuring that each dictionary keeps its original ID.
                     Person.set_id(i["#ID"] - 1)
                     # create an instance of Student and append it to student list
                     student = Student(i["Name"], i["Last name"], i["Address"], i["Course"])
@@ -47,3 +47,32 @@ def write_json(json_data, message="", file_path = filepath):
     with open(file_path, "w") as file:
         json.dump(sorted_json_data, file, indent = 4)
     print(message)
+
+
+# converting students instances to dictionary
+def studentObject_to_Dict(students):   
+    list_students = []
+    for i in students:
+        student_dict = {"#ID": i.get_id(),
+                    "Name": i.name,
+                    "Last name": i.last_name,
+                    "Address": i.address,
+                    "Course": i.course,
+                    "Profile": i.profile
+                    }
+        list_students.append(student_dict)
+    return list_students
+
+# converting teachers instances to dictionary
+def teacherObject_to_Dict(teachers):
+    list_teachers = []
+    for i in teachers:
+        teacher_dict = { "#ID": i.get_id(),
+                    "Name": i.name,
+                    "Last name": i.last_name,
+                    "Address": i.address,
+                    "Subject": i.subject_area,
+                    "Profile": i.profile
+        }
+        list_teachers.append(teacher_dict)
+    return list_teachers
