@@ -2,9 +2,11 @@ import json
 from operator import itemgetter
 from models import Person, Teacher, Student
 
+# constant
+filepath = "./data/school_manager.json"
+
 # function to read from Jason file
 def read_json():
-    filepath = "./data/school_manager.json"
     json_data = []
     students = []
     teachers = []
@@ -38,7 +40,7 @@ def read_json():
     return students, teachers, list_id
 
 # function to write on a json file
-def write_json(json_data, message="", file_path = "./data/school_manager.json"):
+def write_json(json_data, message="", file_path = filepath):
     # sort the list in alphabetic order
     sorted_json_data = sorted(json_data, key=itemgetter("Name", "Last name"))
 
