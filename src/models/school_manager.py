@@ -152,7 +152,7 @@ class School:
             print(f"""
                     ***** List of all courses in the school *****\n""")
             for i in list_courses:
-                print(i)
+                print(i,"\n")
         else:
             print("There is NO courses in the system")
             course = False
@@ -170,9 +170,9 @@ class School:
             list_subjects.add(i.subject_area)
         if list_subjects:
             print(f"""
-                    ***** List of all the subjects taught in the school *****\n""")
+                    ***** List of all subjects taught in the school *****\n""")
             for i in list_subjects:
-                print(i)
+                print(i,"\n")
         else:
             print("There is NO subjects in the system")
             subject = False

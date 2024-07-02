@@ -1,1 +1,138 @@
-[]
+[
+    {
+        "#ID": 10,
+        "Name": "Arthur",
+        "Last name": "Curry",
+        "Address": "Atlantis",
+        "Course": "Chemical engineering",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 14,
+        "Name": "Barry",
+        "Last name": "Allen",
+        "Address": "Kansas",
+        "Course": "Law",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 8,
+        "Name": "Black",
+        "Last name": "Panther",
+        "Address": "Washington",
+        "Subject": "Physics",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 3,
+        "Name": "Bruce",
+        "Last name": "Banner",
+        "Address": "Los angeles",
+        "Subject": "Biology",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 11,
+        "Name": "Bruce",
+        "Last name": "Wayne",
+        "Address": "Gotham city",
+        "Course": "Business management",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 13,
+        "Name": "Clark",
+        "Last name": "Kent",
+        "Address": "Krypton",
+        "Course": "Software",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 9,
+        "Name": "Green",
+        "Last name": "Lantern",
+        "Address": "Paris",
+        "Course": "Software",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 17,
+        "Name": "Harley",
+        "Last name": "Quinn",
+        "Address": "Gotham city",
+        "Course": "Psychiatry",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 6,
+        "Name": "Matthew",
+        "Last name": "Murdock",
+        "Address": "Hell's kitchen",
+        "Subject": "Law",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 16,
+        "Name": "Oliver",
+        "Last name": "Queen",
+        "Address": "Metropolis",
+        "Course": "Business management",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 2,
+        "Name": "Peter",
+        "Last name": "Parker",
+        "Address": "New york",
+        "Subject": "Biology",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 5,
+        "Name": "Stephen",
+        "Last name": "Strange",
+        "Address": "Sydney",
+        "Subject": "Medicine",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 4,
+        "Name": "Steve",
+        "Last name": "Rogers",
+        "Address": "Las vegas",
+        "Subject": "History",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 7,
+        "Name": "Thor",
+        "Last name": "Odinson",
+        "Address": "Asgard",
+        "Subject": "Hystory",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 1,
+        "Name": "Tony",
+        "Last name": "Stark",
+        "Address": "New york",
+        "Subject": "Physics",
+        "Profile": "Teacher"
+    },
+    {
+        "#ID": 15,
+        "Name": "Victor",
+        "Last name": "Stone",
+        "Address": "Boston",
+        "Course": "Business management",
+        "Profile": "Student"
+    },
+    {
+        "#ID": 12,
+        "Name": "Wonder",
+        "Last name": "Woman",
+        "Address": "New york",
+        "Course": "Chemical engineering",
+        "Profile": "Student"
+    }
+]
