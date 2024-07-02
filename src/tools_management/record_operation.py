@@ -49,8 +49,8 @@ def menu_update_delete(school, entity_profile, id):
     print("What would you like to do?")                     
     while True:
         print(f"""
-        1 - Update info
-        2 - Delete record
+        1 - Update {entity_profile} info
+        2 - Delete {entity_profile} record
         3 - Back 
         """)
         choice = input("Enter your operation: ")
@@ -72,7 +72,7 @@ def update_delete_records(school, entity_profile, id, operation):
     if type(id) == list:
         while True:
             try:
-                id_input = int(input("\nEnter ID to confirm the correct record(s) to UPDATE in case there are homonyms: "))
+                id_input = int(input("\nEnter ID to confirm the correct record to UPDATE in case there are homonyms: "))
                 if id_input in id:
                     if entity_profile == Student.profile:
                             if operation == "update":
@@ -89,7 +89,7 @@ def update_delete_records(school, entity_profile, id, operation):
                                 school.delete_teacher(id_input)
                                 break
                 else:
-                    print("\nID doesn't match any record from the search")
+                    print(f"\nID: {id_input} doesn't match any record from the search")
                     break
             except ValueError:
                 print("\nInvalid input. Must be a number, try again")

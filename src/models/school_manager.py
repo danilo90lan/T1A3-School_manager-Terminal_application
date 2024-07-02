@@ -91,28 +91,28 @@ class School:
             if Student.get_id(i) == id:
                 Student.update_student(i)
         json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
-        write_json(json_data, "\nStudent info updated succesfully!")
+        write_json(json_data, f"\nThe student info with ID: {id} has beeen succesfully updated!")
 
     def teacher_update(self, id):
         for i in self.teachers:
             if Teacher.get_id(i) == id:
                 Teacher.update_teacher(i)  
         json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers) 
-        write_json(json_data,"\nTeacher info updated succesfully!")
+        write_json(json_data,f"\nThe teacher info with ID: {id} has been succesfully updated!")
 
     def delete_teacher(self, id):
         for i in self.teachers:
             if Teacher.get_id(i) == id:
                 self.teachers.remove(i)
         json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
-        write_json(json_data, "\nTeacher record deleted succesfully!")
+        write_json(json_data, f"\nThe teacher record wih ID: {id} has been succesfully deleted!")
 
     def delete_student(self, id):
         for i in self.students:
             if Student.get_id(i) == id:
                 self.students.remove(i)
         json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
-        write_json(json_data, "\nStudent record deleted succesfully!")
+        write_json(json_data, f"\n The student with ID: {id} has been succesfully deleted!")
 
     def filter_students_by_course(self, course):
         record = False
