@@ -1,6 +1,6 @@
 from models import Person, Teacher, Student, School
-from tools_management import read_json, write_json, input_menu
-from tools_management import student_new_record, studentObject_to_Dict, teacher_new_record, teacherObject_to_Dict, menu_search_student_teacher
+from tools_management import read_json, write_json, studentObject_to_Dict, teacherObject_to_Dict
+from tools_management import student_new_record, teacher_new_record, menu_search_student_teacher
 
 # main function
 def main(): 
@@ -13,8 +13,27 @@ def main():
     Person.initialize_id(list_id)
 
     while True:
-        choice = input_menu()
+        print("""
+                        *************************************
+                            WELCOME TO THE SCHOOL MANAGER
+                        *************************************\
+                        """)
 
+        print(f"""
+                            1 - Enter new teacher
+                            2 - Enter new student
+                            3 - Display teachers records (A - Z)
+                            4 - Display students records (A - Z)
+                            5 - Search student
+                            6 - Search teacher
+                            7 - Filter teachers by subject
+                            8 - Filter students by course
+                            9 - List all subjects
+                           10 - List all courses
+                           11 - Exit program
+        """)
+        choice = input("Enter your choice: ")
+        
         match choice:
             case "1":
                 new_record = "Y"
