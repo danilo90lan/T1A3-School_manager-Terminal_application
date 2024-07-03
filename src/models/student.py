@@ -21,4 +21,4 @@ class Student(Person):
     
     def update_student(self):
         super().update_info()
-        self.course = input("New course --> ").capitalize()
+        self.course = input("New course --> ").strip().capitalize()

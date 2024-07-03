@@ -22,4 +22,4 @@ class Teacher(Person):
     
     def update_teacher(self):
             super().update_info()
-            self.subject_area = input("New teaching subject --> ").capitalize()
+            self.subject_area = input("New teaching subject --> ").strip().capitalize()

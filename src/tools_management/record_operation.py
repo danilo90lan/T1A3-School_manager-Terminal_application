@@ -1,18 +1,18 @@
 from models import Teacher, Student
 
 def student_new_record():
-    name = input("Enter name: ").capitalize()
-    last_name = input("Enter last name: ").capitalize()
-    address = input("Enter address: ").capitalize()
-    course = input("Enter course name: ").capitalize()
+    name = input("Enter name: ").strip().capitalize()
+    last_name = input("Enter last name: ").strip().capitalize()
+    address = input("Enter address: ").strip().capitalize()
+    course = input("Enter course name: ").strip().capitalize()
     student = Student(name, last_name, address, course)
     return student
 
 def teacher_new_record():
-    name = input("Enter name: ").capitalize()
-    last_name = input("Enter last name: ").capitalize()
-    address = input("Enter address: ").capitalize()
-    course = input("Enter teaching subject: ").capitalize()
+    name = input("Enter name: ").strip().capitalize()
+    last_name = input("Enter last name: ").strip().capitalize()
+    address = input("Enter address: ").strip().capitalize()
+    course = input("Enter teaching subject: ").strip().capitalize()
     teacher = Teacher(name, last_name, address, course)
     return teacher
 

@@ -39,6 +39,6 @@ class Person:
         return info
 
     def update_info(self):
-        self.name = input("New name --> ").capitalize()
-        self.last_name = input("New last name --> ").capitalize()
-        self.address = input("New address --> ").capitalize()
+        self.name = input("New name --> ").strip().capitalize()
+        self.last_name = input("New last name --> ").strip().capitalize()
+        self.address = input("New address --> ").strip().capitalize()
