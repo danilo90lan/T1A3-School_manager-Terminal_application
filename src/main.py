@@ -4,12 +4,24 @@ from tools_management import student_new_record, teacher_new_record, menu_search
 
 # main function
 def main(): 
+    """
+    Initialization of students and teachers records based on the json file.
+    Initialization of the ID system based on the JSON file to ensure each record has a unique ID
+    Interacting with the user through a menu system, allowing the user to perform various actions 
+    like adding and displaying records, searching, filtering, and listing subjects and courses
+    """
+
     # Initializzation
+    """initializing three variables:
+    students_instances: A list of student objects.
+    teachers_instances: A list of teacher objects.
+    list_id: A list of ID used for initializing person IDs."""
     students_instances, teachers_instances, list_id = read_json()
-    #create school instance with 2 arguments student_list and teachers_list
+
+    #This creates an instance of the School class with students_instances and teachers_instances as arguments.
     school = School(students_instances, teachers_instances)
 
-    # Initialize the ID
+    #This initializes the ID for Person objects using the list of IDs from the JSON file. 
     Person.initialize_id(list_id)
 
     while True:

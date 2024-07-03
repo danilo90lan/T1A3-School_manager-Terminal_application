@@ -27,7 +27,13 @@ def teacher_new_record():
     return teacher
 
 # converting students instances to dictionary
-def studentObject_to_Dict(students):   
+def studentObject_to_Dict(students): 
+    """
+    converts a list of Student objects into a list of dictionaries,
+    following the key-value pairs of the object Student.
+    parameters: students: list of Students instances
+    return: list of dictionaries. Each dictionary represent a Student object
+    """
     list_students = []
     for i in students:
         student_dict = {"#ID": i.get_id(),
@@ -42,6 +48,12 @@ def studentObject_to_Dict(students):
 
 # converting teachers instances to dictionary
 def teacherObject_to_Dict(teachers):
+    """
+    converts a list of Teacher objects into a list of dictionaries,
+    following the key-value pairs of the object Teacher.
+    parameters: teacher: list of Teacher instances
+    return: list of dictionaries. Each dictionary represent a Teacher object
+    """
     list_teachers = []
     for i in teachers:
         teacher_dict = { "#ID": i.get_id(),
@@ -55,6 +67,13 @@ def teacherObject_to_Dict(teachers):
     return list_teachers
 
 def menu_search_student_teacher(school, entity_profile):
+    """
+    Displays a menu that allows users to search for students or teachers by ID or name.
+    It executes the appropriate operation using methods from the school object and calling the 'menu_update_delete function'
+    parameters: school: An object containing methods for manipulating students and teachers instances
+                entity_profile: An attribute indicating if the search is for a student or teacher
+                Based on the entity_profile it performs operations on the students or teachers instances
+    """
     while True:
                     print(f"""
                     1 - Search {entity_profile} by ID
@@ -87,14 +106,20 @@ def menu_search_student_teacher(school, entity_profile):
                             teacher_name = input("Enter teacher's name: ")
                             teacher_found, teachers_found_id = school.find_teacher_by_name(teacher_name)
                             if teacher_found:
-                                menu_update_delete(school, Teacher.profile, teachers_found_id)
-                            
+                                menu_update_delete(school, Teacher.profile, teachers_found_id)             
                     elif choice == "3":
                         break
                     else:
                         print("Invalid input. Try again")
 
 def menu_update_delete(school, entity_profile, id):
+    """
+    Displays a sub-menu that allows users to update or delete a student's or teacher's record.
+    It executes the appropriate operation by calling the update_delete_records function.
+    parameters: school: object containing methods for manipulating students and teachers instances
+    such as updating and deleting records, entity_profile: an attribute indicating if the entity is a student 
+    or teacher, id: ID number of the record that is going to be either updated or deleted
+    """
     print("What would you like to do?")                     
     while True:
         print(f"""
@@ -118,6 +143,15 @@ def menu_update_delete(school, entity_profile, id):
                 print("Invalid input. Try again")
 
 def update_delete_records(school, entity_profile, id, operation):
+    """
+    Update or delete student or teacher records. 
+    It handles scenarios where there are multiple possible homonyms by prompting the user to confirm the correct ID.
+    It performs the operations (update or delete) using methods from the school object.
+    parameters: school: object containing methods for manipulating teachers and students instances,
+    entity_profile: an attribute indicating if the entity is a student or teacher, 
+    id: ID number of the record that is going to be either updated or deleted, 
+    operation: A string indicating the type of operation (update or delete).
+    """
     if type(id) == list:
         while True:
             try:
