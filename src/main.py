@@ -1,5 +1,5 @@
 from models import Person, Teacher, Student, School
-from tools_management import read_json, write_json
+from tools_management import read_json, write_json, studentObject_to_Dict, teacherObject_to_Dict
 from tools_management import student_new_record, teacher_new_record, menu_search_student_teacher
 
 # main function

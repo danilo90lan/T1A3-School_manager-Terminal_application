@@ -1,6 +1,11 @@
 from models import Teacher, Student
 
 def student_new_record():
+    """
+    It prompts the user to enter info like name, last name and address
+    and collecting the input values it creates a Student object
+    return: the created Student object
+    """
     name = input("Enter name: ").strip().capitalize()
     last_name = input("Enter last name: ").strip().capitalize()
     address = input("Enter address: ").strip().capitalize()
@@ -9,6 +14,11 @@ def student_new_record():
     return student
 
 def teacher_new_record():
+    """
+    It prompts the user to enter info like name, last name and address
+    and collecting the input values it creates a Teacher object
+    return: the created Teacher object
+    """
     name = input("Enter name: ").strip().capitalize()
     last_name = input("Enter last name: ").strip().capitalize()
     address = input("Enter address: ").strip().capitalize()
@@ -145,31 +155,3 @@ def update_delete_records(school, entity_profile, id, operation):
                 school.teacher_update(id)
             elif operation == "delete":
                 school.delete_teacher(id)
-
-# converting students instances to dictionary
-def studentObject_to_Dict(students):   
-    list_students = []
-    for i in students:
-        student_dict = {"#ID": i.get_id(),
-                    "Name": i.name,
-                    "Last name": i.last_name,
-                    "Address": i.address,
-                    "Course": i.course,
-                    "Profile": i.profile
-                    }
-        list_students.append(student_dict)
-    return list_students
-
-# converting teachers instances to dictionary
-def teacherObject_to_Dict(teachers):
-    list_teachers = []
-    for i in teachers:
-        teacher_dict = { "#ID": i.get_id(),
-                    "Name": i.name,
-                    "Last name": i.last_name,
-                    "Address": i.address,
-                    "Subject": i.subject_area,
-                    "Profile": i.profile
-        }
-        list_teachers.append(teacher_dict)
-    return list_teachers

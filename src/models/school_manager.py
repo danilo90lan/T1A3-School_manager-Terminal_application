@@ -1,5 +1,5 @@
 from models import Student, Teacher
-from tools_management import write_json
+from tools_management import write_json, studentObject_to_Dict, teacherObject_to_Dict
 
 class School:
     def __init__(self, students, teachers):
