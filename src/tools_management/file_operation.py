@@ -7,6 +7,12 @@ filepath = "./data/school_manager.json"
 
 # function to read from Jason file
 def read_json():
+    """
+    Load students and teachers records from a json file.
+    If the file doesn't exist it will be created
+    return: List of students, list of teachers and list of the IDs of each record
+    if the file is empty or doesn't exists return empty lists
+    """
     json_data = []
     students = []
     teachers = []
@@ -31,48 +37,30 @@ def read_json():
                     Person.set_id(i["#ID"] - 1)
                     # create an instance of Teacher and append it to teacher list
                     teacher = Teacher(i["Name"], i["Last name"], i["Address"], i["Subject"])
-                    teachers.append(teacher)
-            
+                    teachers.append(teacher)    
     except FileNotFoundError:
         with open(filepath, "w") as file:
             json.dump([], file, indent = 4)
-
+    except Exception as error:
+        print(f"AN expected error occured: {error}")
+    
     return students, teachers, list_id
 
 # function to write on a json file
 def write_json(json_data, message="", file_path = filepath):
+    """
+    Sort a list of a dictionaries in alphabetic order using the sorted function
+    and it write it into a json file
+    parameters: json_data: list of dictionaries, message: a final message to show after the writing operation,
+    it's set as an empty string by default, file_path: path to the json file set to a default value (constant file_path)
+    """
     # sort the list in alphabetic order
     sorted_json_data = sorted(json_data, key=itemgetter("Name", "Last name"))
-
-    with open(file_path, "w") as file:
-        json.dump(sorted_json_data, file, indent = 4)
-    print(message)
-
-
-# converting students instances to dictionary
-def studentObject_to_Dict(students):   
-    list_students = []
-    for i in students:
-        student_dict = {"#ID": i.get_id(),
-                    "Name": i.name,
-                    "Last name": i.last_name,
-                    "Address": i.address,
-                    "Course": i.course,
-                    "Profile": i.profile
-                    }
-        list_students.append(student_dict)
-    return list_students
-
-# converting teachers instances to dictionary
-def teacherObject_to_Dict(teachers):
-    list_teachers = []
-    for i in teachers:
-        teacher_dict = { "#ID": i.get_id(),
-                    "Name": i.name,
-                    "Last name": i.last_name,
-                    "Address": i.address,
-                    "Subject": i.subject_area,
-                    "Profile": i.profile
-        }
-        list_teachers.append(teacher_dict)
-    return list_teachers
+    try:
+        with open(file_path, "w") as file:
+            json.dump(sorted_json_data, file, indent = 4)
+        print(message)
+    except PermissionError:
+        print("Permission denied to write")
+    except Exception as error:
+        print(f"AN expected error occured: {error}")
