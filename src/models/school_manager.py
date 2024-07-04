@@ -59,6 +59,8 @@ class School:
         returns a boolean value True if the record is found, otherwise returns False.
         """
         record_found =False
+        #Iterate through the student list and check if the ID provided 
+        # by the parameter matches the ID of the instance. If so, set record_found = True."
         for i in self.students:
             if Student.get_id(i) == student_id:
                 student = i
@@ -71,9 +73,15 @@ class School:
         return record_found
     
     def find_student_by_name(self, student_name):
+        """
+        Finds students by a given name.
+        Parameters: student_name: Name of the student to search for.
+        Returns: student_record: boolean value True if students with the name are found, False otherwise.
+                list: List of IDs of the students found with the matching name.
+                (the return value is a list in case of namesakes)
+        """
         student_record = False
         student_found = []
-
         for i in self.students:
             if i.name.lower() == student_name.lower():
                 print(Student.print_info(i))
@@ -102,9 +110,13 @@ class School:
         return record_found
     
     def find_teacher_by_name(self, teacher_name):
-        # return a boolean True if the Teacher record has benn found
-        # and also the ID or list of IDs of the found instances 
-
+        """
+        Finds teachers by a given name. 
+        Parameters: teacher_name: Name of the teacher to search for.
+        Returns: teacher_record: boolean value True if teachers with the name are found, False otherwise.
+                list: List of IDs of the teachers found with the matching name.
+                (the return value is a list in case of namesakes)
+        """
         teacher_record = False
         teacher_found_id = []
 
@@ -118,16 +130,34 @@ class School:
         return teacher_record, teacher_found_id
 
     def student_update(self, id):
+        """
+        Updates a student's information based on a given ID.
+        if the id is found the update_student() method is called which update the
+        instance in the student_list. Then it will be converted into a dictionary 
+        by the function studentObject_to_Dict and then written again into the json file
+        Parameters: id (int): ID of the student whose information is to be updated.
+        """
         for i in self.students:
             if Student.get_id(i) == id:
                 Student.update_student(i)
+        # json data is the concatenation of two object lists (students and teachers)
+        # that are converted into dictionaries
         json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
         write_json(json_data, f"\nThe student info with ID: {id} has beeen succesfully updated!")
 
     def teacher_update(self, id):
+        """
+        Updates a teacher's information based on a given ID.
+        if the id is found the update_teacher() method is called which update the
+        instance in the teacher_list. Then it will be converted into a dictionary 
+        by the function studentObject_to_Dict and then written again into the json file
+        Parameters: id (int): ID of the teacher whose information is to be updated.
+        """
         for i in self.teachers:
             if Teacher.get_id(i) == id:
                 Teacher.update_teacher(i)  
+        # json data is the concatenation of two object lists (students and teachers)
+        # that are converted into dictionaries
         json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers) 
         write_json(json_data,f"\nThe teacher info with ID: {id} has been succesfully updated!")
 

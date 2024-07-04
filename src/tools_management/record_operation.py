@@ -145,7 +145,7 @@ def menu_update_delete(school, entity_profile, id):
 def update_delete_records(school, entity_profile, id, operation):
     """
     Update or delete student or teacher records. 
-    It handles scenarios where there are multiple possible homonyms by prompting the user to confirm the correct ID.
+    It handles scenarios where there are multiple possible namesakes by prompting the user to confirm the correct ID.
     It performs the operations (update or delete) using methods from the school object.
     parameters: school: object containing methods for manipulating teachers and students instances,
     entity_profile: an attribute indicating if the entity is a student or teacher, 
@@ -155,7 +155,7 @@ def update_delete_records(school, entity_profile, id, operation):
     if type(id) == list:
         while True:
             try:
-                id_input = int(input("\nEnter ID to confirm the correct record to UPDATE in case there are homonyms: "))
+                id_input = int(input("\nEnter ID to confirm the correct record to UPDATE in case there are namesakes: "))
                 if id_input in id:
                     if entity_profile == Student.profile:
                             if operation == "update":
