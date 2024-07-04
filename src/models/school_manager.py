@@ -1,8 +1,11 @@
 from models import Student, Teacher
 from tools_management import write_json, studentObject_to_Dict, teacherObject_to_Dict
 
-class School:
+class School: 
+    """ The School class contains the methods to manipulate Student and Teachers objects."""
     def __init__(self, students, teachers):
+        """ The constructor initializes the class with two arguments: students and teachers, 
+        which are lists containing student and teacher instances."""
         self.students = students
         self.teachers = teachers
 

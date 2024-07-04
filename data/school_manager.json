@@ -48,14 +48,6 @@
         "Profile": "Student"
     },
     {
-        "#ID": 19,
-        "Name": "Danilo",
-        "Last name": "Lannocca",
-        "Address": "Taviano",
-        "Subject": "Boh",
-        "Profile": "Teacher"
-    },
-    {
         "#ID": 9,
         "Name": "Green",
         "Last name": "Lantern",
@@ -69,14 +61,6 @@
         "Last name": "Quinn",
         "Address": "Gotham city",
         "Course": "Psychiatry",
-        "Profile": "Student"
-    },
-    {
-        "#ID": 18,
-        "Name": "Jack",
-        "Last name": "Sparrow",
-        "Address": "Caribbean sea",
-        "Course": "Software",
         "Profile": "Student"
     },
     {

@@ -1,3 +1,4 @@
+from datetime import datetime
 from models import Person, Teacher, Student, School
 from tools_management import read_json, write_json, studentObject_to_Dict, teacherObject_to_Dict
 from tools_management import student_new_record, teacher_new_record, menu_search_student_teacher
@@ -23,6 +24,9 @@ def main():
 
     #This initializes the ID for Person objects using the list of IDs from the JSON file. 
     Person.initialize_id(list_id)
+
+    # get the current date and convert it intop string
+    current_date = datetime.now().strftime("%d-%m-%Y")
 
     while True:
         print("""
@@ -90,7 +94,7 @@ def main():
                             choice = input("Would you like to export the list to a JSON file? (Y/N) ")
                             if choice in "Yy":
                                 message = f"\nTeachers list under {subject.upper()} created"
-                                file_path = f"./data/list_teachers_{subject}.json"
+                                file_path = f"./data/{current_date}_teachers_{subject}_.json"
                                 write_json(teacherObject_to_Dict(teachers_by_subject), message, file_path)
                                 break
                             elif choice in "Nn":
@@ -104,7 +108,7 @@ def main():
                             choice = input("Would you like to export the list to a JSON file? (Y/N) ")
                             if choice in "Yy":
                                 message = f"\nStudents list under {course.upper()} created"
-                                file_path = f"./data/list_students_{course}.json"
+                                file_path = f"./data/{current_date}_students_{course}.json"
                                 write_json(studentObject_to_Dict(students_by_course), message, file_path)
                                 break
                             elif choice in "Nn":
