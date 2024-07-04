@@ -2,14 +2,25 @@ from models import Student, Teacher
 from tools_management import write_json, studentObject_to_Dict, teacherObject_to_Dict
 
 class School: 
-    """ The School class contains the methods to manipulate Student and Teachers objects."""
+    """ The School class works as a container for instances of Student and Teacher objects, 
+    providing methods to interact and manipulate these objects efficiently.
+    """
     def __init__(self, students, teachers):
         """ The constructor initializes the class with two arguments: students and teachers, 
-        which are lists containing student and teacher instances."""
+        which are lists containing student and teacher instances.
+    """
         self.students = students
         self.teachers = teachers
 
     def display_all_students(self):
+        """
+        Sorts the student objects in alphabetical order.
+        It uses the sorted function (which sorts the elemnts of students based on criteria 
+        provided by the key parameter) and the lamba function that defines how each element should be 
+        sorted. After the list of objects is sorted the method print_info is called which returns the 
+        instance attributes values
+        return: the number of the students instances
+        """
         if self.students != []: 
             print(f"""
                             ***** List of all students *****\n""")
@@ -17,10 +28,19 @@ class School:
             sorted_students = sorted(self.students, key=lambda student: (student.name, student.last_name))
             for i in sorted_students:
                 print(Student.print_info(i))
+            return f"There are {len(sorted_students)} students registered in this school"
         else:
-            print("\nThere is no students records")
+            return  "\nThere is no students records"
 
     def display_all_teachers(self):
+        """
+        Sorts the teacher objects in alphabetical order.
+        It uses the sorted function (which sorts the elemnts of students based on criteria 
+        provided by the key parameter) and the lamba function that defines how each element should be 
+        sorted. After the list of objects is sorted the method print_info is called which returns the 
+        instance attributes values
+        return: the number of the teacher instances otherwise return another message
+        """
         if self.teachers != []: 
             print(f"""
                             ***** List of all teachers *****\n""")
@@ -28,22 +48,27 @@ class School:
             sorted_teachers = sorted(self.teachers, key=lambda teacher: (teacher.name, teacher.last_name))
             for i in sorted_teachers:
                 print(Teacher.print_info(i))
+            return f"There are {len(sorted_teachers)} teachers registered in this school"
         else:
-            print("\nThere is no teachers records")
+            return "\nThere is no teachers records"
 
     def find_student_by_id(self, student_id):
-        found =False
-
+        """
+        Finds a student by their ID number.
+        parameter: student_id: an ID number to use for the search
+        returns a boolean value True if the record is found, otherwise returns False.
+        """
+        record_found =False
         for i in self.students:
             if Student.get_id(i) == student_id:
-                record = i
-                found = True
+                student = i
+                record_found = True
                 break
-        try:
-            print(Student.print_info(record))
-        except UnboundLocalError:
+        if record_found:
+            print(Student.print_info(student))
+        else:
             print("\nStudent record NOT in the system")
-        return found
+        return record_found
     
     def find_student_by_name(self, student_name):
         student_record = False
@@ -59,18 +84,22 @@ class School:
         return student_record, student_found
 
     def find_teacher_by_id(self, teacher_id):
-        found = False
-
+        """
+        Finds a student by their ID number.
+        parameter: student_id: an ID number to use for the search
+        returns a boolean value True if the record is found, otherwise returns False.
+        """
+        record_found = False
         for i in self.teachers:
             if Teacher.get_id(i) == teacher_id:
-                record = i
-                found = True
+                teacher = i
+                record_found = True
                 break
-        try:
-            print(Teacher.print_info(record))
-        except UnboundLocalError:
+        if record_found:
+            print(Teacher.print_info(teacher))
+        else:
             print("\nTeacher record NOT in the system")
-        return found
+        return record_found
     
     def find_teacher_by_name(self, teacher_name):
         # return a boolean True if the Teacher record has benn found

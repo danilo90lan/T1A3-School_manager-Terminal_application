@@ -78,9 +78,9 @@ def main():
                 write_json(json_data, "New data added succesfully!")
 
             case "3":
-                school.display_all_teachers()
+                print(school.display_all_teachers())
             case "4":
-                school.display_all_students()
+                print(school.display_all_students())
             case "5":
                 menu_search_student_teacher(school, Student.profile)
             case "6":
