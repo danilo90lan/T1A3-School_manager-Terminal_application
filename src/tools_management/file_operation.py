@@ -3,7 +3,7 @@ from operator import itemgetter
 from models import Person, Teacher, Student
 
 # constant
-filepath = "./data/school_manager.json"
+filepath = "./data/school_database.json"
 
 # function to read from Jason file
 def read_json():
@@ -44,7 +44,7 @@ def read_json():
                     teacher = Teacher(i["Name"], i["Last name"], i["Address"], i["Subject"])
                     teachers.append(teacher) 
     except FileNotFoundError:
-        print(f"The file {filepath} doesn't exist. It will  be created")
+        print(f"The file {filepath} doesn't exist. It will be created")
     except Exception as error:
         print(f"An expected error occured: {error}")
     return students, teachers, list_id
