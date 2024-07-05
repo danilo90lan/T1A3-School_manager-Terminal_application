@@ -1,4 +1,4 @@
-from models import Teacher, Student
+from models import Person, Teacher, Student
 
 def student_new_record():
     """
@@ -8,32 +8,12 @@ def student_new_record():
     return student: the Student object just created
     """
     try: 
-        while True:
-            name = input("Enter name: ").strip().capitalize()
-            if not name:
-                print("Name cannot be empty")
-            else:
-                break      
-        while True:
-            last_name = input("Enter last name: ").strip().capitalize()
-            if not last_name:
-                print("Last name cannot be empty")
-            else:
-                break
-        while True:
-            address = input("Enter address: ").strip().capitalize()
-            if not address:
-                print("Address cannot be empty")
-            else:
-                break
-        while True: 
-            course = input("Enter course name: ").strip().capitalize()
-            if not course:
-                print("Course name cannot be empty")
-            else:
-                break
+        name = Person.not_empty_value("Enter name: ").capitalize()
+        last_name = Person.not_empty_value("Enter last name: ").capitalize()
+        address = Person.not_empty_value("Enter address: ").capitalize()
+        course = Person.not_empty_value("Enter course name: ").capitalize()
         # create an instance of the Student class
-        student = Student(name, last_name, address, course)
+        student = Person.not_empty_value(name, last_name, address, course)
         return student
     except AttributeError:
         print("Attribute assignment fails")
@@ -48,30 +28,10 @@ def teacher_new_record():
     return: the Teacher object just created
     """
     try:
-        while True:
-            name = input("Enter name: ").strip().capitalize()
-            if not name:
-                print("Name cannot be empty")
-            else:
-                break
-        while True:
-            last_name = input("Enter last name: ").strip().capitalize()
-            if not last_name:
-                print("Last name cannot be empty")
-            else:
-                break
-        while True:
-            address = input("Enter address: ").strip().capitalize()
-            if not address:
-                print("Address cannot be empty")
-            else:
-                break
-        while True:
-            course = input("Enter teaching subject: ").strip().capitalize()
-            if not course:
-                print("Course  cannot be empty")
-            else:
-                break
+        name = Person.not_empty_value("Enter name: ").capitalize()
+        last_name = Person.not_empty_value("Enter last name: ").capitalize()
+        address = Person.not_empty_value("Enter address: ").capitalize()
+        course = Person.not_empty_value("Enter teaching subject: ").capitalize()
         # create an instance of the Teacher class
         teacher = Teacher(name, last_name, address, course)
         return teacher

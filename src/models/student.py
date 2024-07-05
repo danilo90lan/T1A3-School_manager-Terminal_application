@@ -45,15 +45,8 @@ class Student(Person):
         try:
             # call the update_info() method inherited from the superclass
             super().update_info()
-            while True:
-                # Prompt user for new course and validate input
-                new_course = input("New course --> ").strip().capitalize()
-                # check if the new_course variable has a value
-                if new_course:
-                    self.course = new_course
-                    break
-                else:
-                    print("Course name cannot be empty.")
+            # call the Person.not_empty_value
+            self.course = Person.not_empty_value("New course --> ").capitalize()
         except AttributeError:
             print("Attribute assignment fails")
         except Exception as error:

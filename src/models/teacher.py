@@ -45,15 +45,8 @@ class Teacher(Person):
             try:
                 # call the update_info() method inherited from the superclass
                 super().update_info()
-                # Prompt user for new teaching subject and validate input
-                while True:
-                    new_subject = input("New teaching subject --> ").strip().capitalize()
-                    # check if the new_subject variable has a value
-                    if new_subject:
-                        self.subject_area = new_subject
-                        break
-                    else:
-                        print("Subject name cannot be empty.") 
+                # call the Person.not_empty_value
+                self.subject_area = Person.not_empty_value("New teaching subject --> ").capitalize()
             except AttributeError as error:
                 print(f"Attribute assignment fails error")
             except Exception as error:

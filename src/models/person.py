@@ -57,7 +57,19 @@ class Person:
     def get_id(cls):
         """ class method getter """
         return Person.__id
-
+    
+    @staticmethod
+    def not_empty_value(prompt):
+        """static method that it's used within other methods in 
+        the class to avoid repetitive code for input validation.
+        keep prompting the user to not have an empty value
+        """
+        while True:
+            value = input(prompt).strip()
+            if value:
+                return value
+            else:
+                print("This field cannot be empty.")
 
     def print_info(self):
         """ return: This method returns a string with the person's ID, name, last name, and address. """
@@ -69,28 +81,12 @@ class Person:
         return info
 
     def update_info(self):
-        """This method sets the person's name, last name, and address.
-        by keep prompting the user to enter new values"""
+        """This method sets the person's name, last name, and address."""
 
         try:
-            while True:
-                self.name = input("New name --> ").strip().capitalize()
-                if not self.name:
-                    print("Name cannot be empty")
-                else:
-                    break
-            while True:
-                self.last_name = input("New last name --> ").strip().capitalize()
-                if not self.last_name:
-                    print("Last name cannot be empty")
-                else:
-                    break
-            while True:
-                self.address = input("New address --> ").strip().capitalize()
-                if not self.address:
-                    print("Address cannot be empty")
-                else:
-                    break
+                self.name = Person.not_empty_value("New name --> ").capitalize()
+                self.last_name = Person.not_empty_value("New last name --> ").capitalize()
+                self.address = Person.not_empty_value("New address --> ").capitalize()
         except AttributeError:
                 print("Attribute assignment fails")
         except Exception as error:
