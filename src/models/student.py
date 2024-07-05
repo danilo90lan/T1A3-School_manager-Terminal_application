@@ -35,5 +35,18 @@ class Student(Person):
     
     def update_student(self):
         """ This method updatates both inherited attributes and the course attribute by the prompt of the user """
-        super().update_info()
-        self.course = input("New course --> ").strip().capitalize()
+        try:
+            # call the update_info() method inherited from the superclass
+            super().update_info()
+            while True:
+                # Prompt user for new course and validate input
+                new_course = input("New course --> ").strip().capitalize()
+                # check if the new_course variable has a value
+                if new_course:
+                    self.course = new_course
+                    break
+                else:
+                    print("Course name cannot be empty. Please enter a valid course name.")
+        except Exception as error:
+            print(f"Unexpected error occurred: {error}")
+                

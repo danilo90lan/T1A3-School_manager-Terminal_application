@@ -35,5 +35,17 @@ class Teacher(Person):
     
     def update_teacher(self):
             """ This method updates both inherited attributes and the subject_area attribute by the prompt of the user """
-            super().update_info()
-            self.subject_area = input("New teaching subject --> ").strip().capitalize()
+            try:
+                # call the update_info() method inherited from the superclass
+                super().update_info()
+                # Prompt user for new teaching subject and validate input
+                while True:
+                    new_subject = input("New teaching subject --> ").strip().capitalize()
+                    # check if the new_subject variable has a value
+                    if new_subject:
+                        self.subject_area = new_subject
+                        break
+                    else:
+                        print("Subject name cannot be empty. Please enter a valid subject.") 
+            except Exception as error:
+                print(f"Unexpected error occurred: {error}")

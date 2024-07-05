@@ -7,13 +7,36 @@ def student_new_record():
     
     return student: the Student object just created
     """
-    name = input("Enter name: ").strip().capitalize()
-    last_name = input("Enter last name: ").strip().capitalize()
-    address = input("Enter address: ").strip().capitalize()
-    course = input("Enter course name: ").strip().capitalize()
-    # create an instance of the Student class
-    student = Student(name, last_name, address, course)
-    return student
+    try: 
+        while True:
+            name = input("Enter name: ").strip().capitalize()
+            if not name:
+                print("Name cannot be empty")
+            else:
+                break      
+        while True:
+            last_name = input("Enter last name: ").strip().capitalize()
+            if not last_name:
+                print("Last name cannot be empty")
+            else:
+                break
+        while True:
+            address = input("Enter address: ").strip().capitalize()
+            if not address:
+                print("Address cannot be empty")
+            else:
+                break
+        while True: 
+            course = input("Enter course name: ").strip().capitalize()
+            if not course:
+                print("Course name cannot be empty")
+            else:
+                break
+        # create an instance of the Student class
+        student = Student(name, last_name, address, course)
+        return student
+    except Exception as error:
+        print(f"Unexpected error occurred: {error}")
 
 def teacher_new_record():
     """
@@ -22,13 +45,36 @@ def teacher_new_record():
     
     return: the Teacher object just created
     """
-    name = input("Enter name: ").strip().capitalize()
-    last_name = input("Enter last name: ").strip().capitalize()
-    address = input("Enter address: ").strip().capitalize()
-    course = input("Enter teaching subject: ").strip().capitalize()
-    # create an instance of the Teacher class
-    teacher = Teacher(name, last_name, address, course)
-    return teacher
+    try:
+        while True:
+            name = input("Enter name: ").strip().capitalize()
+            if not name:
+                print("Name cannot be empty")
+            else:
+                break
+        while True:
+            last_name = input("Enter last name: ").strip().capitalize()
+            if not last_name:
+                print("Last name cannot be empty")
+            else:
+                break
+        while True:
+            address = input("Enter address: ").strip().capitalize()
+            if not address:
+                print("Address cannot be empty")
+            else:
+                break
+        while True:
+            course = input("Enter teaching subject: ").strip().capitalize()
+            if not course:
+                print("Course  cannot be empty")
+            else:
+                break
+        # create an instance of the Teacher class
+        teacher = Teacher(name, last_name, address, course)
+        return teacher
+    except Exception as error:
+        print(f"Unexpected error occurred: {error}")
 
 # converting students instances to dictionary
 def studentObject_to_Dict(students): 
@@ -201,7 +247,7 @@ def update_delete_records(school, entity_profile, id, operation):
                 But if the search was made by ID (school.find_student_by_id) the ID is an Integer.), 
                 operation (str): A string indicating the type of operation (update or delete).
     """
-    # control if the ID is a list type. 
+    # control if the ID parameter is a list type. 
     # If True means there could be more than one found record and 
     # it prompts the user to confirm the record's ID in case of namesakes
     if type(id) == list:
@@ -236,7 +282,8 @@ def update_delete_records(school, entity_profile, id, operation):
             except ValueError:
                 print("\nInvalid input. Must be a number, try again")
     
-    # control if the ID is an integer type. If True directly perform the update or delete operation.
+    # control if the ID parameter is an integer type. 
+    # If True directly perform the update or delete operation.
     # there is no need to prompt the user to confirm the ID since the serch was made by ID through
     # the find_student_by_id, find_teacher_by_id) method which returns only one ID
 

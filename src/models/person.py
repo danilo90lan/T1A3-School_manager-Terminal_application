@@ -58,6 +58,25 @@ class Person:
     def update_info(self):
         """This method sets the person's name, last name, and address.
         by prompting the user to enter new values"""
-        self.name = input("New name --> ").strip().capitalize()
-        self.last_name = input("New last name --> ").strip().capitalize()
-        self.address = input("New address --> ").strip().capitalize()
+
+        try:
+            while True:
+                self.name = input("New name --> ").strip().capitalize()
+                if not self.name:
+                    print("Name cannot be empty")
+                else:
+                    break
+            while True:
+                self.last_name = input("New last name --> ").strip().capitalize()
+                if not self.last_name:
+                    print("Last name cannot be empty")
+                else:
+                    break
+            while True:
+                self.address = input("New address --> ").strip().capitalize()
+                if not self.address:
+                    print("Address cannot be empty")
+                else:
+                    break
+        except Exception as error:
+            print(f"Unexpected error occurred: {error}")
