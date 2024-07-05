@@ -46,7 +46,9 @@ class Student(Person):
                     self.course = new_course
                     break
                 else:
-                    print("Course name cannot be empty. Please enter a valid course name.")
+                    print("Course name cannot be empty.")
+        except AttributeError:
+            print("Attribute assignment fails")
         except Exception as error:
             print(f"Unexpected error occurred: {error}")
                 

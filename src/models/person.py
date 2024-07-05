@@ -78,5 +78,7 @@ class Person:
                     print("Address cannot be empty")
                 else:
                     break
+        except AttributeError:
+                print("Attribute assignment fails")
         except Exception as error:
             print(f"Unexpected error occurred: {error}")

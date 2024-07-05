@@ -35,6 +35,8 @@ def student_new_record():
         # create an instance of the Student class
         student = Student(name, last_name, address, course)
         return student
+    except AttributeError:
+        print("Attribute assignment fails")
     except Exception as error:
         print(f"Unexpected error occurred: {error}")
 
@@ -73,6 +75,8 @@ def teacher_new_record():
         # create an instance of the Teacher class
         teacher = Teacher(name, last_name, address, course)
         return teacher
+    except AttributeError:
+        print("Attribute assignment fails")
     except Exception as error:
         print(f"Unexpected error occurred: {error}")
 
@@ -88,16 +92,23 @@ def studentObject_to_Dict(students):
     """
     list_students = []
     for i in students:
-        # Create a dictionary for each Student instance with specific key-value pairs
-        student_dict = {"#ID": i.get_id(),
-                    "Name": i.name,
-                    "Last name": i.last_name,
-                    "Address": i.address,
-                    "Course": i.course,
-                    "Profile": i.profile
-                    }
-        # Append the dictionary representation of the Student object to the list
-        list_students.append(student_dict)
+        try:
+            # Create a dictionary for each Student instance with specific key-value pairs
+            student_dict = {"#ID": i.get_id(),
+                        "Name": i.name,
+                        "Last name": i.last_name,
+                        "Address": i.address,
+                        "Course": i.course,
+                        "Profile": i.profile
+                        }
+            # Append the dictionary representation of the Student object to the list
+            list_students.append(student_dict)
+        except AttributeError:
+            print("Attribute reference fails")
+        except KeyError:
+            print("Dictionary key not found")
+        except Exception as error:
+            print(f"Unexpected error occurred: {error}")
     return list_students
 
 # converting teachers instances to dictionary
@@ -112,16 +123,23 @@ def teacherObject_to_Dict(teachers):
     """
     list_teachers = []
     for i in teachers:
-        # Create a dictionary for each Teacher instance with specific key-value pairs
-        teacher_dict = { "#ID": i.get_id(),
-                    "Name": i.name,
-                    "Last name": i.last_name,
-                    "Address": i.address,
-                    "Subject": i.subject_area,
-                    "Profile": i.profile
-        }
-        # Append the dictionary representation of the Teacher object to the list
-        list_teachers.append(teacher_dict)
+        try:
+            # Create a dictionary for each Teacher instance with specific key-value pairs
+            teacher_dict = { "#ID": i.get_id(),
+                        "Name": i.name,
+                        "Last name": i.last_name,
+                        "Address": i.address,
+                        "Subject": i.subject_area,
+                        "Profile": i.profile
+            }
+            # Append the dictionary representation of the Teacher object to the list
+            list_teachers.append(teacher_dict)
+        except AttributeError:
+                print("Attribute reference fails")
+        except KeyError:
+                print("Dictionary key not found")
+        except Exception as error:
+                print(f"Unexpected error occurred: {error}")
     return list_teachers
 
 def menu_search_student_teacher(school, entity_profile):

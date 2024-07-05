@@ -46,6 +46,8 @@ class Teacher(Person):
                         self.subject_area = new_subject
                         break
                     else:
-                        print("Subject name cannot be empty. Please enter a valid subject.") 
+                        print("Subject name cannot be empty.") 
+            except AttributeError:
+                print("Attribute assignment fails")
             except Exception as error:
                 print(f"Unexpected error occurred: {error}")
