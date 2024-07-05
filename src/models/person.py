@@ -38,8 +38,7 @@ class Person:
             else:
                 cls.set_id(0)
         except TypeError as error:
-            print(f"ID list is either empty (Null) or not proper initialized:
-                  Cannot determine the maximum value: {error}")
+            print(f"ID list is either empty (Null) or not proper initialized: Cannot determine the maximum value: {error}")
         except ValueError:
             print(f"ID must be a number")
         except Exception as error:

@@ -9,7 +9,6 @@ filepath = "./data/school_manager.json"
 def read_json():
     """
     Load students and teachers records from a json file.
-    If the file doesn't exist it will be created
     
     return: List of students, list of teachers and list of the IDs of each record
     if the file is empty or doesn't exist, return empty lists
@@ -46,9 +45,7 @@ def read_json():
                     teachers.append(teacher) 
 
     except FileNotFoundError:
-        # If the file doesn't exist, create an empty JSON file
-        with open(filepath, "w") as file:
-            json.dump([], file, indent = 4)
+        print(f"The file {filepath} doesn't exist. It will  be created")
     except Exception as error:
         print(f"An expected error occured: {error}")
     
