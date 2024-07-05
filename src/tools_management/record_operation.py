@@ -97,9 +97,11 @@ def menu_search_student_teacher(school, entity_profile):
                                 print("\nInput must be a number")
 
                     elif choice == "2":
+                        # check if the object is either a student or teacher
                         if entity_profile == Student.profile:
                             student_name = input(f"Enter {entity_profile}'s name: ")
                             student_found, students_found_id = school.find_student_by_name(student_name)
+                            # if the returned value student_found is True the function menu_update_delete is called
                             if student_found:
                                 menu_update_delete(school, Student.profile, students_found_id)
                         elif entity_profile == Teacher.profile:
@@ -147,29 +149,39 @@ def update_delete_records(school, entity_profile, id, operation):
     Update or delete student or teacher records. 
     It handles scenarios where there are multiple possible namesakes by prompting the user to confirm the correct ID.
     It performs the operations (update or delete) using methods from the school object.
-    parameters: school: object containing methods for manipulating teachers and students instances,
+    parameters: school: School object containing methods for manipulating teachers and students instances,
     entity_profile: an attribute indicating if the entity is a student or teacher, 
-    id: ID number of the record that is going to be either updated or deleted, 
+    id: ID number of the record that is going to be either updated or deleted
+    (could be either an integer or a list of integers based on the type of searching
+    if the search was made by name (school.find_student_by_name) the ID is a list of integers in case of namesakes.
+    But if the search was made by ID (school.find_student_by_id) the ID is an Integer.), 
     operation: A string indicating the type of operation (update or delete).
     """
+    # control if the ID is a list type. 
+    # If True means there could be more than one found record and 
+    # it prompts the user to confirm the record's ID in case of namesakes
     if type(id) == list:
         while True:
             try:
                 id_input = int(input("\nEnter ID to confirm the correct record to UPDATE in case there are namesakes: "))
+                # if the id_input is found in the parameter id (which is a list) the methods 
+                # students_delete , students_update or 
+                # teachers_delete, teachers_update  will be called based on the entity_profile
+                
                 if id_input in id:
                     if entity_profile == Student.profile:
                             if operation == "update":
-                                school.student_update(id_input)
+                                print(school.student_update(id_input))
                                 break
                             elif operation == "delete":
-                                school.delete_student(id_input)
+                                print(school.delete_student(id_input))
                                 break
                     elif entity_profile == Teacher.profile:
                             if operation == "update":
-                                school.teacher_update(id_input)
+                                print(school.teacher_update(id_input))
                                 break
                             elif operation == "delete":
-                                school.delete_teacher(id_input)
+                                print(school.delete_teacher(id_input))
                                 break
                 else:
                     print(f"\nID: {id_input} doesn't match any record from the search")
@@ -177,15 +189,19 @@ def update_delete_records(school, entity_profile, id, operation):
             except ValueError:
                 print("\nInvalid input. Must be a number, try again")
     
+    # control if the ID is an integer type. If True the methods students_delete , students_update or 
+    # teachers_delete, teachers_update  will be called based on the entity_profile
+    # there is no need to prompt the user to confirm the ID since the serch was made by ID through
+    # the find_student_by_id, find_teacher_by_id) method which returns only one ID
     if type(id) == int:
         if entity_profile == Student.profile:
             if operation == "update":
-                school.student_update(id)
+                print(school.student_update(id))
             elif operation == "delete":
-                school.delete_student(id)
+                print(school.delete_student(id))
             
         elif entity_profile == Teacher.profile:
             if operation == "update":
-                school.teacher_update(id)
+                print(school.teacher_update(id))
             elif operation == "delete":
-                school.delete_teacher(id)
+                print(school.delete_teacher(id))

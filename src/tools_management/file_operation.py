@@ -42,19 +42,21 @@ def read_json():
         with open(filepath, "w") as file:
             json.dump([], file, indent = 4)
     except Exception as error:
-        print(f"AN expected error occured: {error}")
+        print(f"An expected error occured: {error}")
     
     return students, teachers, list_id
 
 # function to write on a json file
 def write_json(json_data, message="", file_path = filepath):
     """
-    Sort a list of a dictionaries in alphabetic order using the sorted function
-    and it write it into a json file
+    Sort a list of a dictionaries in alphabetic order using the sorted function that
+    returns a new sorted list based on the keys provided, and it write it into a json file
     parameters: json_data: list of dictionaries, message: a final message to show after the writing operation,
     it's set as an empty string by default, file_path: path to the json file set to a default value (constant file_path)
     """
     # sort the list in alphabetic order
+    # the sorted function's key parameter is the itemgetter function from the operator module that extracts the value
+    # from the "name" and the "last name" keys from a dictionary
     sorted_json_data = sorted(json_data, key=itemgetter("Name", "Last name"))
     try:
         with open(file_path, "w") as file:
@@ -63,4 +65,4 @@ def write_json(json_data, message="", file_path = filepath):
     except PermissionError:
         print("Permission denied to write")
     except Exception as error:
-        print(f"AN expected error occured: {error}")
+        print(f"An expected error occured: {error}")
