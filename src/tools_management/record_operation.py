@@ -272,7 +272,7 @@ def update_delete_records(school, entity_profile, id, operation):
     # control if the ID parameter is a list type.
     # If True means there could be more than one found record and
     # it prompts the user to confirm the record's ID in case of namesakes
-    if isinstance(id, list):
+    if type(id) == list:
         while True:
             try:
                 id_input = int(input(
@@ -315,7 +315,7 @@ def update_delete_records(school, entity_profile, id, operation):
     # the find_student_by_id, find_teacher_by_id) method which returns only
     # one ID
     try:
-        if isinstance(id, int):
+        if type(id) == int:
             if entity_profile == Student.profile:
                 if operation == "update":
                     # Call school's student_update method with the ID

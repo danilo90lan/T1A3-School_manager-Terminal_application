@@ -121,18 +121,10 @@
     },
     {
         "#ID": 4,
-        "Name": "Steve",
-        "Last name": "Rogers",
-        "Address": "Las vegas",
-        "Subject": "History",
-        "Profile": "Teacher"
-    },
-    {
-        "#ID": 7,
         "Name": "Thor",
-        "Last name": "Odinson",
-        "Address": "Asgard",
-        "Subject": "History",
+        "Last name": "Sfg",
+        "Address": "Sfgr",
+        "Subject": "Sgf",
         "Profile": "Teacher"
     },
     {
