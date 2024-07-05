@@ -14,10 +14,15 @@ class Teacher(Person):
         to initialize the inherited attributes and then 
         initializes the subject_area attribute with the provided parameter
         """
-        super().__init__(name, last_name, address)
-        self.subject_area = subject_area
-        self.profile = Teacher.profile
-        self.__id = Person.get_id()
+        try:
+            super().__init__(name, last_name, address)
+            self.subject_area = subject_area
+            self.profile = Teacher.profile
+            self.__id = Person.get_id()
+        except AttributeError:
+            print("Attribute assignment fails")
+        except Exception as error:
+            print(f"Unexpected error occurred: {error}")
 
     def get_id(self):
         """ This getter method returns the ID of the teacher instance"""

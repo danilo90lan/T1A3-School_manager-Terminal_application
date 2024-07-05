@@ -21,7 +21,7 @@ class Person:
         except AttributeError:
             print("Attribute assignment fails")
         except NameError:
-            print("id is not initialized.")
+            print("id is not initialized (Null).")
         except Exception as error:
             print(f"An expected error occured: {error}")
 
@@ -32,17 +32,30 @@ class Person:
         if list_id is empty (json file empty), it initializes __id to 0
         otherwise it initialize ID to the highest number of the list
         in order for each element of the list to have a unique ID"""
-        if list_id:
-            cls.set_id(max(list_id))
-        else:
-            cls.set_id(0)
+        try:
+            if list_id:
+                cls.set_id(max(list_id))
+            else:
+                cls.set_id(0)
+        except TypeError as error:
+            print(f"ID list is either empty (Null) or not proper initialized:
+                  Cannot determine the maximum value: {error}")
+        except ValueError:
+            print(f"ID must be a number")
+        except Exception as error:
+            print(f"An expected error occured: {error}")
 
     @classmethod
     def set_id(cls, new_id):
-        """ class method setter 
+        """ class method setter for __id
         Class method setter that is called based on the JSON file 
         to preserve the original ID of each record contained in the JSON file."""
-        Person.__id = new_id
+        try:
+            Person.__id = new_id
+        except ValueError:
+            print("Error setting ID: Incorrect value, must be an integer")
+        except Exception as error:
+            print(f"An expected error occured: {error}")
 
     @classmethod
     def get_id(cls):
@@ -61,7 +74,7 @@ class Person:
 
     def update_info(self):
         """This method sets the person's name, last name, and address.
-        by prompting the user to enter new values"""
+        by keep prompting the user to enter new values"""
 
         try:
             while True:

@@ -14,11 +14,16 @@ class Student(Person):
         to initialize the inherited attributes and then 
         initializes the course attribute with the provided parameter
         """
-        super().__init__(name, last_name, address)
-        self.course = course
-        self.profile = Student.profile
-        self.__id = Person.get_id()
-
+        try:
+            super().__init__(name, last_name, address)
+            self.course = course
+            self.profile = Student.profile
+            self.__id = Person.get_id()
+        except AttributeError:
+            print("Attribute assignment fails")
+        except Exception as error:
+            print(f"An expected error occured: {error}")
+        
     def get_id(self):
         """ This getter method returns the ID of the student instance"""
         return self.__id
