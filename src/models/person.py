@@ -13,6 +13,7 @@ class Person:
 
     def __init__(self, name, last_name, address):
         """ The constructor initializes a new instance of Person """
+        # check if the __id has been initialized with a value
         if Person.__id is None:
             raise ValueError("ID has not been initialized")
         Person.__id += 1
@@ -55,7 +56,7 @@ class Person:
         return info
 
     def update_info(self):
-        """This method updates the person's name, last name, and address.
+        """This method sets the person's name, last name, and address.
         by prompting the user to enter new values"""
         self.name = input("New name --> ").strip().capitalize()
         self.last_name = input("New last name --> ").strip().capitalize()

@@ -34,6 +34,6 @@ class Student(Person):
         return super().print_info() + info
     
     def update_student(self):
-        """ This method updatates both inherited attributes and the course attribute """
+        """ This method updatates both inherited attributes and the course attribute by the prompt of the user """
         super().update_info()
         self.course = input("New course --> ").strip().capitalize()

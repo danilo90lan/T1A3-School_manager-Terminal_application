@@ -24,6 +24,7 @@ class School:
         
         return: the number of the students instances otherwise return another message
         """
+        # check if the list of students is not empty
         if self.students != []: 
             print(f"""
                             ***** List of all students *****\n""")
@@ -46,6 +47,7 @@ class School:
         
         return: the number of the teacher instances otherwise return another message
         """
+        # check if the list of teachers is not empty
         if self.teachers != []: 
             print(f"""
                             ***** List of all teachers *****\n""")

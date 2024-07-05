@@ -34,6 +34,6 @@ class Teacher(Person):
         return super().print_info() + info
     
     def update_teacher(self):
-            """ This method updatates both inherited attributes and the subject_area attribute """
+            """ This method updates both inherited attributes and the subject_area attribute by the prompt of the user """
             super().update_info()
             self.subject_area = input("New teaching subject --> ").strip().capitalize()
