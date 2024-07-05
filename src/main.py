@@ -13,14 +13,16 @@ def main():
     """
 
     # Initializzation
-    """initializing three variables:
+    """initializing three variables from JSON file:
     students_instances: A list of student objects.
     teachers_instances: A list of teacher objects.
     list_id: A list of ID used for initializing person IDs."""
-    students_instances, teachers_instances, list_id = read_json()
-
-    #creates an instance of the School class with students_instances and teachers_instances as arguments.
-    school = School(students_instances, teachers_instances)
+    try:
+        students_instances, teachers_instances, list_id = read_json()
+        #creates an object of the School class with the students_instances and teachers_instances as attributes.
+        school = School(students_instances, teachers_instances)
+    except Exception as error:
+        print(f"An expected error occured: {error}")
 
     #initializes the ID for Person objects using the list of IDs from the JSON file. 
     Person.initialize_id(list_id)
@@ -28,7 +30,10 @@ def main():
     # get the current date and convert it into a string
     # the date is used as part of the file name .json after the creation 
     # of the list of students or teachers under a specific subject or course name
-    current_date = datetime.now().strftime("%d-%m-%Y")
+    try:
+        current_date = datetime.now().strftime("%d-%m-%Y")
+    except TypeError as error:
+        print(f"Error occurred while getting or formatting current date: {error}")
 
     while True:
         # Displaying the main menu options
@@ -57,33 +62,49 @@ def main():
         match choice:
             case "1":
                 new_record = "Y"
-                while new_record in ("Yy"):
-                    #create a new Teacher instance by calling the teacher_new_record() function
-                    new_teacher = teacher_new_record()
-                    # append the new Teacher instance to the teachers list
-                    teachers_instances.append(new_teacher)
-                    # prompt the user if wants to enter a new record
-                    new_record = input("\nDo you want to enter another one? (Y/N) ")
-                    print("\n")
-                # concatenate list students and list teachers after converting them into a lisgt of dictionaries
-                json_data = studentObject_to_Dict(students_instances) + teacherObject_to_Dict(teachers_instances)
+                try:
+                    while new_record in ("Yy"):
+                        #create a new Teacher instance by calling the teacher_new_record() function
+                        new_teacher = teacher_new_record()
+                        # append the new Teacher instance to the teachers list
+                        teachers_instances.append(new_teacher)
+                        # prompt the user if wants to enter a new record
+                        new_record = input("\nDo you want to enter another one? (Y/N) ")
+                        print("\n")
+                    # concatenate list students and list teachers after converting them into a lisgt of dictionaries
+                    json_data = studentObject_to_Dict(students_instances) + teacherObject_to_Dict(teachers_instances)
+                except Exception as error:
+                    print(f"An expected error occured: {error}")
                 # write the new lists to json file after adding all new records
-                write_json(json_data, "New data added succesfully!")
+                try:
+                    write_json(json_data, "New data added succesfully!")
+                except IOError as error:
+                    print(f"IO error: {error}")
+                except Exception as error:
+                    print(f"Error saving matches: {error}")
 
             case "2":
                 new_record = "Y"
-                while new_record in ("Yy"):
-                    #create a new Student instance by calling the teacher_new_record() function
-                    new_student = student_new_record()
-                    # update the new Student instance to the students list
-                    students_instances.append(new_student)
-                    # prompt the user if wants to enter a new record
-                    new_record = input("\nDo you want to enter another one? (Y/N) ")
-                    print("\n")
-                # concatenate list students and list teachers after converting them into a lisgt of dictionaries
-                json_data = studentObject_to_Dict(students_instances) + teacherObject_to_Dict(teachers_instances)
+                try:
+                    while new_record in ("Yy"):
+                        #create a new Student instance by calling the teacher_new_record() function
+                        new_student = student_new_record()
+                        # update the new Student instance to the students list
+                        students_instances.append(new_student)
+                        # prompt the user if wants to enter a new record
+                        new_record = input("\nDo you want to enter another one? (Y/N) ")
+                        print("\n")
+                    # concatenate list students and list teachers after converting them into a lisgt of dictionaries
+                    json_data = studentObject_to_Dict(students_instances) + teacherObject_to_Dict(teachers_instances)
+                except Exception as error:
+                    print(f"An expected error occured: {error}")
                 # write the new lists to json file after adding all new records
-                write_json(json_data, "New data added succesfully!")
+                try:
+                    write_json(json_data, "New data added succesfully!")
+                except IOError as error:
+                    print(f"IO error: {error}")
+                except Exception as error:
+                    print(f"Error saving matches: {error}")
 
             case "3":
                 # Displaying all teachers by calling the method display_all_teachers()
@@ -122,8 +143,13 @@ def main():
 
                                 # converts the subject list into dictionaries and pass it to write_json
                                 # along with the customized message and the new file path as arguments
-                                write_json(teacherObject_to_Dict(teachers_by_subject), message, file_path)
-                                break
+                                try:
+                                    write_json(teacherObject_to_Dict(teachers_by_subject), message, file_path)
+                                    break
+                                except IOError as error:
+                                    print(f"IO error: {error}")
+                                except Exception as error:
+                                    print(f"Error saving matches: {error}")
                             elif choice in "Nn":
                                 break
             case "8":
@@ -149,8 +175,13 @@ def main():
 
                                 # converts the course list into dictionaries and pass it to write_json
                                 # along with the customized message and the new file path as arguments
-                                write_json(studentObject_to_Dict(students_by_course), message, file_path)
-                                break
+                                try:
+                                    write_json(studentObject_to_Dict(students_by_course), message, file_path)
+                                    break
+                                except IOError as error:
+                                    print(f"IO error: {error}")
+                                except Exception as error:
+                                    print(f"Error saving matches: {error}")
                             elif choice in "Nn":
                                 break
             case "9":

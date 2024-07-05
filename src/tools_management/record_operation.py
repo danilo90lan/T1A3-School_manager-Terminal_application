@@ -90,6 +90,7 @@ def studentObject_to_Dict(students):
     
     return list_students: list of dictionaries. Each dictionary represent a Student object
     """
+    # initialize an empty list
     list_students = []
     for i in students:
         try:
@@ -105,8 +106,8 @@ def studentObject_to_Dict(students):
             list_students.append(student_dict)
         except AttributeError:
             print("Attribute reference fails")
-        except KeyError:
-            print("Dictionary key not found")
+        except KeyError as error:
+            print(f"Dictionary key not found: {error}")
         except Exception as error:
             print(f"Unexpected error occurred: {error}")
     return list_students
@@ -117,10 +118,11 @@ def teacherObject_to_Dict(teachers):
     converts a list of Teacher objects into a list of dictionaries,
     following the key-value pairs of the object Teacher.
     
-    parameters: teacher: list of Teacher instances
+    parameters: teachers: list of Teacher instances
     
     return list_teachers: list of dictionaries. Each dictionary represent a Teacher object
     """
+    # initialize an empty list
     list_teachers = []
     for i in teachers:
         try:
@@ -136,8 +138,8 @@ def teacherObject_to_Dict(teachers):
             list_teachers.append(teacher_dict)
         except AttributeError:
                 print("Attribute reference fails")
-        except KeyError:
-                print("Dictionary key not found")
+        except KeyError as error:
+                print(f"Dictionary key not found {error}")
         except Exception as error:
                 print(f"Unexpected error occurred: {error}")
     return list_teachers

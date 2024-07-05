@@ -186,7 +186,12 @@ class School:
         # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
         json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
         # Write the updated data back to the JSON file
-        write_json(json_data)
+        try:
+            write_json(json_data)
+        except IOError as error:
+            print(f"IO error: {error}")
+        except Exception as error:
+            print(f"Error saving matches: {error}")
         return f"\nThe student info with ID: {id} has beeen succesfully updated!"
 
     def teacher_update(self, id):
@@ -207,7 +212,12 @@ class School:
         # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
         json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers) 
         # Write the updated data back to the JSON file
-        write_json(json_data)
+        try:
+            write_json(json_data)
+        except IOError as error:
+            print(f"IO error: {error}")
+        except Exception as error:
+            print(f"Error saving matches: {error}")
         return f"\nThe teacher info with ID: {id} has been succesfully updated!"
 
     def delete_teacher(self, id):
@@ -219,7 +229,12 @@ class School:
         # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
         json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
         # Write the updated data back to the JSON file
-        write_json(json_data)
+        try:
+            write_json(json_data)
+        except IOError as error:
+            print(f"IO error: {error}")
+        except Exception as error:
+            print(f"Error saving matches: {error}")
         return f"\nThe teacher record wih ID: {id} has been succesfully deleted!"
 
     def delete_student(self, id):
@@ -231,7 +246,12 @@ class School:
         # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
         json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
         # Write the updated data back to the JSON file
-        write_json(json_data)
+        try:
+            write_json(json_data)
+        except IOError as error:
+            print(f"IO error: {error}")
+        except Exception as error:
+            print(f"Error saving matches: {error}")
         return f"\n The student with ID: {id} has been succesfully deleted!"
 
     def filter_students_by_course(self, course):
