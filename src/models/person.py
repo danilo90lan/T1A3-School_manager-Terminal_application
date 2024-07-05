@@ -34,12 +34,8 @@ class Person:
         in order for each element of the list to have a unique ID"""
         try:
             cls.set_id(max(list_id))
-        except TypeError as error:
-            print(f"ID list is either empty (Null) or not proper initialized: Cannot determine the maximum value: {error}")
-            cls.set_id(0)
-            print("Setting the initial ID value to 0")
-        except ValueError:
-            print(f"ID not proper initialized")
+        except (TypeError, ValueError) as error:
+            print(f"ID list is either empty (Null) or not proper initialized: {error}")
             cls.set_id(0)
             print("Setting the initial ID value to 0")
         except Exception as error:
