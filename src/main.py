@@ -19,10 +19,10 @@ def main():
     list_id: A list of ID used for initializing person IDs."""
     students_instances, teachers_instances, list_id = read_json()
 
-    #This creates an instance of the School class with students_instances and teachers_instances as arguments.
+    #creates an instance of the School class with students_instances and teachers_instances as arguments.
     school = School(students_instances, teachers_instances)
 
-    #This initializes the ID for Person objects using the list of IDs from the JSON file. 
+    #initializes the ID for Person objects using the list of IDs from the JSON file. 
     Person.initialize_id(list_id)
 
     # get the current date and convert it into a string
@@ -31,6 +31,7 @@ def main():
     current_date = datetime.now().strftime("%d-%m-%Y")
 
     while True:
+        # Displaying the main menu options
         print("""
                         *************************************
                             WELCOME TO THE SCHOOL MANAGER
@@ -50,76 +51,116 @@ def main():
                            10 - List all courses
                            11 - Exit program
         """)
+        #  prompt the user to perform an operation
         choice = input("Enter your choice: ")
         
         match choice:
             case "1":
                 new_record = "Y"
                 while new_record in ("Yy"):
-                    #instance a new Teacher object
+                    #create a new Teacher instance by calling the teacher_new_record() function
                     new_teacher = teacher_new_record()
-                    # update teachers list
+                    # append the new Teacher instance to the teachers list
                     teachers_instances.append(new_teacher)
+                    # prompt the user if wants to enter a new record
                     new_record = input("\nDo you want to enter another one? (Y/N) ")
                     print("\n")
-                # write to json file after adding all new records
+                # concatenate list students and list teachers after converting them into a lisgt of dictionaries
                 json_data = studentObject_to_Dict(students_instances) + teacherObject_to_Dict(teachers_instances)
+                # write the new lists to json file after adding all new records
                 write_json(json_data, "New data added succesfully!")
 
             case "2":
                 new_record = "Y"
                 while new_record in ("Yy"):
-                    #instance a new Student object
+                    #create a new Student instance by calling the teacher_new_record() function
                     new_student = student_new_record()
-                    # update students list
+                    # update the new Student instance to the students list
                     students_instances.append(new_student)
+                    # prompt the user if wants to enter a new record
                     new_record = input("\nDo you want to enter another one? (Y/N) ")
                     print("\n")
-                # write to json file after adding all new records
+                # concatenate list students and list teachers after converting them into a lisgt of dictionaries
                 json_data = studentObject_to_Dict(students_instances) + teacherObject_to_Dict(teachers_instances)
+                # write the new lists to json file after adding all new records
                 write_json(json_data, "New data added succesfully!")
 
             case "3":
+                # Displaying all teachers by calling the method display_all_teachers()
                 print(school.display_all_teachers())
             case "4":
+                # Displaying all teachers by calling the method display_all_students()
                 print(school.display_all_students())
             case "5":
+                # Searching for a student by ID or name by calling the menu_search_student_teacher() method
+                # the argument is Student.profile in order to perform the opeartions on the student list
                 menu_search_student_teacher(school, Student.profile)
             case "6":
+                # Searching for a student by ID or name by calling the menu_search_student_teacher() method
+                # the argument is Teacher.profile in order to perform the opeartions on the teachers list
                 menu_search_student_teacher(school, Teacher.profile)
             case "7":
+                # Filtering teachers by subject and optionally exporting to a new JSON file
+
+                # if print_list_all_subjects() == True prompt the user to enter the subject name to search for
                 if(school.print_list_all_subjects()):
                     subject = input("\nEnter the subject for which you want to list the teachers: ")
+                    
+                    # store in the teachers_by_subject variable the returned list from 
+                    # the filter_teachers_by_subject method which has the user's prompt as argument
                     teachers_by_subject = school.filter_teachers_by_subject(subject)
+                    
+                    # if the teachers_by_subject variable is not empty
+                    # it prompt the user is wants to export the list into a new json file    
                     if teachers_by_subject != []: 
                         while True:
                             choice = input("Would you like to export the list to a JSON file? (Y/N) ")
                             if choice in "Yy":
                                 message = f"\nTeachers list under {subject.upper()} created"
+                                # the filename of the new JSON file will be thw current date + the {subject}
                                 file_path = f"./data/{current_date}_teachers_{subject}_.json"
+
+                                # converts the subject list into dictionaries and pass it to write_json
+                                # along with the customized message and the new file path as arguments
                                 write_json(teacherObject_to_Dict(teachers_by_subject), message, file_path)
                                 break
                             elif choice in "Nn":
                                 break
             case "8":
+                # Filtering students by course and optionally exporting to JSON
+
+                 # if print_list_all_courses() == True prompt the user to enter the course name to search for
                 if(school.print_list_all_courses()):
                     course = input("\nEnter the course for which you want to list the students: ")
+
+                    # store in the students_by_course variable the returned list from 
+                    # the filter_students_by_course method which has the user's prompt as argument
                     students_by_course = school.filter_students_by_course(course)
+                    
+                    # if the teachers_by_subject variable is not empty
+                    # it prompt the user is wants to export the list into a new json file  
                     if students_by_course != []:         
                         while True:
                             choice = input("Would you like to export the list to a JSON file? (Y/N) ")
                             if choice in "Yy":
                                 message = f"\nStudents list under {course.upper()} created"
+                                # the filename of the new JSON file will be thw current date + the {course}
                                 file_path = f"./data/{current_date}_students_{course}.json"
+
+                                # converts the course list into dictionaries and pass it to write_json
+                                # along with the customized message and the new file path as arguments
                                 write_json(studentObject_to_Dict(students_by_course), message, file_path)
                                 break
                             elif choice in "Nn":
                                 break
             case "9":
+                # Listing all subjects taught in the school by calling the print_list_all_subjects() mwthod
                 school.print_list_all_subjects()
             case "10":
+                # Listing all courses available in the school by calling the print_list_all_courses() method
                 school.print_list_all_courses()
             case "11":
+                 # Exiting the program
                 print("Program ended")
                 break
             case _:

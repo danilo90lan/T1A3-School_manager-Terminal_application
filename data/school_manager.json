@@ -112,14 +112,6 @@
         "Profile": "Teacher"
     },
     {
-        "#ID": 1,
-        "Name": "Tony",
-        "Last name": "Stark",
-        "Address": "New york",
-        "Subject": "Physic",
-        "Profile": "Teacher"
-    },
-    {
         "#ID": 15,
         "Name": "Victor",
         "Last name": "Stone",
