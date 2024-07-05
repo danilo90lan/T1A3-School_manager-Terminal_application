@@ -188,8 +188,6 @@ class School:
         # Write the updated data back to the JSON file
         try:
             write_json(json_data)
-        except IOError as error:
-            print(f"IO error: {error}")
         except Exception as error:
             print(f"Error saving matches: {error}")
         return f"\nThe student info with ID: {id} has beeen succesfully updated!"
@@ -214,8 +212,6 @@ class School:
         # Write the updated data back to the JSON file
         try:
             write_json(json_data)
-        except IOError as error:
-            print(f"IO error: {error}")
         except Exception as error:
             print(f"Error saving matches: {error}")
         return f"\nThe teacher info with ID: {id} has been succesfully updated!"
@@ -231,8 +227,6 @@ class School:
         # Write the updated data back to the JSON file
         try:
             write_json(json_data)
-        except IOError as error:
-            print(f"IO error: {error}")
         except Exception as error:
             print(f"Error saving matches: {error}")
         return f"\nThe teacher record wih ID: {id} has been succesfully deleted!"
@@ -248,8 +242,6 @@ class School:
         # Write the updated data back to the JSON file
         try:
             write_json(json_data)
-        except IOError as error:
-            print(f"IO error: {error}")
         except Exception as error:
             print(f"Error saving matches: {error}")
         return f"\n The student with ID: {id} has been succesfully deleted!"

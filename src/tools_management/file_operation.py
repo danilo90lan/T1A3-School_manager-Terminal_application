@@ -74,5 +74,7 @@ def write_json(json_data, message="", file_path = filepath):
         print(message)
     except PermissionError:
         print("Permission denied to write")
+    except IOError as error:
+        print(f"IO error: {error}")
     except Exception as error:
         print(f"An expected error occured: {error}")
