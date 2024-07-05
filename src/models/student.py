@@ -19,8 +19,8 @@ class Student(Person):
             self.course = course
             self.profile = Student.profile
             self.__id = Person.get_id()
-        except AttributeError:
-            print("Attribute assignment fails")
+        except AttributeError as error:
+            print(f"Attribute assignment fails {error}")
         except Exception as error:
             print(f"An expected error occured: {error}")
         

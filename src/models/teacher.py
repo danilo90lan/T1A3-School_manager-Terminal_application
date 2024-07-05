@@ -52,7 +52,7 @@ class Teacher(Person):
                         break
                     else:
                         print("Subject name cannot be empty.") 
-            except AttributeError:
-                print("Attribute assignment fails")
+            except AttributeError as error:
+                print(f"Attribute assignment fails error")
             except Exception as error:
                 print(f"Unexpected error occurred: {error}")

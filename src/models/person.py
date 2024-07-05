@@ -18,8 +18,8 @@ class Person:
             self.name = name
             self.last_name = last_name
             self.address = address
-        except AttributeError:
-            print("Attribute assignment fails")
+        except AttributeError as error:
+            print(f"Attribute assignment fails {error}")
         except NameError:
             print("id is not initialized (Null).")
         except Exception as error:
@@ -33,14 +33,15 @@ class Person:
         otherwise it initialize ID to the highest number of the list
         in order for each element of the list to have a unique ID"""
         try:
-            if list_id:
-                cls.set_id(max(list_id))
-            else:
-                cls.set_id(0)
+            cls.set_id(max(list_id))
         except TypeError as error:
             print(f"ID list is either empty (Null) or not proper initialized: Cannot determine the maximum value: {error}")
+            cls.set_id(0)
+            print("Setting the initial ID value to 0")
         except ValueError:
-            print(f"ID must be a number")
+            print(f"ID not proper initialized")
+            cls.set_id(0)
+            print("Setting the initial ID value to 0")
         except Exception as error:
             print(f"An expected error occured: {error}")
 
