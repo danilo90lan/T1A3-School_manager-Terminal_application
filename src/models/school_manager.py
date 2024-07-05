@@ -1,15 +1,17 @@
 from models import Student, Teacher
 from tools_management import write_json, studentObject_to_Dict, teacherObject_to_Dict
 
-class School: 
+
+class School:
     """ 
     The School class works as a container for instances of Student and Teacher objects, 
     providing methods to interact and manipulate these objects efficiently.
     """
+
     def __init__(self, students, teachers):
         """ 
         The constructor initializes the instance:  
-        
+
         parameters:  students, teachers: list of student's instances and list of teacher's instances .
         """
         try:
@@ -27,16 +29,17 @@ class School:
         provided by the key parameter) and the lamba function that defines how each element should be 
         sorted. After the list of objects is sorted the method print_info is called which returns the 
         instance attributes values
-        
+
         return: the number of the students instances otherwise return another message
         """
         # check if the list of students is not empty
-        if self.students != []: 
+        if self.students != []:
             print(f"""
                             ***** List of all students *****\n""")
             try:
                 # Sort students alphabetically by name and last name
-                sorted_students = sorted(self.students, key=lambda student: (student.name, student.last_name))
+                sorted_students = sorted(self.students, key=lambda student: (
+                    student.name, student.last_name))
                 for i in sorted_students:
                     # print each student's record by calling the print_info method()
                     print(Student.print_info(i))
@@ -49,7 +52,7 @@ class School:
                 print(f"An expected error occured: {error}")
 
         else:
-            return  "\nThere is no students records"
+            return "\nThere is no students records"
 
     def display_all_teachers(self):
         """
@@ -58,16 +61,17 @@ class School:
         provided by the key parameter) and the lamba function that defines how each element should be 
         sorted. After the list of objects is sorted the method print_info is called which returns the 
         instance attributes values
-        
+
         return: the number of the teacher instances otherwise return another message
         """
         # check if the list of teachers is not empty
-        if self.teachers != []: 
+        if self.teachers != []:
             print(f"""
                             ***** List of all teachers *****\n""")
             try:
                 # Sort teachers alphabetically by name and last name
-                sorted_teachers = sorted(self.teachers, key=lambda teacher: (teacher.name, teacher.last_name))
+                sorted_teachers = sorted(self.teachers, key=lambda teacher: (
+                    teacher.name, teacher.last_name))
                 for i in sorted_teachers:
                     # print each teacher's record by calling the print_info method()
                     print(Teacher.print_info(i))
@@ -84,15 +88,15 @@ class School:
     def find_student_by_id(self, student_id):
         """
         Finds a student by their ID number.
-        
+
         parameter: student_id: an ID number to use for the search
-        
+
         returns: record_found: a boolean value True if the record is found, otherwise returns False.
         """
-        record_found =False
-        #Iterate through the student list and check if the ID provided 
+        record_found = False
+        # Iterate through the student list and check if the ID provided
         # by the parameter matches the ID of the instance. If so, set record_found = True."
-        try: 
+        try:
             for i in self.students:
                 # Check if the ID of the current student matches the provided student_id
                 if Student.get_id(i) == student_id:
@@ -108,13 +112,13 @@ class School:
         except Exception as error:
             print(f"An expected error occured: {error}")
         return record_found
-    
+
     def find_student_by_name(self, student_name):
         """
         Finds students by a given name.
-        
+
         Parameters: student_name: Name of the student to search for.
-        
+
         Returns: student_record: boolean value True if students with the name are found, False otherwise.
                 list: List of IDs of the students found with the matching name.
                 (the return value is a list in case of namesakes)
@@ -133,7 +137,7 @@ class School:
                     student_found.append(Student.get_id(i))
                     # Set student_record to True indicating that at least one student with the name was found
                     student_record = True
-            # If no student records are found with the given name print the message        
+            # If no student records are found with the given name print the message
             if not student_record:
                 print("\nStudent recond NOT in the system")
             # Return the boolean flag indicating if records were found and the list of IDs of matching students
@@ -144,9 +148,9 @@ class School:
     def find_teacher_by_id(self, teacher_id):
         """
         Finds a student by their ID number.
-        
+
         parameter: student_id: an ID number to use for the search
-        
+
         returns a boolean value True if the record is found, otherwise returns False.
         """
         # Initialize a boolean flag to track if the teacher record is found
@@ -168,13 +172,13 @@ class School:
         except Exception as error:
             print(f"An expected error occured: {error}")
         return record_found
-    
+
     def find_teacher_by_name(self, teacher_name):
         """
         Finds teachers by a given name. 
-        
+
         Parameters: teacher_name: Name of the teacher to search for.
-        
+
         Returns: teacher_record: boolean value True if teachers with the name are found, False otherwise.
         list: List of IDs of the teachers found with the matching name.
         (the return value is a list in case of namesakes)
@@ -206,7 +210,7 @@ class School:
         if the id is found the update_student() method is called which update the
         instance in the student_list. Then it will be converted into a dictionary 
         by the function studentObject_to_Dict and then written again into the json file
-        
+
         Parameters: id (int): ID of the student whose information is to be updated.
 
         return: a string with containing a message of succesfully updating
@@ -217,7 +221,8 @@ class School:
                     Student.update_student(i)
             # Concatenate the dictionaries of students and teachers into json_data
             # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
-            json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
+            json_data = studentObject_to_Dict(
+                self.students) + teacherObject_to_Dict(self.teachers)
             # Write the updated data back to the JSON file
             try:
                 write_json(json_data)
@@ -233,7 +238,7 @@ class School:
         if the id is found the update_teacher() method is called which update the
         instance in the teacher_list. Then it will be converted into a dictionary 
         by the function studentObject_to_Dict and then written again into the json file
-        
+
         Parameters: id (int): ID of the teacher whose information is to be updated.
 
         return: a string with containing a message of succesfully updating
@@ -241,10 +246,11 @@ class School:
         try:
             for i in self.teachers:
                 if Teacher.get_id(i) == id:
-                    Teacher.update_teacher(i)  
+                    Teacher.update_teacher(i)
             # Concatenate the dictionaries of students and teachers into json_data
             # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
-            json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers) 
+            json_data = studentObject_to_Dict(
+                self.students) + teacherObject_to_Dict(self.teachers)
             # Write the updated data back to the JSON file
             try:
                 write_json(json_data)
@@ -262,7 +268,8 @@ class School:
                     self.teachers.remove(i)
             # Concatenate the dictionaries of students and teachers into json_data
             # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
-            json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
+            json_data = studentObject_to_Dict(
+                self.students) + teacherObject_to_Dict(self.teachers)
             # Write the updated data back to the JSON file
             try:
                 write_json(json_data)
@@ -280,7 +287,8 @@ class School:
                     self.students.remove(i)
             # Concatenate the dictionaries of students and teachers into json_data
             # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
-            json_data = studentObject_to_Dict(self.students) + teacherObject_to_Dict(self.teachers)
+            json_data = studentObject_to_Dict(
+                self.students) + teacherObject_to_Dict(self.teachers)
             # Write the updated data back to the JSON file
             try:
                 write_json(json_data)
@@ -314,13 +322,14 @@ class School:
                     print(Student.print_info(i))
                     record = True
             if not record:
-                print(f"\nThe course {course} has NOT been found in the system")
+                print(
+                    f"\nThe course {course} has NOT been found in the system")
             return list
         except AttributeError as error:
             print(f"Attribute reference fails {error}")
         except Exception as error:
             print(f"An expected error occured: {error}")
-    
+
     def filter_teachers_by_subject(self, subject):
         """
         Filters and retrieves teachers who teach a specified subject.
@@ -345,13 +354,14 @@ class School:
                     print(Teacher.print_info(i))
                     record = True
             if not record:
-                print(f"\nThe subject {subject} has NOT been found in the system")
+                print(
+                    f"\nThe subject {subject} has NOT been found in the system")
             return list
         except AttributeError as error:
             print(f"Attribute reference fails {error}")
         except Exception as error:
             print(f"An expected error occured: {error}")
-    
+
     def print_list_all_courses(self):
         """
         Prints a list of all unique courses taken by students in the school.
@@ -381,7 +391,7 @@ class School:
                         ***** List of all courses in the school *****\n""")
                 # Print each course in the set
                 for i in list_courses:
-                    print(i,"\n")
+                    print(i, "\n")
             else:
                 print("There is NO courses in the system")
                 # Set the boolean variable to False if no courses were found
@@ -402,7 +412,7 @@ class School:
             list_subjects = set()
             # defining a boolean variable that returns False if the list is empty
             subject = True
-            
+
             for i in self.teachers:
                 try:
                     # Skip teachers with an empty subject_area attribute
@@ -420,7 +430,7 @@ class School:
                         ***** List of all subjects taught in the school *****\n""")
                 # Print each subject in the set
                 for i in list_subjects:
-                    print(i,"\n")
+                    print(i, "\n")
             else:
                 print("There is NO subjects in the system")
                 # Set the boolean variable to False if no subjects were found

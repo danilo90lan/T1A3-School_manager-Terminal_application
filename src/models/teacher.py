@@ -1,5 +1,6 @@
 from models import Person
 
+
 class Teacher(Person):
     """
     The Teacher class is a sub class of Person class and includes additional attributes
@@ -13,7 +14,7 @@ class Teacher(Person):
         It calls the constructor of the Person class using super()
         to initialize the inherited attributes an then initializa the teacher parameters
         by the given parameters
-    
+
         parameters: name(str), last_name(str), address(str), subject_area(str)
         """
         try:
@@ -39,15 +40,16 @@ class Teacher(Person):
         Teaching subject: {self.subject_area}
         """
         return super().print_info() + info
-    
+
     def update_teacher(self):
-            """ This method updates both inherited attributes and the subject_area attribute by the prompt of the user """
-            try:
-                # call the update_info() method inherited from the superclass
-                super().update_info()
-                # call the Person.not_empty_value
-                self.subject_area = Person.not_empty_value("New teaching subject --> ").capitalize()
-            except AttributeError as error:
-                print(f"Attribute assignment fails error")
-            except Exception as error:
-                print(f"Unexpected error occurred: {error}")
+        """ This method updates both inherited attributes and the subject_area attribute by the prompt of the user """
+        try:
+            # call the update_info() method inherited from the superclass
+            super().update_info()
+            # call the Person.not_empty_value
+            self.subject_area = Person.not_empty_value(
+                "New teaching subject --> ").capitalize()
+        except AttributeError as error:
+            print(f"Attribute assignment fails error")
+        except Exception as error:
+            print(f"Unexpected error occurred: {error}")

@@ -28,14 +28,16 @@ class Person:
     @classmethod
     def initialize_id(cls, list_id):
         """
-        This class method initializes the __id variable based on the provided list_id
+        This class method is not applied to class instance but to the class itself. 
+        It initializes the __id variable based on the provided list_id
         if list_id is empty (json file empty), it initializes __id to 0
         otherwise it initialize ID to the highest number of the list
         in order for each element of the list to have a unique ID"""
         try:
             cls.set_id(max(list_id))
         except (TypeError, ValueError) as error:
-            print(f"ID list is either empty (Null) or not proper initialized: {error}")
+            print(
+                f"ID list is either empty (Null) or not proper initialized: {error}")
             cls.set_id(0)
             print("Setting the initial ID value to 0")
         except Exception as error:
@@ -44,8 +46,10 @@ class Person:
     @classmethod
     def set_id(cls, new_id):
         """ class method setter for __id
+        This class method is not applied to class instance but to the class itself. 
         Class method setter that is called based on the JSON file 
-        to preserve the original ID of each record contained in the JSON file."""
+        to preserve the original ID of each record contained in the JSON file.
+        """
         try:
             Person.__id = new_id
         except ValueError:
@@ -55,9 +59,11 @@ class Person:
 
     @classmethod
     def get_id(cls):
-        """ class method getter """
+        """ class method getter. 
+        This class method is not applied to class instance but to the class itself.  
+        """
         return Person.__id
-    
+
     @staticmethod
     def not_empty_value(prompt):
         """static method that it's used within other methods in 
@@ -84,10 +90,12 @@ class Person:
         """This method sets the person's name, last name, and address."""
 
         try:
-                self.name = Person.not_empty_value("New name --> ").capitalize()
-                self.last_name = Person.not_empty_value("New last name --> ").capitalize()
-                self.address = Person.not_empty_value("New address --> ").capitalize()
+            self.name = Person.not_empty_value("New name --> ").capitalize()
+            self.last_name = Person.not_empty_value(
+                "New last name --> ").capitalize()
+            self.address = Person.not_empty_value(
+                "New address --> ").capitalize()
         except AttributeError:
-                print("Attribute assignment fails")
+            print("Attribute assignment fails")
         except Exception as error:
             print(f"Unexpected error occurred: {error}")
