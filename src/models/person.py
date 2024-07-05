@@ -7,19 +7,23 @@ class Person:
     """
 
     #  class variable with encapsulation
-    #  This method is called at the very beginning of the main function,
+    #  The id initializzation method is called at the very beginning of the main function,
     #  based on the data from the JSON file.
     __id = None
 
     def __init__(self, name, last_name, address):
         """ The constructor initializes a new instance of Person """
-        # check if the __id has been initialized with a value
-        if Person.__id is None:
-            raise ValueError("ID has not been initialized")
-        Person.__id += 1
-        self.name = name
-        self.last_name = last_name
-        self.address = address
+        try:
+            Person.__id += 1
+            self.name = name
+            self.last_name = last_name
+            self.address = address
+        except AttributeError:
+            print("Attribute assignment fails")
+        except NameError:
+            print("id is not initialized.")
+        except Exception as error:
+            print(f"An expected error occured: {error}")
 
     @classmethod
     def initialize_id(cls, list_id):

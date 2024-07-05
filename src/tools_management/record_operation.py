@@ -186,31 +186,36 @@ def menu_search_student_teacher(school, entity_profile):
                                     break
                             except ValueError:
                                 print("\nInput must be a number")
+                            except Exception as error:
+                                print(f"An expected error occured: {error}")
                     
                     # Search by name
                     elif choice == "2":
-                        if entity_profile == Student.profile:
-                            # If searching for a student, prompt user for student's name
-                            student_name = input(f"Enter student's name: ")
-                            # Call find_student_by_name method to find matching students
-                            # this method returns a boolean True if at least one match is found and a list of id of the found students 
-                            student_found, students_found_id = school.find_student_by_name(student_name)
-                            
-                           # If students_found == True, call menu_update_delete function for further actions
-                            if student_found:
-                                menu_update_delete(school, Student.profile, students_found_id)
+                        try: 
+                            if entity_profile == Student.profile:
+                                # If searching for a student, prompt user for student's name
+                                student_name = input(f"Enter student's name: ")
+                                # Call find_student_by_name method to find matching students
+                                # this method returns a boolean True if at least one match is found and a list of id of the found students 
+                                student_found, students_found_id = school.find_student_by_name(student_name)
                                 
-                        elif entity_profile == Teacher.profile:
-                            # If searching for a teacher, prompt user for teacher's name
-                            teacher_name = input("Enter teacher's name: ")
-                            # Call find_teacher_by_name method to find matching teachers
-                            # this method returns a boolean True if at least one match is found and a list of id of the found teachers 
-                            teacher_found, teachers_found_id = school.find_teacher_by_name(teacher_name)
-                            
-                            # If teachers found == True, call menu_update_delete function for further actions
-                            if teacher_found:
-                                menu_update_delete(school, Teacher.profile, teachers_found_id)             
-                    
+                            # If students_found == True, call menu_update_delete function for further actions
+                                if student_found:
+                                    menu_update_delete(school, Student.profile, students_found_id)
+                                    
+                            elif entity_profile == Teacher.profile:
+                                # If searching for a teacher, prompt user for teacher's name
+                                teacher_name = input("Enter teacher's name: ")
+                                # Call find_teacher_by_name method to find matching teachers
+                                # this method returns a boolean True if at least one match is found and a list of id of the found teachers 
+                                teacher_found, teachers_found_id = school.find_teacher_by_name(teacher_name)
+                                
+                                # If teachers found == True, call menu_update_delete function for further actions
+                                if teacher_found:
+                                    menu_update_delete(school, Teacher.profile, teachers_found_id)             
+                        except Exception as error:
+                            print(f"An expected error occured: {error}")
+
                     elif choice == "3":
                         # Exit the loop if user chooses to cancel
                         break
@@ -237,14 +242,21 @@ def menu_update_delete(school, entity_profile, id):
         choice = input("Enter your operation: ")
 
         if choice == "1":
-             # If user chooses to update, call update_delete_records function with "update" operation
-            update_delete_records(school, entity_profile, id, "update")
+            try:
+                # If user chooses to update, call update_delete_records function with "update" operation
+                update_delete_records(school, entity_profile, id, "update")
+            except Exception as error:
+                print(f"An expected error occured: {error}")
             break
                 
         elif choice == "2":
-            # If user chooses to delete, call update_delete_records function with "delete" operation
-            update_delete_records(school, entity_profile, id, "delete")
-            break
+            try:
+                # If user chooses to delete, call update_delete_records function with "delete" operation
+                update_delete_records(school, entity_profile, id, "delete")
+                break
+            except Exception as error:
+                print(f"An expected error occured: {error}")
+        
         elif choice == "3":
             # If user chooses to go back, exit the loop
             break
@@ -299,25 +311,29 @@ def update_delete_records(school, entity_profile, id, operation):
                     break
             except ValueError:
                 print("\nInvalid input. Must be a number, try again")
+            except Exception as error:
+                print(f"An expected error occured: {error}")
     
     # control if the ID parameter is an integer type. 
     # If True directly perform the update or delete operation.
     # there is no need to prompt the user to confirm the ID since the serch was made by ID through
     # the find_student_by_id, find_teacher_by_id) method which returns only one ID
-
-    if type(id) == int:
-        if entity_profile == Student.profile:
-            if operation == "update":
-                # Call school's student_update method with the ID
-                print(school.student_update(id))
-            elif operation == "delete":
-                # Call school's delete_student method with the ID
-                print(school.delete_student(id))
-            
-        elif entity_profile == Teacher.profile:
-            if operation == "update":
-                # Call school's teacher_update method with the ID
-                print(school.teacher_update(id))
-            elif operation == "delete":
-                # Call school's delete_teacher method with the ID
-                print(school.delete_teacher(id))
+    try:
+        if type(id) == int:
+            if entity_profile == Student.profile:
+                if operation == "update":
+                    # Call school's student_update method with the ID
+                    print(school.student_update(id))
+                elif operation == "delete":
+                    # Call school's delete_student method with the ID
+                    print(school.delete_student(id))
+                
+            elif entity_profile == Teacher.profile:
+                if operation == "update":
+                    # Call school's teacher_update method with the ID
+                    print(school.teacher_update(id))
+                elif operation == "delete":
+                    # Call school's delete_teacher method with the ID
+                    print(school.delete_teacher(id))
+    except Exception as error:
+        print(f"An expected error occured: {error}")
