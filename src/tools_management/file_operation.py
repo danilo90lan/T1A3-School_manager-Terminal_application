@@ -43,12 +43,10 @@ def read_json():
                     # and append it to teacher list
                     teacher = Teacher(i["Name"], i["Last name"], i["Address"], i["Subject"])
                     teachers.append(teacher) 
-
     except FileNotFoundError:
         print(f"The file {filepath} doesn't exist. It will  be created")
     except Exception as error:
         print(f"An expected error occured: {error}")
-    
     return students, teachers, list_id
 
 # function to write on a json file

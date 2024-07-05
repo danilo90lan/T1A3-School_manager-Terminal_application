@@ -9,10 +9,12 @@ class Teacher(Person):
     profile = "Teacher"
 
     def __init__(self, name, last_name, address, subject_area):
-        """ The constructor initializes a new instance of Teacher
+        """ The constructor initializes a new instance of Student 
         It calls the constructor of the Person class using super()
-        to initialize the inherited attributes and then 
-        initializes the subject_area attribute with the provided parameter
+        to initialize the inherited attributes an then initializa the teacher parameters
+        by the given parameters
+    
+        parameters: name(str), last_name(str), address(str), subject_area(str)
         """
         try:
             super().__init__(name, last_name, address)

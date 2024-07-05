@@ -8,8 +8,9 @@ class School:
     """
     def __init__(self, students, teachers):
         """ 
-        The constructor initializes the class with two arguments: students and teachers, 
-        which are lists containing student and teacher instances.
+        The constructor initializes the instance:  
+        
+        parameters:  students, teachers: list of student's instances and list of teacher's instances .
         """
         try:
             self.students = students

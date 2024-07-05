@@ -11,8 +11,10 @@ class Student(Person):
     def __init__(self, name, last_name, address, course):
         """ The constructor initializes a new instance of Student 
         It calls the constructor of the Person class using super()
-        to initialize the inherited attributes and then 
-        initializes the course attribute with the provided parameter
+        to initialize the inherited attributes an then initializa the student parameters
+        by the given parameters
+    
+        parameters: name(str), last_name(str), address(str), course(str)
         """
         try:
             super().__init__(name, last_name, address)
