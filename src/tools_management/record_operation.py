@@ -14,7 +14,7 @@ def student_new_record():
         address = Person.not_empty_value("Enter address: ").capitalize()
         course = Person.not_empty_value("Enter course name: ").capitalize()
         # create an instance of the Student class
-        student = Person.not_empty_value(name, last_name, address, course)
+        student = Student(name, last_name, address, course)
         return student
     except AttributeError:
         print("Attribute assignment fails")
@@ -173,7 +173,7 @@ def menu_search_student_teacher(school, entity_profile):
                 if entity_profile == Student.profile:
                     # If searching for a student, prompt user for student's
                     # name
-                    student_name = input(f"Enter student's name: ")
+                    student_name = input(f"Enter student's name: ").strip()
                     # Call find_student_by_name method to find matching students
                     # this method returns a boolean True if at least one match
                     # is found and a list of id of the found students
@@ -189,7 +189,7 @@ def menu_search_student_teacher(school, entity_profile):
                 elif entity_profile == Teacher.profile:
                     # If searching for a teacher, prompt user for teacher's
                     # name
-                    teacher_name = input("Enter teacher's name: ")
+                    teacher_name = input("Enter teacher's name: ").strip()
                     # Call find_teacher_by_name method to find matching teachers
                     # this method returns a boolean True if at least one match
                     # is found and a list of id of the found teachers
@@ -217,8 +217,8 @@ def menu_update_delete(school, entity_profile, id):
     It executes the appropriate operation by calling the update_delete_records function.
 
     parameters: school: object containing methods for manipulating students and teachers instances
-    such as updating and deleting records, entity_profile: an attribute indicating if the entity is a student
-    or teacher, id: ID number of the record that is going to be either updated or deleted
+                entity_profile: an attribute indicating if the entity is a student or teacher, 
+                id: ID number of the record that is going to be either updated or deleted
     """
     print("What would you like to do?")
     while True:
@@ -276,7 +276,7 @@ def update_delete_records(school, entity_profile, id, operation):
         while True:
             try:
                 id_input = int(input(
-                    "\nEnter ID to confirm the correct record to UPDATE in case there are namesakes: "))
+                    "\nEnter ID to confirm the correct record to UPDATE in case of namesakes: "))
                 # If the id_input is found in the list `id`, proceed with the update or delete operation
                 # of the student or teacher instance based on the
                 # entity_profile

@@ -227,7 +227,7 @@ class School:
             try:
                 write_json(json_data)
             except Exception as error:
-                print(f"Error saving matches: {error}")
+                print(f"Error saving data: {error}")
             return f"\nThe student info with ID: {id} has beeen succesfully updated!"
         except Exception as error:
             print(f"An expected error occured: {error}")
@@ -255,7 +255,7 @@ class School:
             try:
                 write_json(json_data)
             except Exception as error:
-                print(f"Error saving matches: {error}")
+                print(f"Error saving data: {error}")
             return f"\nThe teacher info with ID: {id} has been succesfully updated!"
         except Exception as error:
             print(f"An expected error occured: {error}")
@@ -274,7 +274,7 @@ class School:
             try:
                 write_json(json_data)
             except Exception as error:
-                print(f"Error saving matches: {error}")
+                print(f"Error saving data: {error}")
             return f"\nThe teacher record wih ID: {id} has been succesfully deleted!"
         except Exception as error:
             print(f"An expected error occured: {error}")
@@ -293,7 +293,7 @@ class School:
             try:
                 write_json(json_data)
             except Exception as error:
-                print(f"Error saving matches: {error}")
+                print(f"Error saving data: {error}")
             return f"\n The student with ID: {id} has been succesfully deleted!"
         except Exception as error:
             print(f"An expected error occured: {error}")

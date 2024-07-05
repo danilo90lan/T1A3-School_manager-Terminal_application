@@ -89,7 +89,7 @@ def main():
                 try:
                     write_json(json_data, "New data added succesfully!")
                 except Exception as error:
-                    print(f"Error saving matches: {error}")
+                    print(f"Error saving data: {error}")
 
             case "2":
                 new_record = "Y"
@@ -114,7 +114,7 @@ def main():
                 try:
                     write_json(json_data, "New data added succesfully!")
                 except Exception as error:
-                    print(f"Error saving matches: {error}")
+                    print(f"Error saving data: {error}")
 
             case "3":
                 try:
@@ -154,7 +154,7 @@ def main():
                     # enter the subject name to search for
                     if (school.print_list_all_subjects()):
                         subject = input(
-                            "\nEnter the subject for which you want to list the teachers: ")
+                            "\nEnter the subject for which you want to list the teachers: ").strip()
 
                         # store in the teachers_by_subject variable the returned list from
                         # the filter_teachers_by_subject method which has the
@@ -183,7 +183,7 @@ def main():
                                             teacherObject_to_Dict(teachers_by_subject), message, file_path)
                                         break
                                     except Exception as error:
-                                        print(f"Error saving matches: {error}")
+                                        print(f"Error saving data: {error}")
                                 elif choice in "Nn":
                                     break
                 except Exception as error:
@@ -195,7 +195,7 @@ def main():
                     # enter the course name to search for
                     if (school.print_list_all_courses()):
                         course = input(
-                            "\nEnter the course for which you want to list the students: ")
+                            "\nEnter the course for which you want to list the students: ").strip()
 
                         # store in the students_by_course variable the returned list from
                         # the filter_students_by_course method which has the
@@ -224,7 +224,7 @@ def main():
                                             studentObject_to_Dict(students_by_course), message, file_path)
                                         break
                                     except Exception as error:
-                                        print(f"Error saving matches: {error}")
+                                        print(f"Error saving data: {error}")
                                 elif choice in "Nn":
                                     break
                 except Exception as error:
