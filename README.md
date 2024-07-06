@@ -329,3 +329,87 @@ This School class manages collections of Student and Teacher objects, providing 
 ![Search records](./docs/trello-search_record.png)
 ![list subject_course](./docs/trello-list_course_subject.png)
 ![trello tracking plan](./docs/tracking5.png)
+
+### main() Function
+main() is the main hub for managing a school's data (like students and teachers) through interactions with the user.  
+It uses principles where School, Person, Teacher, and Student are structured classes that help organize and handle data effectively.
+You can add new records, show data, search for specific entries, filter by criteria like subjects or courses, and export data. These tasks are managed through methods within the School class and helper functions (read_json, write_json, etc.).
+By separating different tasks into clear functions and classes, the program can grow without becoming confusing. 
+
+#### Initialization:
+- Reads data from a JSON file using read_json(), which returns lists of student instances, teacher instances, and a list of IDs.
+- Initializes a School object (school) using the lists of student and teacher instances obtained from the JSON file.
+- Initializes ID for Person objects using Person.initialize_id(list_id)
+- Retrieves the current date and formats it as a string (current_date) using the datetime module imported at the top of the script
+
+#### Menu Options:
+1. **Enter new teacher:**  
+Allows the user to add new teacher records (teacher_new_record()), append them to teachers_instances, and write updated data to a JSON file using write_json().
+
+2. **Enter new student:**  
+Allows the user to add new student records (student_new_record()), append them to students_instances, and write updated data to a JSON file using write_json().
+
+3. **Display teachers records (A - Z):**  
+Displays all teachers' records sorted alphabetically by calling school.display_all_teachers().
+
+4. **Display students records (A - Z):**
+Displays all students' records sorted alphabetically by calling school.display_all_students().
+
+5. **Search student:**
+Initiates a search operation for students by ID or name using menu_search_student_teacher(school, Student.PROFILE)
+
+6. **Search teacher:**
+Initiates a search operation for teachers by ID or name using menu_search_student_teacher(school, Teacher.PROFILE).
+
+7. **Filter teachers by subject:**
+Allows filtering of teachers by subject, prompts for user input to select a subject, filters teachers using school.filter_teachers_by_subject(subject), and optionally exports results to a new JSON file.
+
+8. **Filter students by course:**
+Allows filtering of students by course, prompts for user input to select a course, filters students using school.filter_students_by_course(course), and optionally exports results to a new JSON file.
+
+![trello export data](./docs/trello-export_data.png)
+
+9. **List all subjects:**
+Lists all subjects taught in the school by calling school.print_list_all_subjects()
+
+10. **List all courses:**
+Lists all courses available in the school by calling school.print_list_all_courses()
+
+11. **Exit program:**
+
+![trello tracking plan](./docs/tracking_final.png)
+
+### Testing
+The last final step of the development plan is the testing.
+
+#### Verify ID assignment and uniqueness:
+- Create several Student and Teacher instances.
+- Retrieve IDs using get_id() method and verify uniqueness using assertions or print statements.
+- Check that IDs are correctly assigned and incremented without overlaps.
+
+#### Test methods for modifying attributes:
+-  Modify attributes (name, last_name, address) of Person instances and verify changes.
+
+#### Test data reading and data writing:
+- Use sample JSON data containing Student and Teacher records.
+- Modify some records or add new records programmatically.
+- Write modified data using write_json() function and validate that changes are reflected in the new JSON file.
+
+#### Test error handling for data inconsistencies or file not found scenarios:
+- Introduce errors in the JSON file (e.g., missing fields, incorrect format) or provide a non-existent file path.
+- Call read_json() function and handle exceptions (FileNotFoundError, ValueError) appropriately.
+- Ensure that error messages or exceptions are captured and handled gracefully.
+
+#### Validate search by name and ID for students and teachers:
+- Create instances of Student and Teacher with known attributes.
+- Implement search methods
+- Verify that searches return the correct instances or IDs.
+
+#### Test filtering capabilities by subject or course criteria:
+- Create Student and Teacher instances with various subjects and courses.
+- Implement filtering methods
+- Validate that filtered results match expected criteria and that edge cases (such as no matches) are handled correctly.
+
+I will use assert statements with pytest to ensure that the tests validate expected outcomes effectively.
+
+![Testing](./docs/trello-testing.png)
