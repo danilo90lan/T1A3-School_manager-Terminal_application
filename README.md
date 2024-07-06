@@ -86,7 +86,7 @@ The models package contains the following modules:
 - **Person**: This is the base class that defines common attributes for both students and teachers, and includes methods for updating and viewing records.
 - **Student**: This class inherits from Person and includes additional attributes specific to students, along with methods to update and view student-specific data.
 - **Teacher**: This class inherits from Person and includes additional attributes specific to teachers, along with methods to update and view teacher-specific data.
-- **School**: This class includes methods to manipulate the student and teacher instances for searching, filtering, and updating records.
+- **School**: This class provides a set of methods to manage and interact with collections of Student and Teacher objects
 
 ### Tools Management
 The tools_management package contains the following modules:
@@ -234,3 +234,65 @@ The file_path is a constant but has an optional parameter if the user wants to p
 - It opens the specified file_path in write mode ("w").
 - It uses json.dump() to write the sorted_json_data to the file.
 - After successfully writing the JSON data to the file, the function prints a message which is an optional parameter to confirm the operation completed.
+
+![functionality checklist](./docs/trello-functionality_checklist.png)
+![trello tracking](./docs/tracking2.png)
+
+
+
+### 3. School Class
+This School class manages collections of Student and Teacher objects, providing methods for display, search, update, deletion, and filtering based on course or subject.
+
+#### Constructor
+- Initializes the School object with two attributes (a list of students objects and a list of teachers objects).
+
+#### display_all_students()
+- Sorts and displays all student objects alphabetically by name and last name, using the sorted() function with a lambda function as the key to sort.
+- Prints each student's information using Student.print_info() method.
+- Returns the number of students or a message if no students are present
+
+#### find_student_by_id(student_id)
+- Searches for a student by its ID
+- Iterates through self.students list and compares ID using Student.get_id()
+- Prints student information if found, otherwise prints a message.
+- Returns True if student is found, False otherwise.
+
+#### find_student_by_name(student_name)
+- Finds students by its name.
+- Iterates through self.students list and compares name attribute with the given name as parameter
+- Prints student information if found and returns True, along with a list of IDs if multiple matches are found. (in case of namesakes)
+- Returns False if no students are found with the given name.
+
+#### student_update(id)
+- Updates a student's information based on the given ID
+- Calls Student.update_student() method if student ID matches.
+- Converts updated data to dictionaries using student_object_to_dict() function
+- Writes updated data to JSON file using write_json().
+
+#### delete_student(id)
+- Deletes a student's record based on the given ID.
+- Removes the student instance from self.students list if ID matches.
+- Updates JSON file with the remaining data using write_json().
+
+#### The same functions are built for the Teacher objects, working in the same way but operating on the Teacher instances list instead
+
+![Trello display records](./docs/trello_display_records.png)
+
+#### filter_students_by_course(course)
+- Filters and retrieves students enrolled in a specified course.
+- Iterate through the students list and if the student's course attribute is the same to the given course value append it to the matching_student list
+- Prints matching student information and returns a list of matching students.
+
+#### filter_teachers_by_subject(subject)
+- Filters and retrieves teachers who teach a specified subject.
+- Similar to filter_students_by_course, but operates on self.teachers and search for the subject attribute instead
+
+#### print_list_all_courses()
+- Prints a list of all unique courses taken by students.
+- Uses a set variable to store unique courses.
+- Prints each course and returns True if courses are found; otherwise, returns False.
+
+#### print_list_all_subjects()
+- Prints a list of all unique subjects taught by teachers.
+- Uses a set variable to store unique subjects.
+- Prints each subject and returns True if subjects are found; otherwise, returns False.
