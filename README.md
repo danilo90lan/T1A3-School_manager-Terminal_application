@@ -238,7 +238,32 @@ The file_path is a constant but has an optional parameter if the user wants to p
 ![functionality checklist](./docs/trello-functionality_checklist.png)
 ![trello tracking](./docs/tracking2.png)
 
+### record_operation module
+This module consist of several functions and utility methods designed to manage records of students and teachers in a school system
 
+#### student_new_record() and teacher_new_record():
+- These functions prompt the user to enter information like name, last name, address, and either course (for students) or teaching subject (for teachers).
+- They create instances of Student or Teacher classes respectively and return the created object (Student or Teacher)
+
+#### student_object_to_dict(students) and teacher_object_to_dict(teachers):
+- These functions convert lists of Student or Teacher objects into lists of dictionaries in order to be written to a JSON file
+- Each dictionary represents an object's instance with these attributes (#ID, Name, Last name, Address, Course or Subject, Profile).
+
+#### menu_search_student_teacher(school, entity_profile):
+- This function displays a menu allowing users to search for either students or teachers by ID or name.
+- Based on the entity_profile (either Student.PROFILE or Teacher.PROFILE), it interacts with the school object to perform searches.
+- Depending on the search type chosen, it calls appropriate methods (find_student_by_id, find_student_by_name, find_teacher_by_id, find_teacher_by_name)
+
+#### update_delete_records(school, entity_profile, id, operation):
+- This function updates or deletes student or teacher records based on the operation parameter (update or delete).
+-Depending on the entity_profile (student or teacher), it calls methods on the school object (student_update, delete_student, teacher_update, delete_teacher) to perform the requested operation.
+
+#### menu_update_delete(school, entity_profile, id):
+- This function displays a sub-menu allowing users to update or delete a student's or teacher's record.
+- Based on the entity_profile and id provided, it interacts with the school object to perform update or delete operations (update_delete_records function).
+
+![feature add new records](./docs/trello-add_new_records.png)
+![trello tracking plan](./docs/tracking3.png)
 
 ### 3. School Class
 This School class manages collections of Student and Teacher objects, providing methods for display, search, update, deletion, and filtering based on course or subject.
@@ -258,10 +283,13 @@ This School class manages collections of Student and Teacher objects, providing 
 - Returns True if student is found, False otherwise.
 
 #### find_student_by_name(student_name)
-- Finds students by its name.
+- Finds student by its name.
 - Iterates through self.students list and compares name attribute with the given name as parameter
 - Prints student information if found and returns True, along with a list of IDs if multiple matches are found. (in case of namesakes)
+- It handles scenarios where multiple records might match the search criteria (id could be a single integer or a list of integers) in the case of namesakes. In such cases, it checks the type of id: if it is an integer, it is passed directly to the update_delete function. If it is a list, the function prompts the user to confirm the id due to potential namesakes."
 - Returns False if no students are found with the given name.
+
+![find student by name](./docs/flowchart_find_student_by_name.png)
 
 #### student_update(id)
 - Updates a student's information based on the given ID
@@ -296,3 +324,8 @@ This School class manages collections of Student and Teacher objects, providing 
 - Prints a list of all unique subjects taught by teachers.
 - Uses a set variable to store unique subjects.
 - Prints each subject and returns True if subjects are found; otherwise, returns False.
+
+![Filter records](./docs/trello-filter_records.png)
+![Search records](./docs/trello-search_record.png)
+![list subject_course](./docs/trello-list_course_subject.png)
+![trello tracking plan](./docs/tracking5.png)
