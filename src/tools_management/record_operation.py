@@ -277,59 +277,46 @@ def update_delete_records(school, entity_profile, id, operation):
             try:
                 id_input = int(input(
                     "\nEnter ID to confirm the correct record to UPDATE in case of namesakes: "))
-                # If the id_input is found in the list `id`, proceed with the update or delete operation
-                # of the student or teacher instance based on the
-                # entity_profile
 
+                # If the id_input is found in the list `id`, proceed with the update or delete operation
                 if id_input in id:
-                    if entity_profile == Student.profile:
-                        if operation == "update":
-                            # Call school's student_update method with the ID
-                            print(school.student_update(id_input))
-                            break
-                        elif operation == "delete":
-                            # Call school's delete_student method with the ID
-                            print(school.delete_student(id_input))
-                            break
-                    elif entity_profile == Teacher.profile:
-                        if operation == "update":
-                            # Call school's teacher_update method with the ID
-                            print(school.teacher_update(id_input))
-                            break
-                        elif operation == "delete":
-                            # Call school's delete_teacher method with the ID
-                            print(school.delete_teacher(id_input))
-                            break
+                    id_update_delete = id_input
+                    break
                 else:
                     print(
                         f"\nID: {id_input} doesn't match any record from the search")
-                    break
+                    # if the ID is not found in the search's list the function ends the execution
+                    return None
             except ValueError:
                 print("\nInvalid input. Must be a number, try again")
             except Exception as error:
                 print(f"An expected error occured: {error}")
 
-    # control if the ID parameter is an integer type.
-    # If True directly perform the update or delete operation.
-    # there is no need to prompt the user to confirm the ID since the serch was made by ID through
-    # the find_student_by_id, find_teacher_by_id) method which returns only
-    # one ID
-    try:
-        if type(id) == int:
-            if entity_profile == Student.profile:
-                if operation == "update":
-                    # Call school's student_update method with the ID
-                    print(school.student_update(id))
-                elif operation == "delete":
-                    # Call school's delete_student method with the ID
-                    print(school.delete_student(id))
+    # if the id type is an integer means there is only one found record and
+    # there is no need to prompt the user to confirm it by entering the ID
+    elif type(id) == int:
+        id_update_delete = id
 
-            elif entity_profile == Teacher.profile:
-                if operation == "update":
-                    # Call school's teacher_update method with the ID
-                    print(school.teacher_update(id))
-                elif operation == "delete":
-                    # Call school's delete_teacher method with the ID
-                    print(school.delete_teacher(id))
+    # the instruction block is executed based on the entity_profile (student or teacher)
+    try:
+        if entity_profile == Student.profile:
+            if operation == "update":
+                # Call school's student_update method with the ID
+                print(school.student_update(id_update_delete))
+
+            elif operation == "delete":
+                # Call school's delete_student method with the ID
+                print(school.delete_student(id_update_delete))
+
+        elif entity_profile == Teacher.profile:
+            if operation == "update":
+                # Call school's teacher_update method with the ID
+                print(school.teacher_update(id_update_delete))
+
+            elif operation == "delete":
+                # Call school's delete_teacher method with the ID
+                print(school.delete_teacher(id_update_delete))
+    except AttributeError:
+        print("Attribute reference fails")
     except Exception as error:
         print(f"An expected error occured: {error}")
