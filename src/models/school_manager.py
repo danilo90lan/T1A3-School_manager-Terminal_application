@@ -1,5 +1,5 @@
 from models import Student, Teacher
-from tools_management import write_json, studentObject_to_Dict, teacherObject_to_Dict
+from tools_management import write_json, student_object_to_dict, teacher_object_to_dict
 
 
 class School:
@@ -221,8 +221,8 @@ class School:
                     Student.update_student(i)
             # Concatenate the dictionaries of students and teachers into json_data
             # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
-            json_data = studentObject_to_Dict(
-                self.students) + teacherObject_to_Dict(self.teachers)
+            json_data = student_object_to_dict(
+                self.students) + teacher_object_to_dict(self.teachers)
             # Write the updated data back to the JSON file
             try:
                 write_json(json_data)
@@ -249,8 +249,8 @@ class School:
                     Teacher.update_teacher(i)
             # Concatenate the dictionaries of students and teachers into json_data
             # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
-            json_data = studentObject_to_Dict(
-                self.students) + teacherObject_to_Dict(self.teachers)
+            json_data = student_object_to_dict(
+                self.students) + teacher_object_to_dict(self.teachers)
             # Write the updated data back to the JSON file
             try:
                 write_json(json_data)
@@ -268,8 +268,8 @@ class School:
                     self.teachers.remove(i)
             # Concatenate the dictionaries of students and teachers into json_data
             # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
-            json_data = studentObject_to_Dict(
-                self.students) + teacherObject_to_Dict(self.teachers)
+            json_data = student_object_to_dict(
+                self.students) + teacher_object_to_dict(self.teachers)
             # Write the updated data back to the JSON file
             try:
                 write_json(json_data)
@@ -287,8 +287,8 @@ class School:
                     self.students.remove(i)
             # Concatenate the dictionaries of students and teachers into json_data
             # by converting it into dictionaries using the studentObject_to_Dict and the teacherObject_to_Dict functions
-            json_data = studentObject_to_Dict(
-                self.students) + teacherObject_to_Dict(self.teachers)
+            json_data = student_object_to_dict(
+                self.students) + teacher_object_to_dict(self.teachers)
             # Write the updated data back to the JSON file
             try:
                 write_json(json_data)

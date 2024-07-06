@@ -3,7 +3,7 @@ from operator import itemgetter
 from models import Person, Teacher, Student
 
 # constant
-filepath = "./data/school_database.json"
+FILE_PATH = "./data/school_database.json"
 
 # function to read from Jason file
 
@@ -22,13 +22,13 @@ def read_json():
 # read the json file and create new instances of Student and Teacher and put them in two different lists
     try:
         # open file in reading mode
-        with open(filepath, "r") as file:
+        with open(FILE_PATH, "r") as file:
             json_data = json.load(file)
             for i in json_data:
                 # Collect IDs from JSON data and append it to the list_id
                 list_id.append(i["#ID"])
 
-                if i["Profile"] == Student.profile:
+                if i["Profile"] == Student.PROFILE:
                     # Retrieve the ID for each dictionary in the JSON file and set it to the Person class variable.
                     # Subtract 1 because creating an instance of the class automatically increments the __id variable by 1,
                     # in this way each dictionary keeps its original ID.
@@ -40,7 +40,7 @@ def read_json():
                         i["Name"], i["Last name"], i["Address"], i["Course"])
                     students.append(student)
 
-                elif i["Profile"] == Teacher.profile:
+                elif i["Profile"] == Teacher.PROFILE:
                     Person.set_id(i["#ID"] - 1)
                     # create an instance of Teacher using the dictionary keys values as attributes.
                     # and append it to teacher list
@@ -48,7 +48,7 @@ def read_json():
                         i["Name"], i["Last name"], i["Address"], i["Subject"])
                     teachers.append(teacher)
     except FileNotFoundError:
-        print(f"The file {filepath} doesn't exist. It will be created")
+        print(f"The file {FILE_PATH} doesn't exist. It will be created")
     except Exception as error:
         print(f"An expected error occured: {error}")
     return students, teachers, list_id
@@ -56,7 +56,7 @@ def read_json():
 # function to write on a json file
 
 
-def write_json(json_data, message="", file_path=filepath):
+def write_json(json_data, message = "", file_path = FILE_PATH):
     """
     Sort a list of a dictionaries in alphabetic order using the sorted function that
     returns a new sorted list based on the keys provided, and it write it into a json file

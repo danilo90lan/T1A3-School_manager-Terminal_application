@@ -1,10 +1,12 @@
 # T1A3 - School Management Application
 
-## Installation requirement
+## Installation requirements
 
 ### Prerequisites
-- Python 3.10 or higher
-- Pyhton3 virtual environments (venv)
+- Python 3.10 or higher installed 
+  (https://installpython3.com/)
+- Pyhton3 virtual environment (venv) installed 
+  (https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
 
 ### Step by step installation
 1. Open the terminal
@@ -16,6 +18,9 @@ cd ./src/T1A3-School_manager
 ```
 ./run.sh
 ```
+
+## GitHub Repository
+[Link to my GitHub Repository](https://github.com/danilo90lan/T1A3-School_manager-Terminal_application)
 
 ## Introduction
 This application is designed to help manage student and teacher records in a school system.  
@@ -56,3 +61,19 @@ With this app is possible to:
 ### 7. Export Data
 - Export lists of filtered teachers or students to a different new JSON file.
 - Save new records to the JSON file after adding them and sort them alphabetically.
+
+## Code style guide
+This application adheres to the PEP 8 style guide.
+- Use 4 spaces per indentation level.
+- Limit all lines to a maximum of 79 characters.
+- Surround top-level function and class definitions with two blank lines.
+- Method definitions inside a class are surrounded by a single blank line.
+- Imports are always put at the top of the file, just after any module comments and docstrings, and before module globals and constants.
+- Use meaningful variable and function names.
+- Include docstrings for all modules, classes, and functions.
+- Modules should have short, all-lowercase names.
+- Function names should be lowercase, with words separated by underscores as necessary to improve readability, as well as method names
+- Constants are usually defined on a module level and written in all capital letters with underscores separating words
+
+###### Source reference
+https://peps.python.org/pep-0008/

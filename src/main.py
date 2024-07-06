@@ -1,6 +1,6 @@
 from datetime import datetime
 from models import Person, Teacher, Student, School
-from tools_management import read_json, write_json, studentObject_to_Dict, teacherObject_to_Dict
+from tools_management import read_json, write_json, student_object_to_dict, teacher_object_to_dict
 from tools_management import student_new_record, teacher_new_record, menu_search_student_teacher
 
 # main function
@@ -81,8 +81,8 @@ def main():
                         print("\n")
                     # concatenate list students and list teachers after
                     # converting them into a lisgt of dictionaries
-                    json_data = studentObject_to_Dict(
-                        students_instances) + teacherObject_to_Dict(teachers_instances)
+                    json_data = student_object_to_dict(
+                        students_instances) + teacher_object_to_dict(teachers_instances)
                 except Exception as error:
                     print(f"An expected error occured: {error}")
                 # write the new lists to json file after adding all new records
@@ -106,8 +106,8 @@ def main():
                         print("\n")
                     # concatenate list students and list teachers after
                     # converting them into a lisgt of dictionaries
-                    json_data = studentObject_to_Dict(
-                        students_instances) + teacherObject_to_Dict(teachers_instances)
+                    json_data = student_object_to_dict(
+                        students_instances) + teacher_object_to_dict(teachers_instances)
                 except Exception as error:
                     print(f"An expected error occured: {error}")
                 # write the new lists to json file after adding all new records
@@ -118,7 +118,7 @@ def main():
 
             case "3":
                 try:
-                    # Displaying all teachers by calling the method
+                    # Displaying all teacheStudentrs by calling the method
                     # display_all_teachers()
                     print(school.display_all_teachers())
                 except Exception as error:
@@ -135,7 +135,7 @@ def main():
                     # Searching for a student by ID or name by calling the menu_search_student_teacher() method
                     # the argument is Student.profile in order to perform the
                     # opeartions on the student list
-                    menu_search_student_teacher(school, Student.profile)
+                    menu_search_student_teacher(school, Student.PROFILE)
                 except Exception as error:
                     print(f"An expected error occured: {error}")
             case "6":
@@ -143,7 +143,7 @@ def main():
                     # Searching for a student by ID or name by calling the menu_search_student_teacher() method
                     # the argument is Teacher.profile in order to perform the
                     # opeartions on the teachers list
-                    menu_search_student_teacher(school, Teacher.profile)
+                    menu_search_student_teacher(school, Teacher.PROFILE)
                 except Exception as error:
                     print(f"An expected error occured: {error}")
             case "7":
@@ -180,7 +180,7 @@ def main():
                                     # new file path as arguments
                                     try:
                                         write_json(
-                                            teacherObject_to_Dict(teachers_by_subject), message, file_path)
+                                            teacher_object_to_dict(teachers_by_subject), message, file_path)
                                         break
                                     except Exception as error:
                                         print(f"Error saving data: {error}")
@@ -221,7 +221,7 @@ def main():
                                     # new file path as arguments
                                     try:
                                         write_json(
-                                            studentObject_to_Dict(students_by_course), message, file_path)
+                                            student_object_to_dict(students_by_course), message, file_path)
                                         break
                                     except Exception as error:
                                         print(f"Error saving data: {error}")

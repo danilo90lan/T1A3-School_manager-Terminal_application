@@ -7,7 +7,7 @@ class Student(Person):
     and methods specific to students
     """
     # class const
-    profile = "Student"
+    PROFILE = "Student"
 
     def __init__(self, name, last_name, address, course):
         """ The constructor initializes a new instance of Student 
@@ -20,7 +20,7 @@ class Student(Person):
         try:
             super().__init__(name, last_name, address)
             self.course = course
-            self.profile = Student.profile
+            self.profile = Student.PROFILE
             self.__id = Person.get_id()
         except AttributeError as error:
             print(f"Attribute assignment fails {error}")

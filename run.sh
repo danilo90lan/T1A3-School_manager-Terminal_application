@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Check if Python 3 is available
 if [[ -x "$(command -v python3)" ]]; then
     # Check Python 3 version

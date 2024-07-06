@@ -46,7 +46,7 @@ def teacher_new_record():
 # converting students instances to dictionary
 
 
-def studentObject_to_Dict(students):
+def student_object_to_dict(students):
     """
     converts a list of Student objects into a list of dictionaries,
     following the key-value pairs of the object Student.
@@ -82,7 +82,7 @@ def studentObject_to_Dict(students):
 # converting teachers instances to dictionary
 
 
-def teacherObject_to_Dict(teachers):
+def teacher_object_to_dict(teachers):
     """
     converts a list of Teacher objects into a list of dictionaries,
     following the key-value pairs of the object Teacher.
@@ -145,22 +145,22 @@ def menu_search_student_teacher(school, entity_profile):
                     # If searching for a student, call find_student_by_id
                     # method
 
-                    if entity_profile == Student.profile:
+                    if entity_profile == Student.PROFILE:
                         # If the method find_student_by_id returns True,
                         # call menu_update_delete function for further actions
                         if school.find_student_by_id(id_number):
                             menu_update_delete(
-                                school, Student.profile, id_number)
+                                school, Student.PROFILE, id_number)
                         break
                     # If searching for a teacher, call find_teacher_by_id
                     # method
 
-                    elif entity_profile == Teacher.profile:
+                    elif entity_profile == Teacher.PROFILE:
                         # If the method find_teacher_by_id returns True,
                         # call menu_update_delete function for further actions
                         if school.find_teacher_by_id(id_number):
                             menu_update_delete(
-                                school, Teacher.profile, id_number)
+                                school, Teacher.PROFILE, id_number)
                         break
                 except ValueError:
                     print("\nInput must be a number")
@@ -170,7 +170,7 @@ def menu_search_student_teacher(school, entity_profile):
         # Search by name
         elif choice == "2":
             try:
-                if entity_profile == Student.profile:
+                if entity_profile == Student.PROFILE:
                     # If searching for a student, prompt user for student's
                     # name
                     student_name = input(f"Enter student's name: ").strip()
@@ -184,9 +184,9 @@ def menu_search_student_teacher(school, entity_profile):
                 # for further actions
                     if student_found:
                         menu_update_delete(
-                            school, Student.profile, students_found_id)
+                            school, Student.PROFILE, students_found_id)
 
-                elif entity_profile == Teacher.profile:
+                elif entity_profile == Teacher.PROFILE:
                     # If searching for a teacher, prompt user for teacher's
                     # name
                     teacher_name = input("Enter teacher's name: ").strip()
@@ -200,7 +200,7 @@ def menu_search_student_teacher(school, entity_profile):
                     # function for further actions
                     if teacher_found:
                         menu_update_delete(
-                            school, Teacher.profile, teachers_found_id)
+                            school, Teacher.PROFILE, teachers_found_id)
             except Exception as error:
                 print(f"An expected error occured: {error}")
 
@@ -299,7 +299,7 @@ def update_delete_records(school, entity_profile, id, operation):
 
     # the instruction block is executed based on the entity_profile (student or teacher)
     try:
-        if entity_profile == Student.profile:
+        if entity_profile == Student.PROFILE:
             if operation == "update":
                 # Call school's student_update method with the ID
                 print(school.student_update(id_update_delete))
@@ -308,7 +308,7 @@ def update_delete_records(school, entity_profile, id, operation):
                 # Call school's delete_student method with the ID
                 print(school.delete_student(id_update_delete))
 
-        elif entity_profile == Teacher.profile:
+        elif entity_profile == Teacher.PROFILE:
             if operation == "update":
                 # Call school's teacher_update method with the ID
                 print(school.teacher_update(id_update_delete))
