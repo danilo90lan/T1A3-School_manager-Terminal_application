@@ -382,34 +382,33 @@ Lists all courses available in the school by calling school.print_list_all_cours
 ### Testing
 The last final step of the development plan is the testing.
 
+![Testing](./docs/trello-testing.png)
+
+
 #### Verify ID assignment and uniqueness:
-- Create several Student and Teacher instances.
-- Retrieve IDs using get_id() method and verify uniqueness using assertions or print statements.
-- Check that IDs are correctly assigned and incremented without overlaps.
+- Creating many Student and Teacher instances.
+- Retrieving IDs using get_id() method and verify uniqueness using assertions or print statements.
+- Checking that IDs are correctly assigned and incremented without overlaps.
 
 #### Test methods for modifying attributes:
--  Modify attributes (name, last_name, address) of Person instances and verify changes.
+-  Modifying attributes (name, last_name, address) of Person instances and verifying changes.
 
 #### Test data reading and data writing:
-- Use sample JSON data containing Student and Teacher records.
-- Modify some records or add new records programmatically.
-- Write modified data using write_json() function and validate that changes are reflected in the new JSON file.
+- Using sample JSON data containing Student and Teacher records.
+- Modifying some records or add new records programmatically.
+- Writing modified data using write_json() function and checking if that changes are correctly written in the new JSON file.
 
 #### Test error handling for data inconsistencies or file not found scenarios:
-- Introduce errors in the JSON file (e.g., missing fields, incorrect format) or provide a non-existent file path.
-- Call read_json() function and handle exceptions (FileNotFoundError, ValueError) appropriately.
-- Ensure that error messages or exceptions are captured and handled gracefully.
+- Introducing errors in the JSON file (like missing fields, incorrect format) or provide a non-existent file path.
+- Call read_json() function and handle exceptions (FileNotFoundError, ValueError).
+- Ensuring that error messages or exceptions are handled gracefully.
 
 #### Validate search by name and ID for students and teachers:
-- Create instances of Student and Teacher with known attributes.
-- Implement search methods
-- Verify that searches return the correct instances or IDs.
+- Creating instances of Student and Teacher with known attributes.
+- Verifying that searches return the correct instances or IDs.
 
 #### Test filtering capabilities by subject or course criteria:
-- Create Student and Teacher instances with various subjects and courses.
-- Implement filtering methods
-- Validate that filtered results match expected criteria and that edge cases (such as no matches) are handled correctly.
+- Creating Student and Teacher instances with various subjects and courses.
+- Validating that filtered results match expected criteria and that edge cases (like no matches) are handled correctly.
 
-I will use assert statements with pytest to ensure that the tests validate expected outcomes effectively.
-
-![Testing](./docs/trello-testing.png)
+I will use assert statements with pytest to ensure that the tests validate expected outcomes in an afficient way.
