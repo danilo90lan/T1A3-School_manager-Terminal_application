@@ -4,16 +4,19 @@ from tools_management import read_json, write_json, student_object_to_dict, teac
 from tools_management import student_new_record, teacher_new_record, menu_search_student_teacher
 
 
-# prompt the user if wants to enter a new record
+def prompting_user(message):
+    """
+    keep prompting the user till get a valid response of either 'Y' (yes) or 'N' (no)
 
-def prompting_user():
-    new_record = input(
-        "\nDo you want to enter another one? (Y/N) ")
-    while new_record not in "YyNn":
-        new_record = input(
+    parameter: message: string containing the message to visualize to the user
+
+    return: the valid input choice.
+    """
+    choice = input(message)
+    while choice not in "YyNn":
+        choice = input(
             "Invalid input. Please enter Y or N: ")
-    print("\n")
-    return new_record
+    return choice
 
 # main function
 
@@ -53,6 +56,10 @@ def main():
         print(
             f"Error occurred while getting or formatting current date: {error}")
 
+    # defining vriables containing messages to pass as arguments to avoid redundancy across the main()
+    message_export_json_list = "Would you like to export the list to a JSON file? (Y/N) "
+    message_enter_new_record = "\nDo you want to enter another one? (Y/N) "
+
     while True:
         # Displaying the main menu options
         print("""
@@ -87,8 +94,8 @@ def main():
                         new_teacher = teacher_new_record()
                         # append the new Teacher instance to the teachers list
                         teachers_instances.append(new_teacher)
-                        # call promptin_user function
-                        new_record = prompting_user()
+                        # call promptin_user function to ask the user if wants to enter a new record
+                        new_record = prompting_user(message_enter_new_record)
                     # concatenate list students and list teachers after
                     # converting them into a lisgt of dictionaries
                     json_data = student_object_to_dict(
@@ -110,8 +117,8 @@ def main():
                         new_student = student_new_record()
                         # update the new Student instance to the students list
                         students_instances.append(new_student)
-                        # call promptin_user function
-                        new_record = prompting_user()
+                        # call promptin_user function to ask the user if wants to enter a new record
+                        new_record = prompting_user(message_enter_new_record)
                     # concatenate list students and list teachers after
                     # converting them into a lisgt of dictionaries
                     json_data = student_object_to_dict(
@@ -126,14 +133,14 @@ def main():
 
             case "3":
                 try:
-                    # Displaying all teacheStudentrs by calling the method
+                    # Displaying all teachers by calling the method
                     # display_all_teachers()
                     print(school.display_all_teachers())
                 except Exception as error:
                     print(f"An expected error occured: {error}")
             case "4":
                 try:
-                    # Displaying all teachers by calling the method
+                    # Displaying all students by calling the method
                     # display_all_students()
                     print(school.display_all_students())
                 except Exception as error:
@@ -174,26 +181,21 @@ def main():
                         # it prompt the user is wants to export the list into a
                         # new json file
                         if teachers_by_subject != []:
-                            while True:
-                                choice = input(
-                                    "Would you like to export the list to a JSON file? (Y/N) ")
-                                if choice in "Yy":
-                                    message = f"\nTeachers list under {subject.upper()} created"
-                                    # the filename of the new JSON file will be
-                                    # thw current date + the {subject}
-                                    file_path = f"./data/{current_date}_teachers_{subject}_.json"
+                            # call promptin_user function to ask the user if wants export the list to new different JSON file
+                            if prompting_user(message_export_json_list) in "Yy":
+                                message = f"\nTeachers list under {subject.upper()} created"
+                                # the filename of the new JSON file will be
+                                # thw current date + the {subject}
+                                file_path = f"./data/{current_date}_teachers_{subject}_.json"
 
-                                    # converts the subject list into dictionaries and pass it to write_json
-                                    # along with the customized message and the
-                                    # new file path as arguments
-                                    try:
-                                        write_json(
-                                            teacher_object_to_dict(teachers_by_subject), message, file_path)
-                                        break
-                                    except Exception as error:
-                                        print(f"Error saving data: {error}")
-                                elif choice in "Nn":
-                                    break
+                                # converts the subject list into dictionaries and pass it to write_json
+                                # along with the customized message and the
+                                # new file path as arguments
+                                try:
+                                    write_json(
+                                        teacher_object_to_dict(teachers_by_subject), message, file_path)
+                                except Exception as error:
+                                    print(f"Error saving data: {error}")
                 except Exception as error:
                     print(f"An expected error occured: {error}")
             case "8":
@@ -214,27 +216,23 @@ def main():
                         # if the teachers_by_subject variable is not empty
                         # it prompt the user is wants to export the list into a
                         # new json file
-                        if students_by_course != []:
-                            while True:
-                                choice = input(
-                                    "Would you like to export the list to a JSON file? (Y/N) ")
-                                if choice in "Yy":
-                                    message = f"\nStudents list under {course.upper()} created"
-                                    # the filename of the new JSON file will be
-                                    # thw current date + the {course}
-                                    file_path = f"./data/{current_date}_students_{course}.json"
 
-                                    # converts the course list into dictionaries and pass it to write_json
-                                    # along with the customized message and the
-                                    # new file path as arguments
-                                    try:
-                                        write_json(
-                                            student_object_to_dict(students_by_course), message, file_path)
-                                        break
-                                    except Exception as error:
-                                        print(f"Error saving data: {error}")
-                                elif choice in "Nn":
-                                    break
+                        if students_by_course != []:
+                            # call promptin_user function to ask the user if wants export the list to new different JSON file
+                            if prompting_user(message_export_json_list) in "Yy":
+                                message = f"\nStudents list under {course.upper()} created"
+                                # the filename of the new JSON file will be
+                                # thw current date + the {course}
+                                file_path = f"./data/{current_date}_students_{course}.json"
+
+                                # converts the course list into dictionaries and pass it to write_json
+                                # along with the customized message and the
+                                # new file path as arguments
+                                try:
+                                    write_json(
+                                        student_object_to_dict(students_by_course), message, file_path)
+                                except Exception as error:
+                                    print(f"Error saving data: {error}")
                 except Exception as error:
                     print(f"An expected error occured: {error}")
             case "9":
