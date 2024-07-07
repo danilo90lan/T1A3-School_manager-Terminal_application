@@ -64,6 +64,14 @@
         "Profile": "Student"
     },
     {
+        "#ID": 18,
+        "Name": "Jack",
+        "Last name": "Sparrow",
+        "Address": "Black pearl",
+        "Course": "Psychiatry",
+        "Profile": "Student"
+    },
+    {
         "#ID": 6,
         "Name": "Matthew",
         "Last name": "Murdock",

@@ -97,6 +97,9 @@ Using Trello I made a development plan, I've divided the project into different 
 Each task in Trello has details like what needs to be done and a checklist for each feature. It helps me stay organized, know what's being worked on, and track the progress step by step.
 
 ### Setup and initializzation
+
+![trello initializzation task](./docs/initializzation.png)
+
 Organize Directories and Files:
 
 - Create a root directory for my project, T1A3-School_manager.
@@ -108,13 +111,14 @@ data/: This directory can be used to store JSON files for storing data.
 - Create a .gitignore file to exclude unnecessary files (like virtual environment files)
 - Set Up Virtual Environment
 
-![trello initializzation task](./docs/initializzation.png)
-
 ### Defining the features
 It's time now to focus on implementing the core features of the school management system.
 ![Trello Defining features](./docs/defining_features.png)
 
 ### Implementation of Classes
+
+![class Person, Student. Teacher](./docs/trello-create_class.png)
+
 ### 1. Person Class
 The Person class serves as the base class for both students and teachers, defining common attributes and behaviors.
 

@@ -35,7 +35,7 @@ class School:
         # check if the list of students is not empty
         if self.students != []:
             print(f"""
-                            ***** List of all students *****\n""")
+                            ***** LIST OF ALL STUDENTS *****\n""")
             try:
                 # Sort students alphabetically by name and last name
                 sorted_students = sorted(self.students, key=lambda student: (
@@ -67,7 +67,7 @@ class School:
         # check if the list of teachers is not empty
         if self.teachers != []:
             print(f"""
-                            ***** List of all teachers *****\n""")
+                            ***** LIST OF ALL TEACHERS *****\n""")
             try:
                 # Sort teachers alphabetically by name and last name
                 sorted_teachers = sorted(self.teachers, key=lambda teacher: (
@@ -388,7 +388,7 @@ class School:
             # Check if any courses were found
             if list_courses:
                 print(f"""
-                        ***** List of all courses in the school *****\n""")
+                        ***** LIST OF ALL COURSES *****\n""")
                 # Print each course in the set
                 for i in list_courses:
                     print(i, "\n")
@@ -427,7 +427,7 @@ class School:
             # Check if any subjects were found
             if list_subjects:
                 print(f"""
-                        ***** List of all subjects taught in the school *****\n""")
+                        ***** LIST OF ALL SUBJECTS *****\n""")
                 # Print each subject in the set
                 for i in list_subjects:
                     print(i, "\n")
