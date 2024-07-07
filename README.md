@@ -340,7 +340,7 @@ By separating different tasks into clear functions and classes, the program can 
 - Reads data from a JSON file using read_json(), which returns lists of student instances, teacher instances, and a list of IDs.
 - Initializes a School object (school) using the lists of student and teacher instances obtained from the JSON file.
 - Initializes ID for Person objects using Person.initialize_id(list_id)
-- Retrieves the current date and formats it as a string (current_date) using the datetime module imported at the top of the script
+- Retrieves the current date and formats it as a string (current_date) using the datetime module imported at the top of the script. The current date is used as part of the file name when exporting lists of students or teachers under a specific subject or course to a JSON file. This helps keep the files organized and makes it easy to know when each file was created.
 
 #### Menu Options:
 1. **Enter new teacher:**  

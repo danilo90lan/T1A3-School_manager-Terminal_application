@@ -3,6 +3,18 @@ from models import Person, Teacher, Student, School
 from tools_management import read_json, write_json, student_object_to_dict, teacher_object_to_dict
 from tools_management import student_new_record, teacher_new_record, menu_search_student_teacher
 
+
+# prompt the user if wants to enter a new record
+
+def prompting_user():
+    new_record = input(
+        "\nDo you want to enter another one? (Y/N) ")
+    while new_record not in "YyNn":
+        new_record = input(
+            "Invalid input. Please enter Y or N: ")
+    print("\n")
+    return new_record
+
 # main function
 
 
@@ -75,10 +87,8 @@ def main():
                         new_teacher = teacher_new_record()
                         # append the new Teacher instance to the teachers list
                         teachers_instances.append(new_teacher)
-                        # prompt the user if wants to enter a new record
-                        new_record = input(
-                            "\nDo you want to enter another one? (Y/N) ")
-                        print("\n")
+                        # call promptin_user function
+                        new_record = prompting_user()
                     # concatenate list students and list teachers after
                     # converting them into a lisgt of dictionaries
                     json_data = student_object_to_dict(
@@ -100,10 +110,8 @@ def main():
                         new_student = student_new_record()
                         # update the new Student instance to the students list
                         students_instances.append(new_student)
-                        # prompt the user if wants to enter a new record
-                        new_record = input(
-                            "\nDo you want to enter another one? (Y/N) ")
-                        print("\n")
+                        # call promptin_user function
+                        new_record = prompting_user()
                     # concatenate list students and list teachers after
                     # converting them into a lisgt of dictionaries
                     json_data = student_object_to_dict(
