@@ -5,12 +5,10 @@
 ### Prerequisites
 - Python 3.10 or higher installed   
   [(https://installpython3.com/)](https://www.python.org/downloads/)
-- Pyhton3 virtual environment (venv) installed   
-  [(https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
 
 ### Step by step installation
 1. Open the terminal
-2. Navigate to the project directory:
+2. From the root folder navigate to the project directory:
 ```
 cd ./src/T1A3-School_manager
 ```
@@ -415,4 +413,4 @@ The last final step of the development plan is the testing.
 - Creating Student and Teacher instances with various subjects and courses.
 - Validating that filtered results match expected criteria and that edge cases (like no matches) are handled correctly.
 
-I will use assert statements with pytest to ensure that the tests validate expected outcomes in an afficient way.
+I use assert statements with pytest to ensure that the tests validate expected outcomes in an afficient way.
