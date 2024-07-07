@@ -3,10 +3,10 @@
 ## Installation requirements
 
 ### Prerequisites
-- Python 3.10 or higher installed 
-  (https://installpython3.com/)
-- Pyhton3 virtual environment (venv) installed 
-  (https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
+- Python 3.10 or higher installed   
+  [(https://installpython3.com/)](https://www.python.org/downloads/)
+- Pyhton3 virtual environment (venv) installed   
+  [(https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
 
 ### Step by step installation
 1. Open the terminal
@@ -83,20 +83,20 @@ The app is organized into two main packages:
 
 ### Models
 The models package contains the following modules:
-- **Person**: This is the base class that defines common attributes for both students and teachers, and includes methods for updating and viewing records.
-- **Student**: This class inherits from Person and includes additional attributes specific to students, along with methods to update and view student-specific data.
-- **Teacher**: This class inherits from Person and includes additional attributes specific to teachers, along with methods to update and view teacher-specific data.
-- **School**: This class provides a set of methods to manage and interact with collections of Student and Teacher objects
+- **Person.py**: This is the base class that defines common attributes for both students and teachers, and includes methods for updating and viewing records.
+- **Student.py**: This class inherits from Person and includes additional attributes specific to students, along with methods to update and view student-specific data.
+- **Teacher.py**: This class inherits from Person and includes additional attributes specific to teachers, along with methods to update and view teacher-specific data.
+- **School.py**: This class provides a set of methods to manage and interact with collections of Student and Teacher objects
 
 ### Tools Management
 The tools_management package contains the following modules:
-- **File_operation**: Functions to read from and write to JSON files.
-- **Record_operation**: Functions to convert student and teacher objects to dictionaries, functions to create new instances of students and teachers based on JSON data and functions to display sub-menus for the user, allowing choices to update, delete records, search, and filter.  
+- **File_operation.py**: Functions to read from and write to JSON files.
+- **Record_operation.py**: Functions to convert student and teacher objects to dictionaries, functions to create new instances of students and teachers based on JSON data and functions to display sub-menus for the user, allowing choices to update, delete records, search, and filter.  
 These functions link to the **School** class, which contains all the methods for handling these operations.
 
 ## Development plan
-Using Trello I made a development, I've divided the project into different tasks that helps me to track the implementation plan.
-Each task in Trello has details like what needs to be done, who is responsible, and any notes or deadlines. It helps me stay organized, know what's being worked on, and track the progress step by step.
+Using Trello I made a development plan, I've divided the project into different tasks that helps me to track the implementation plan.
+Each task in Trello has details like what needs to be done and a checklist for each feature. It helps me stay organized, know what's being worked on, and track the progress step by step.
 
 ### Setup and initializzation
 Organize Directories and Files:
@@ -106,9 +106,10 @@ Organize Directories and Files:
 models/: This directory will contain Python classes (Person, Student, Teacher, School).
 tools_management/: This directory will contain modules for file operations, record operations, and user interaction (file_operation.py, record_operation.py, menu.py, etc.).
 data/: This directory can be used to store JSON files for storing data.
-- Initialize Initialize a Git repository:
+- Initialize a Git repository:
 - Create a .gitignore file to exclude unnecessary files (like virtual environment files)
-- Set Up Virtual Environment 
+- Set Up Virtual Environment
+
 ![trello initializzation task](./docs/initializzation.png)
 
 ### Defining the features
@@ -120,12 +121,12 @@ It's time now to focus on implementing the core features of the school managemen
 The Person class serves as the base class for both students and teachers, defining common attributes and behaviors.
 
 #### Class Variables:
-- __id: This is a class variable (static variable) prefixed with double underscores (__) to indicate it should not be directly accessed or modified from outside the class. It tracks the unique identifier for each instance of Person.  
+- __id: This is a class variable encapsulated with double underscores (__) to indicate it should not be directly accessed or modified from outside the class. It tracks the unique identifier for each instance of Person.  
 __id is private and can only be accessed or modified through defined getter (get_id()) and setter (set_id()) methods.
 
 #### Constructor Method
 - Initializes a new instance of Person with attributes name, last_name, and address.
-- Uses a class variable __id to assign a unique identifier to each new instance by incrementing it with every instantiation.
+- Uses a class variable __id to assign a unique identifier to each new instance by incrementing it by 1 every time a new instance is created.
 
 #### Class Methods - initialize_id(cls, list_id)
 - Purpose: Initializes the class variable __id based on data from a JSON file (list_id). It's not applied at the instance but it's applied at the class itself
@@ -143,7 +144,7 @@ __id is private and can only be accessed or modified through defined getter (get
 
 #### Static Method - not_empty_value(prompt)
 - Purpose: Ensures user inputs are not empty.
-- unctionality: Static method used within other methods to prompt users for non-empty inputs repeatedly until a valid input is received.
+- Functionality: Static method used within other methods to keep prompting users for non-empty inputs until a valid input is received.
 
 #### Instance Methods
 #### print_info(self)
@@ -164,13 +165,13 @@ The constructor method initializes a new instance of the Student class. It does 
 - Assigning a Unique ID: It assigns a unique ID to the student by calling Person.get_id().
 
 #### Methods - get_id(self)
-- Description: This getter method returns the unique ID of the student instance.
+- This getter method returns the unique ID of the student instance.
 
 #### Methods - print_info(self)
-- Description: This method returns a string containing both inherited and student-specific information, such as the course name.
+- This method returns a string containing both inherited and student-specific information, such as the course name.
 
 #### Methods - update_student(self)
-- Description: This method updates both inherited attributes (name, last name, address) and the course attribute based on user input.
+- This method updates both inherited attributes (name, last name, address) and the course attribute based on user input.
 
 ### 3. Teacher Class
 The Teacher class is a subclass of Person and includes additional attributes and methods specific to teachers.
@@ -182,26 +183,26 @@ The constructor method initializes a new instance of the Teacher class.
 - Assigning a Unique ID: It assigns a unique ID to the teacher by calling Person.get_id()
 
 #### Methods - get_id(self)
-- Description: This getter method returns the unique ID of the teacher instance.
+- This getter method returns the unique ID of the teacher instance.
 
 #### Methods - print_info(self)
-- Description: This method returns a string containing both inherited and teacher-specific information, such as the subject area.
+- This method returns a string containing both inherited and teacher-specific information, such as the subject area.
 
 #### Methods - update_teacher(self)
-- Description: This method updates both inherited attributes (name, last name, address) and the subject_area attribute based on user input.
+- This method updates both inherited attributes (name, last name, address) and the subject_area attribute based on user input.
 
 ![tracking trello](./docs/tracking1.png)
 
 ### Read from JSON file
 The function read_json() containded in the file_operation module is responsible for reading student and teacher records from a JSON file, creating instances of the Student and Teacher classes, and returning these instances along with their IDs.
 - Reading the JSON file and loads the content of the file into the json_data list.
-- Processing each record: a for loop iterates over each record in the json data list and collects the ID from eah record and append it to the list_id list.
+- Processing each record: a for loop iterates over each record in the json data list and collects the ID from each record and append it to the list_id[].
 - Checks if the profile of the record is "Student" or "Teacher"
 - Sets the ID for the Person class. This is necessary to retrieve the id for each record in the JSON list.
-- Creates an instance of the Student or Teacher (based on the Profile key) class using the values from the JSON record.
+- Creates an instance of the Student or Teacher class (based on the Profile key) using the values from the JSON record.
 - Append the newly created instance to the list where belong (student_list, teacher_list) depending of the profile type
 
-#### Understanding the ID System
+### Understanding the ID System
 **ID Initialization and Incrementation**:
 
 - When a new instance of Person (or its subclasses Student and Teacher) is created, the ID counter is incremented automatically to assign a unique ID to each instance.
@@ -233,7 +234,7 @@ The file_path is a constant but has an optional parameter if the user wants to p
 **Opening and Writing to File**:
 - It opens the specified file_path in write mode ("w").
 - It uses json.dump() to write the sorted_json_data to the file.
-- After successfully writing the JSON data to the file, the function prints a message which is an optional parameter to confirm the operation completed.
+- After successfully writing the JSON data to the file, the function prints a message, which is an optional parameter set empty by default, to confirm the operation completed.
 
 ![functionality checklist](./docs/trello-functionality_checklist.png)
 ![trello tracking](./docs/tracking2.png)
@@ -244,6 +245,8 @@ This module consist of several functions and utility methods designed to manage 
 #### student_new_record() and teacher_new_record():
 - These functions prompt the user to enter information like name, last name, address, and either course (for students) or teaching subject (for teachers).
 - They create instances of Student or Teacher classes respectively and return the created object (Student or Teacher)
+
+![feature add new records](./docs/trello-add_new_records.png)
 
 #### student_object_to_dict(students) and teacher_object_to_dict(teachers):
 - These functions convert lists of Student or Teacher objects into lists of dictionaries in order to be written to a JSON file
@@ -262,7 +265,6 @@ This module consist of several functions and utility methods designed to manage 
 - This function displays a sub-menu allowing users to update or delete a student's or teacher's record.
 - Based on the entity_profile and id provided, it interacts with the school object to perform update or delete operations (update_delete_records function).
 
-![feature add new records](./docs/trello-add_new_records.png)
 ![trello tracking plan](./docs/tracking3.png)
 
 ### 3. School Class
@@ -276,11 +278,15 @@ This School class manages collections of Student and Teacher objects, providing 
 - Prints each student's information using Student.print_info() method.
 - Returns the number of students or a message if no students are present
 
+![Trello display records](./docs/trello_display_records.png)
+
 #### find_student_by_id(student_id)
 - Searches for a student by its ID
 - Iterates through self.students list and compares ID using Student.get_id()
 - Prints student information if found, otherwise prints a message.
 - Returns True if student is found, False otherwise.
+
+![Search records](./docs/trello-search_record.png)
 
 #### find_student_by_name(student_name)
 - Finds student by its name.
@@ -289,7 +295,7 @@ This School class manages collections of Student and Teacher objects, providing 
 - It handles scenarios where multiple records might match the search criteria (id could be a single integer or a list of integers) in the case of namesakes. In such cases, it checks the type of id: if it is an integer, it is passed directly to the update_delete function. If it is a list, the function prompts the user to confirm the id due to potential namesakes."
 - Returns False if no students are found with the given name.
 
-![find student by name](./docs/flowchart_find_student_by_name.png)
+![flowchart student by name](./docs/flowchart_find_student_by_name.png)
 
 #### student_update(id)
 - Updates a student's information based on the given ID
@@ -304,8 +310,6 @@ This School class manages collections of Student and Teacher objects, providing 
 
 #### The same functions are built for the Teacher objects, working in the same way but operating on the Teacher instances list instead
 
-![Trello display records](./docs/trello_display_records.png)
-
 #### filter_students_by_course(course)
 - Filters and retrieves students enrolled in a specified course.
 - Iterate through the students list and if the student's course attribute is the same to the given course value append it to the matching_student list
@@ -314,6 +318,8 @@ This School class manages collections of Student and Teacher objects, providing 
 #### filter_teachers_by_subject(subject)
 - Filters and retrieves teachers who teach a specified subject.
 - Similar to filter_students_by_course, but operates on self.teachers and search for the subject attribute instead
+
+![Filter records](./docs/trello-filter_records.png)
 
 #### print_list_all_courses()
 - Prints a list of all unique courses taken by students.
@@ -325,8 +331,6 @@ This School class manages collections of Student and Teacher objects, providing 
 - Uses a set variable to store unique subjects.
 - Prints each subject and returns True if subjects are found; otherwise, returns False.
 
-![Filter records](./docs/trello-filter_records.png)
-![Search records](./docs/trello-search_record.png)
 ![list subject_course](./docs/trello-list_course_subject.png)
 ![trello tracking plan](./docs/tracking5.png)
 
