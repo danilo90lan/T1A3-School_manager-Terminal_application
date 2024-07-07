@@ -6,6 +6,10 @@
 - Python 3.10 or higher installed   
   [(https://installpython3.com/)](https://www.python.org/downloads/)
 
+- Virtual environment (venv) installed
+[(9https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
+
+
 ### Step by step installation
 1. Open the terminal
 2. From the root folder navigate to the project directory:
@@ -16,6 +20,25 @@ cd ./src/T1A3-School_manager
 ```
 ./run.sh
 ```
+
+### bash scripts
+#### run.sh
+run.sh is an executable:
+- It checks if Python 3 is installed and executable using command -v python3
+- If Python 3 is available, it checks the version using python3 -V 2>&1 and stores the output in pyv.
+- If the Python version starts with "Python 3", it creates a virtual environment named virtualenv using python3 -m venv virtualenv.
+- It activates the newly created virtual environment using source virtualenv/bin/activate.
+- It installs dependencies listed in requirements.txt using pip install -r requirements.txt.
+- It runs the main Python application located at src/main.py using python3 src/main.py.
+- After running the application, it deactivates the virtual environment using deactivate
+- If Python 3 is not found or if the version is not suitable (doesn't start with "Python 3"), it outputs an error message indicating the need to install Python 3
+
+#### install_venv.sh
+install_venv.sh is an executable that:
+- Checks if the venv module for Python 3 is installed by attempting to get help for it (python3 -m venv --help)
+- Checks the exit status ($?) of the previous command (python3 -m venv --help). If the exit status is 0 (indicating success), it prints "venv is already installed".
+- If the exit status is not 0, it proceeds to install venv using sudo apt-get update and sudo apt-get install -y python3-venv.
+- It prints a message of succesfull installation.
 
 ## GitHub Repository
 [Link to my GitHub Repository](https://github.com/danilo90lan/T1A3-School_manager-Terminal_application)
@@ -81,10 +104,10 @@ The app is organized into two main packages:
 
 ### Models
 The models package contains the following modules:
-- **Person.py**: This is the base class that defines common attributes for both students and teachers, and includes methods for updating and viewing records.
-- **Student.py**: This class inherits from Person and includes additional attributes specific to students, along with methods to update and view student-specific data.
-- **Teacher.py**: This class inherits from Person and includes additional attributes specific to teachers, along with methods to update and view teacher-specific data.
-- **School.py**: This class provides a set of methods to manage and interact with collections of Student and Teacher objects
+- **Person**: This is the base class that defines common attributes for both students and teachers, and includes methods for updating and viewing records.
+- **Student**: This class inherits from Person and includes additional attributes specific to students, along with methods to update and view student-specific data.
+- **Teacher**: This class inherits from Person and includes additional attributes specific to teachers, along with methods to update and view teacher-specific data.
+- **School**: This class provides a set of methods to manage and interact with collections of Student and Teacher objects
 
 ### Tools Management
 The tools_management package contains the following modules:
