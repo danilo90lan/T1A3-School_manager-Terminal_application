@@ -23,8 +23,10 @@ def prompting_user(message):
 
 
 def main():
-    arg1 = sys.argv[1]
-    arg2 = sys.argv[2]
+    arg1 = int(sys.argv[1])
+    arg2 = int(sys.argv[2])
+
+    print(arg1 + arg2)
 
     print("The arguments are ", arg1, arg2)
 

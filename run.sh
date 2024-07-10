@@ -15,7 +15,7 @@ if [[ -x "$(command -v python3)" ]]; then
         pip install -r requirements.txt
 
         # Run the main application
-        python3 src/main.py
+        python3 src/main.py $1 $2
 
         # Deactivate the virtual environment
         deactivate
