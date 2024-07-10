@@ -2,6 +2,7 @@ from datetime import datetime
 from models import Person, Teacher, Student, School
 from tools_management import read_json, write_json, student_object_to_dict, teacher_object_to_dict
 from tools_management import student_new_record, teacher_new_record, menu_search_student_teacher
+import sys
 
 
 def prompting_user(message):
@@ -22,6 +23,11 @@ def prompting_user(message):
 
 
 def main():
+    arg1 = sys.argv[1]
+    arg2 = sys.argv[2]
+
+    print("The arguments are ", arg1, arg2)
+
     """
     Initialization of students and teachers records based on the json file.
     Initialization of the ID system based on the JSON file to ensure each record has a unique ID

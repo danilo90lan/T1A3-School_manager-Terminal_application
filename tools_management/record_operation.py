@@ -276,7 +276,7 @@ def update_delete_records(school, entity_profile, id, operation):
         while True:
             try:
                 id_input = int(input(
-                    "\nEnter ID to confirm the correct record to UPDATE in case of namesakes: "))
+                    "\nEnter ID to confirm the correct record in case of namesakes: "))
 
                 # If the id_input is found in the list `id`, proceed with the update or delete operation
                 if id_input in id:
