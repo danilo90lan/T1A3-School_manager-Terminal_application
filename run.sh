@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# Check if the number of arguments is more than 2
+if [ "$#" -gt 4 ]; then
+    echo "Error: Too many arguments provided. Maximum 2 arguments allowed."
+    exit 1
+fi
+
 # Check if Python 3 is available
 if [[ -x "$(command -v python3)" ]]; then
     # Check Python 3 version
@@ -15,7 +22,10 @@ if [[ -x "$(command -v python3)" ]]; then
         pip install -r requirements.txt
 
         # Run the main application
-        python3 src/main.py $1 $2
+        # python3 src/main.py $1 $2 $3 $4
+
+        # Or you can run the script like this, same thing
+        python3 src/main.py $@
 
         # Deactivate the virtual environment
         deactivate

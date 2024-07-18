@@ -2,8 +2,29 @@ from datetime import datetime
 from models import Person, Teacher, Student, School
 from tools_management import read_json, write_json, student_object_to_dict, teacher_object_to_dict
 from tools_management import student_new_record, teacher_new_record, menu_search_student_teacher
+import argparse
 import sys
 
+def call_arguments(school):
+    flag = False
+    parser = argparse.ArgumentParser()
+
+    #add optional arguments
+    parser.add_argument("-s", "--student", choices=["print", "list"], type=str, help="display all students")
+    parser.add_argument("-t", "--teacher", choices=["print", "list"], type=str, help="display all teachers")
+    args = parser.parse_args()
+
+    if args.student == "print" or args.student == "list":
+        school.display_all_students()
+        flag = True
+
+    if args.teacher == "print" or args.teacher == "list":
+        school.display_all_teachers()
+        flag = True
+    
+    if flag:
+        sys.exit(0)
+    
 
 def prompting_user(message):
     """
@@ -20,15 +41,14 @@ def prompting_user(message):
     return choice
 
 # main function
-
-
 def main():
-    arg1 = int(sys.argv[1])
-    arg2 = int(sys.argv[2])
 
-    print(arg1 + arg2)
-
-    print("The arguments are ", arg1, arg2)
+# passing positional arguments from command line
+# the first parameter sys.argv[0] e' il nome del fine
+    # if len(sys.argv) > 1:
+    #     arg1 = sys.argv[1]
+    #     arg2 = sys.argv[2]
+    #     print("The arguments are ", arg1, arg2)
 
     """
     Initialization of students and teachers records based on the json file.
@@ -63,6 +83,8 @@ def main():
     except TypeError as error:
         print(
             f"Error occurred while getting or formatting current date: {error}")
+        
+    call_arguments(school)
 
     # defining vriables containing messages to pass as arguments to avoid redundancy across the main()
     message_export_json_list = "Would you like to export the list to a JSON file? (Y/N) "
