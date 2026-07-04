@@ -5,6 +5,9 @@ from tools_management import student_new_record, teacher_new_record, menu_search
 import argparse
 import sys
 
+CYAN = "\033[96m"
+RESET = "\033[0m"
+
 def call_arguments(school):
     flag = False
     parser = argparse.ArgumentParser()
@@ -92,24 +95,24 @@ def main():
 
     while True:
         # Displaying the main menu options
-        print("""
+        print(CYAN + """
                         *************************************
                             WELCOME TO THE SCHOOL MANAGER
-                        *************************************\
-                        """)
+                        *************************************
+""" + RESET)
 
         print(f"""
-                            1 - Enter new teacher
-                            2 - Enter new student
-                            3 - Display teachers records (A - Z)
-                            4 - Display students records (A - Z)
-                            5 - Search student
-                            6 - Search teacher
-                            7 - Filter teachers by subject
-                            8 - Filter students by course
-                            9 - List all subjects
-                           10 - List all courses
-                           11 - Exit program
+                            {CYAN}1{RESET} - Enter new teacher
+                            {CYAN}2{RESET} - Enter new student
+                            {CYAN}3{RESET} - Display teachers records (A - Z)
+                            {CYAN}4{RESET} - Display students records (A - Z)
+                            {CYAN}5{RESET} - Search student
+                            {CYAN}6{RESET} - Search teacher
+                            {CYAN}7{RESET} - Filter teachers by subject
+                            {CYAN}8{RESET} - Filter students by course
+                            {CYAN}9{RESET} - List all subjects
+                           {CYAN}10{RESET} - List all courses
+                           {CYAN}11{RESET} - Exit program
         """)
         #  prompt the user to perform an operation
         choice = input("Enter your choice: ")
@@ -127,7 +130,7 @@ def main():
                         # call promptin_user function to ask the user if wants to enter a new record
                         new_record = prompting_user(message_enter_new_record)
                     # concatenate list students and list teachers after
-                    # converting them into a lisgt of dictionaries
+                    # converting them into a list of dictionaries
                     json_data = student_object_to_dict(
                         students_instances) + teacher_object_to_dict(teachers_instances)
                 except Exception as error:
